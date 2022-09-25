@@ -18,10 +18,10 @@ This query supports GET operation from SAP backend to provision data from tables
 This API uses Basic Authentication
 
 ## Known Issues and Limitations
-->REST API supports data limits as specified under REST API protocols
-->Large datasets extraction may result in time outs as configured in the REST API systems
+REST API supports data limits as specified under REST API protocols
+Large datasets extraction may result in time outs as configured in the REST API systems
 
 
 ## Deployment Instructions
 
--> Follow this [link](https://github.com/ecsadm/usb4sap/blob/main/KB%20024%20-%20ODDI%20License%20Installation_v2.1.pdf) for the installation of ODDI for SAP.
+Follow this [link](https://github.com/ecsadm/usb4sap/blob/main/KB%20024%20-%20ODDI%20License%20Installation_v2.1.pdf) for the installation of ODDI for SAP.
