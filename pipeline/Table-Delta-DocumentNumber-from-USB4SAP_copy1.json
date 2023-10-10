@@ -21,7 +21,7 @@
 						"httpRequestTimeout": "00:01:40",
 						"requestInterval": "00.00:00:00.010",
 						"requestMethod": "POST",
-						"requestBody": "{\n    \"DELIMITER\": \"|\",\n    \"OBJ_TYPE\": \"T\",\n    \"OBJ_ID\": \"VTTK\",\n    \"DELTA_FILTER\": \"ERDAT:I:GE::|ERZET:I:GE::\",\n\"DATADEST\": \"0|0||\"\n}"
+						"requestBody": "{\n    \"DELIMITER\": \"|\",\n    \"OBJ_TYPE\": \"T\",\n    \"OBJ_ID\": \"AFPO\",\n    \"DELTA_FILTER\": \"AUFNR:I:GE::|POSNR:I:GE::\",\n\"DATADEST\": \"0|0||\"\n}"
 					},
 					"sink": {
 						"type": "JsonSink",
