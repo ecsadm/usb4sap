@@ -1,0 +1,23 @@
+{
+	"name": "SAP_CDC",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SapOdp",
+		"typeProperties": {
+			"clientId": "800",
+			"language": "EN",
+			"sncMode": false,
+			"userName": "service1",
+			"subscriberName": "ecs-susbcription1",
+			"server": "sap-ecc-ehp8.ecoservity.com",
+			"systemNumber": "00",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI4ZWIxMTdlZS01NTY0LTQxYTEtYTJhMS1hZmFmMjgwZDkzZTEiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "ir-az-vm002",
+			"type": "IntegrationRuntimeReference"
+		},
+		"description": "SAP CDC connection to ECC"
+	}
+}

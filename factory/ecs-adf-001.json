@@ -1,0 +1,9 @@
+{
+	"name": "ecs-adf-001",
+	"location": "centralus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "ef9407aa-914e-438d-a465-0511b504e540",
+		"tenantId": "403d0a69-ae6c-459e-a989-d89a3141d440"
+	}
+}

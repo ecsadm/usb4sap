@@ -1,0 +1,62 @@
+{
+	"name": "CopyVBKDData",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_zo5",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "VBKD"
+					},
+					{
+						"name": "Destination",
+						"value": "sapbw_output/VBKD_001.txt"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "SapTableSource",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureDataLakeStoreWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_zo5",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_zo5",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2020-03-21T03:10:38Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

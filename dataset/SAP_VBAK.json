@@ -1,0 +1,16 @@
+{
+	"name": "SAP_VBAK",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SapTable1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SapTableResource",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "VBAK"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,160 @@
+{
+	"name": "SourceDataset_o4u",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStore2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureDataLakeStoreLocation",
+				"fileName": "VBUP_002.txt",
+				"folderPath": "sapbw_output"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "MANDT"
+			},
+			{
+				"name": "VBELN"
+			},
+			{
+				"name": "POSNR"
+			},
+			{
+				"name": "RFSTA"
+			},
+			{
+				"name": "RFGSA"
+			},
+			{
+				"name": "BESTA"
+			},
+			{
+				"name": "LFSTA"
+			},
+			{
+				"name": "LFGSA"
+			},
+			{
+				"name": "WBSTA"
+			},
+			{
+				"name": "FKSTA"
+			},
+			{
+				"name": "FKSAA"
+			},
+			{
+				"name": "ABSTA"
+			},
+			{
+				"name": "GBSTA"
+			},
+			{
+				"name": "KOSTA"
+			},
+			{
+				"name": "LVSTA"
+			},
+			{
+				"name": "UVALL"
+			},
+			{
+				"name": "UVVLK"
+			},
+			{
+				"name": "UVFAK"
+			},
+			{
+				"name": "UVPRS"
+			},
+			{
+				"name": "FKIVP"
+			},
+			{
+				"name": "UVP01"
+			},
+			{
+				"name": "UVP02"
+			},
+			{
+				"name": "UVP03"
+			},
+			{
+				"name": "UVP04"
+			},
+			{
+				"name": "UVP05"
+			},
+			{
+				"name": "PKSTA"
+			},
+			{
+				"name": "KOQUA"
+			},
+			{
+				"name": "COSTA"
+			},
+			{
+				"name": "CMPPI"
+			},
+			{
+				"name": "CMPPJ"
+			},
+			{
+				"name": "UVPIK"
+			},
+			{
+				"name": "UVPAK"
+			},
+			{
+				"name": "UVWAK"
+			},
+			{
+				"name": "DCSTA"
+			},
+			{
+				"name": "RRSTA"
+			},
+			{
+				"name": "VLSTP"
+			},
+			{
+				"name": "FSSTA"
+			},
+			{
+				"name": "LSSTA"
+			},
+			{
+				"name": "PDSTA"
+			},
+			{
+				"name": "MANEK"
+			},
+			{
+				"name": "HDALL"
+			},
+			{
+				"name": "BUMP"
+			},
+			{
+				"name": "LTSPS"
+			},
+			{
+				"name": "/SAPMP/LBASP"
+			},
+			{
+				"name": "MILL_VS_VSSTA"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

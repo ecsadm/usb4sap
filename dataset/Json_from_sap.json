@@ -1,0 +1,18 @@
+{
+	"name": "Json_from_sap",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLake_Gen2001",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

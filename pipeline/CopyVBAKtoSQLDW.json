@@ -1,0 +1,179 @@
+{
+	"name": "CopyVBAKtoSQLDW",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_phr",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "sapbw_output/VBAK_001.txt"
+					},
+					{
+						"name": "Destination",
+						"value": "dbo.VBAK"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureDataLakeStoreReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings",
+							"skipLineCount": 0
+						}
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"allowPolyBase": true,
+						"polyBaseSettings": {
+							"rejectValue": 0,
+							"rejectType": "value",
+							"useTypeDefault": true
+						}
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "AzureBlobStorage1",
+							"type": "LinkedServiceReference"
+						},
+						"path": "flatfile"
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "MANDT",
+									"type": "String"
+								},
+								"sink": {
+									"name": "MANDT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "VBELN",
+									"type": "String"
+								},
+								"sink": {
+									"name": "VBELN",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "AUDAT",
+									"type": "String"
+								},
+								"sink": {
+									"name": "AUDAT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "TRVOG",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TRVOG",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "AUART",
+									"type": "String"
+								},
+								"sink": {
+									"name": "AUART",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "VKORG",
+									"type": "String"
+								},
+								"sink": {
+									"name": "VKORG",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "VTWEG",
+									"type": "String"
+								},
+								"sink": {
+									"name": "VTWEG",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SPART",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SPART",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "VDATU",
+									"type": "String"
+								},
+								"sink": {
+									"name": "VDATU",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "KUNNR",
+									"type": "String"
+								},
+								"sink": {
+									"name": "KUNNR",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_phr",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_phr",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2020-03-21T05:47:18Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,852 @@
+{
+	"name": "DP_1",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SapTableSource",
+						"rfcTableOptions": "",
+						"customRfcReadTableFunctionModule": "",
+						"rfcTableFields": "ADRNR,BAPOVAR,BUKRS,BUKRS_GLOB,BUTXT,BUVAR,DKWEG,DTAMTC,DTAXR,DTPROV,DTTAXC,DTTDSP,EBUKR,FDBUK,FIKRS,FMHRDATE,FM_DERIVE_ACC,FSTVA,FSTVARE,IMPDA,INFMT,KKBER,KOKFI,KOPIM,KTOP2,KTOPL,LAND1,MANDT,MREGL,MWSKA,MWSKV,OFFSACCT,OPVAR,ORT01,PERIV,PP_PDATE,PST_PER_VAR,RCOMP,SPRAS,STCEG,SURCCM,TXJCD,TXKRS,UMKRS,WAABW,WAERS,WFVAR,WT_NEWWT,XBBBA,XBBBE,XBBBF,XBBKO,XBBSC,XCESSION,XCOS,XCOVR,XEINK,XEXTB,XFDIS,XFDMM,XFDSD,XFMCA,XFMCB,XFMCO,XGJRV,XGSBE,XJVAA,XKDFT,XKKBI,XMWSN,XNEGP,XPROD,XSKFN,XSLTA,XSPLT,XSTDT,XVALV,XVATDATE,XVVWA",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureDataLakeStoreWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"enableSkipIncompatibleRow": true,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "ADRNR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 1
+								}
+							},
+							{
+								"source": {
+									"name": "BAPOVAR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 2
+								}
+							},
+							{
+								"source": {
+									"name": "BUKRS",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 3
+								}
+							},
+							{
+								"source": {
+									"name": "BUKRS_GLOB",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 4
+								}
+							},
+							{
+								"source": {
+									"name": "BUTXT",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 5
+								}
+							},
+							{
+								"source": {
+									"name": "BUVAR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 6
+								}
+							},
+							{
+								"source": {
+									"name": "DKWEG",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 7
+								}
+							},
+							{
+								"source": {
+									"name": "DTAMTC",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 8
+								}
+							},
+							{
+								"source": {
+									"name": "DTAXR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 9
+								}
+							},
+							{
+								"source": {
+									"name": "DTPROV",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 10
+								}
+							},
+							{
+								"source": {
+									"name": "DTTAXC",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 11
+								}
+							},
+							{
+								"source": {
+									"name": "DTTDSP",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 12
+								}
+							},
+							{
+								"source": {
+									"name": "EBUKR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 13
+								}
+							},
+							{
+								"source": {
+									"name": "FDBUK",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 14
+								}
+							},
+							{
+								"source": {
+									"name": "FIKRS",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 15
+								}
+							},
+							{
+								"source": {
+									"name": "FMHRDATE",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 16
+								}
+							},
+							{
+								"source": {
+									"name": "FM_DERIVE_ACC",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 17
+								}
+							},
+							{
+								"source": {
+									"name": "FSTVA",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 18
+								}
+							},
+							{
+								"source": {
+									"name": "FSTVARE",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 19
+								}
+							},
+							{
+								"source": {
+									"name": "IMPDA",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 20
+								}
+							},
+							{
+								"source": {
+									"name": "INFMT",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 21
+								}
+							},
+							{
+								"source": {
+									"name": "KKBER",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 22
+								}
+							},
+							{
+								"source": {
+									"name": "KOKFI",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 23
+								}
+							},
+							{
+								"source": {
+									"name": "KOPIM",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 24
+								}
+							},
+							{
+								"source": {
+									"name": "KTOP2",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 25
+								}
+							},
+							{
+								"source": {
+									"name": "KTOPL",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 26
+								}
+							},
+							{
+								"source": {
+									"name": "LAND1",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 27
+								}
+							},
+							{
+								"source": {
+									"name": "MANDT",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 28
+								}
+							},
+							{
+								"source": {
+									"name": "MREGL",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 29
+								}
+							},
+							{
+								"source": {
+									"name": "MWSKA",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 30
+								}
+							},
+							{
+								"source": {
+									"name": "MWSKV",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 31
+								}
+							},
+							{
+								"source": {
+									"name": "OFFSACCT",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 32
+								}
+							},
+							{
+								"source": {
+									"name": "OPVAR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 33
+								}
+							},
+							{
+								"source": {
+									"name": "ORT01",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 34
+								}
+							},
+							{
+								"source": {
+									"name": "PERIV",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 35
+								}
+							},
+							{
+								"source": {
+									"name": "PP_PDATE",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 36
+								}
+							},
+							{
+								"source": {
+									"name": "PST_PER_VAR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 37
+								}
+							},
+							{
+								"source": {
+									"name": "RCOMP",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 38
+								}
+							},
+							{
+								"source": {
+									"name": "SPRAS",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 39
+								}
+							},
+							{
+								"source": {
+									"name": "STCEG",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 40
+								}
+							},
+							{
+								"source": {
+									"name": "SURCCM",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 41
+								}
+							},
+							{
+								"source": {
+									"name": "TXJCD",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 42
+								}
+							},
+							{
+								"source": {
+									"name": "TXKRS",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 43
+								}
+							},
+							{
+								"source": {
+									"name": "UMKRS",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 44
+								}
+							},
+							{
+								"source": {
+									"name": "WAABW",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 45
+								}
+							},
+							{
+								"source": {
+									"name": "WAERS",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 46
+								}
+							},
+							{
+								"source": {
+									"name": "WFVAR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 47
+								}
+							},
+							{
+								"source": {
+									"name": "WT_NEWWT",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 48
+								}
+							},
+							{
+								"source": {
+									"name": "XBBBA",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 49
+								}
+							},
+							{
+								"source": {
+									"name": "XBBBE",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 50
+								}
+							},
+							{
+								"source": {
+									"name": "XBBBF",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 51
+								}
+							},
+							{
+								"source": {
+									"name": "XBBKO",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 52
+								}
+							},
+							{
+								"source": {
+									"name": "XBBSC",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 53
+								}
+							},
+							{
+								"source": {
+									"name": "XCESSION",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 54
+								}
+							},
+							{
+								"source": {
+									"name": "XCOS",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 55
+								}
+							},
+							{
+								"source": {
+									"name": "XCOVR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 56
+								}
+							},
+							{
+								"source": {
+									"name": "XEINK",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 57
+								}
+							},
+							{
+								"source": {
+									"name": "XEXTB",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 58
+								}
+							},
+							{
+								"source": {
+									"name": "XFDIS",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 59
+								}
+							},
+							{
+								"source": {
+									"name": "XFDMM",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 60
+								}
+							},
+							{
+								"source": {
+									"name": "XFDSD",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 61
+								}
+							},
+							{
+								"source": {
+									"name": "XFMCA",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 62
+								}
+							},
+							{
+								"source": {
+									"name": "XFMCB",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 63
+								}
+							},
+							{
+								"source": {
+									"name": "XFMCO",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 64
+								}
+							},
+							{
+								"source": {
+									"name": "XGJRV",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 65
+								}
+							},
+							{
+								"source": {
+									"name": "XGSBE",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 66
+								}
+							},
+							{
+								"source": {
+									"name": "XJVAA",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 67
+								}
+							},
+							{
+								"source": {
+									"name": "XKDFT",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 68
+								}
+							},
+							{
+								"source": {
+									"name": "XKKBI",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 69
+								}
+							},
+							{
+								"source": {
+									"name": "XMWSN",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 70
+								}
+							},
+							{
+								"source": {
+									"name": "XNEGP",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 71
+								}
+							},
+							{
+								"source": {
+									"name": "XPROD",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 72
+								}
+							},
+							{
+								"source": {
+									"name": "XSKFN",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 73
+								}
+							},
+							{
+								"source": {
+									"name": "XSLTA",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 74
+								}
+							},
+							{
+								"source": {
+									"name": "XSPLT",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 75
+								}
+							},
+							{
+								"source": {
+									"name": "XSTDT",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 76
+								}
+							},
+							{
+								"source": {
+									"name": "XVALV",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 77
+								}
+							},
+							{
+								"source": {
+									"name": "XVATDATE",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 78
+								}
+							},
+							{
+								"source": {
+									"name": "XVVWA",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 79
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SAP_T001",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DelimitedText1",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2020-03-21T00:35:18Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

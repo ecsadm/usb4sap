@@ -1,0 +1,23 @@
+{
+	"name": "DestinationDataset_jue",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStore2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureDataLakeStoreLocation",
+				"fileName": "VBUP.txt",
+				"folderPath": "sapbw_output"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

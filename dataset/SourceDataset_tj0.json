@@ -1,0 +1,53 @@
+{
+	"name": "SourceDataset_tj0",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStore1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureDataLakeStoreLocation",
+				"fileName": "response_02.JSON",
+				"folderPath": "sapbw_output"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"odata.metadata": {
+					"type": "string"
+				},
+				"value": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"odata.etag": {
+								"type": "string"
+							},
+							"PartitionKey": {
+								"type": "string"
+							},
+							"RowKey": {
+								"type": "string"
+							},
+							"Timestamp": {
+								"type": "string"
+							},
+							"Content": {
+								"type": "string"
+							},
+							"Completed": {
+								"type": "boolean"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

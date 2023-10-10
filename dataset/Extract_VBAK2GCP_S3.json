@@ -1,0 +1,22 @@
+{
+	"name": "Extract_VBAK2GCP_S3",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ECS_GCP_S3",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "GoogleCloudStorageLocation",
+				"bucketName": "ecs-sap-data-bucket2"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

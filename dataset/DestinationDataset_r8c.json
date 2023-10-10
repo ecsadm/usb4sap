@@ -1,0 +1,25 @@
+{
+	"name": "DestinationDataset_r8c",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLake_Gen2001",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "from_adls",
+				"folderPath": "Extract_08_2021",
+				"fileSystem": "sap-data-out"
+			},
+			"columnDelimiter": "|",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

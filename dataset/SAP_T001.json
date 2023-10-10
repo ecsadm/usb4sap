@@ -1,0 +1,16 @@
+{
+	"name": "SAP_T001",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SapTable1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SapTableResource",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "T001"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

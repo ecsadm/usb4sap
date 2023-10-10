@@ -1,0 +1,66 @@
+{
+	"name": "T1",
+	"properties": {
+		"activities": [
+			{
+				"name": "SAP-WS_MONITOR_OUTB_DEL_PICK",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "ET_DataSetSet"
+					},
+					{
+						"name": "Destination",
+						"value": "sap-data-out/capgemini-sea/f1"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "SapEccSource"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"validateDataConsistency": false
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_vp9",
+						"type": "DatasetReference",
+						"parameters": {
+							"filter": "ObjectType%20eq%20'R'%20and%20ObjectName%20eq%20'WS_MONITOR_OUTB_DEL_PICK'%20and%20Delimiter%20eq%20'%7C'%20and%20DataDest%20eq%20'0%7C0%7C%7C'%20and%20ImportGeneric%20eq%20'TYPE:ALV|||FIELD_LABLE:B'%20&",
+							"format": "XLSX"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_vp9",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2023-06-18T07:07:14Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

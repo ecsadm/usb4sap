@@ -1,0 +1,547 @@
+{
+	"name": "SourceDataset_phr",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStore2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureDataLakeStoreLocation",
+				"fileName": "VBAK_001.txt",
+				"folderPath": "sapbw_output"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "MANDT"
+			},
+			{
+				"name": "VBELN"
+			},
+			{
+				"name": "ERDAT"
+			},
+			{
+				"name": "ERZET"
+			},
+			{
+				"name": "ERNAM"
+			},
+			{
+				"name": "ANGDT"
+			},
+			{
+				"name": "BNDDT"
+			},
+			{
+				"name": "AUDAT"
+			},
+			{
+				"name": "VBTYP"
+			},
+			{
+				"name": "TRVOG"
+			},
+			{
+				"name": "AUART"
+			},
+			{
+				"name": "AUGRU"
+			},
+			{
+				"name": "GWLDT"
+			},
+			{
+				"name": "SUBMI"
+			},
+			{
+				"name": "LIFSK"
+			},
+			{
+				"name": "FAKSK"
+			},
+			{
+				"name": "NETWR"
+			},
+			{
+				"name": "WAERK"
+			},
+			{
+				"name": "VKORG"
+			},
+			{
+				"name": "VTWEG"
+			},
+			{
+				"name": "SPART"
+			},
+			{
+				"name": "VKGRP"
+			},
+			{
+				"name": "VKBUR"
+			},
+			{
+				"name": "GSBER"
+			},
+			{
+				"name": "GSKST"
+			},
+			{
+				"name": "GUEBG"
+			},
+			{
+				"name": "GUEEN"
+			},
+			{
+				"name": "KNUMV"
+			},
+			{
+				"name": "VDATU"
+			},
+			{
+				"name": "VPRGR"
+			},
+			{
+				"name": "AUTLF"
+			},
+			{
+				"name": "VBKLA"
+			},
+			{
+				"name": "VBKLT"
+			},
+			{
+				"name": "KALSM"
+			},
+			{
+				"name": "VSBED"
+			},
+			{
+				"name": "FKARA"
+			},
+			{
+				"name": "AWAHR"
+			},
+			{
+				"name": "KTEXT"
+			},
+			{
+				"name": "BSTNK"
+			},
+			{
+				"name": "BSARK"
+			},
+			{
+				"name": "BSTDK"
+			},
+			{
+				"name": "BSTZD"
+			},
+			{
+				"name": "IHREZ"
+			},
+			{
+				"name": "BNAME"
+			},
+			{
+				"name": "TELF1"
+			},
+			{
+				"name": "MAHZA"
+			},
+			{
+				"name": "MAHDT"
+			},
+			{
+				"name": "KUNNR"
+			},
+			{
+				"name": "KOSTL"
+			},
+			{
+				"name": "STAFO"
+			},
+			{
+				"name": "STWAE"
+			},
+			{
+				"name": "AEDAT"
+			},
+			{
+				"name": "KVGR1"
+			},
+			{
+				"name": "KVGR2"
+			},
+			{
+				"name": "KVGR3"
+			},
+			{
+				"name": "KVGR4"
+			},
+			{
+				"name": "KVGR5"
+			},
+			{
+				"name": "KNUMA"
+			},
+			{
+				"name": "KOKRS"
+			},
+			{
+				"name": "PS_PSP_PNR"
+			},
+			{
+				"name": "KURST"
+			},
+			{
+				"name": "KKBER"
+			},
+			{
+				"name": "KNKLI"
+			},
+			{
+				"name": "GRUPP"
+			},
+			{
+				"name": "SBGRP"
+			},
+			{
+				"name": "CTLPC"
+			},
+			{
+				"name": "CMWAE"
+			},
+			{
+				"name": "CMFRE"
+			},
+			{
+				"name": "CMNUP"
+			},
+			{
+				"name": "CMNGV"
+			},
+			{
+				"name": "AMTBL"
+			},
+			{
+				"name": "HITYP_PR"
+			},
+			{
+				"name": "ABRVW"
+			},
+			{
+				"name": "ABDIS"
+			},
+			{
+				"name": "VGBEL"
+			},
+			{
+				"name": "OBJNR"
+			},
+			{
+				"name": "BUKRS_VF"
+			},
+			{
+				"name": "TAXK1"
+			},
+			{
+				"name": "TAXK2"
+			},
+			{
+				"name": "TAXK3"
+			},
+			{
+				"name": "TAXK4"
+			},
+			{
+				"name": "TAXK5"
+			},
+			{
+				"name": "TAXK6"
+			},
+			{
+				"name": "TAXK7"
+			},
+			{
+				"name": "TAXK8"
+			},
+			{
+				"name": "TAXK9"
+			},
+			{
+				"name": "XBLNR"
+			},
+			{
+				"name": "ZUONR"
+			},
+			{
+				"name": "VGTYP"
+			},
+			{
+				"name": "KALSM_CH"
+			},
+			{
+				"name": "AGRZR"
+			},
+			{
+				"name": "AUFNR"
+			},
+			{
+				"name": "QMNUM"
+			},
+			{
+				"name": "VBELN_GRP"
+			},
+			{
+				"name": "SCHEME_GRP"
+			},
+			{
+				"name": "ABRUF_PART"
+			},
+			{
+				"name": "ABHOD"
+			},
+			{
+				"name": "ABHOV"
+			},
+			{
+				"name": "ABHOB"
+			},
+			{
+				"name": "RPLNR"
+			},
+			{
+				"name": "VZEIT"
+			},
+			{
+				"name": "STCEG_L"
+			},
+			{
+				"name": "LANDTX"
+			},
+			{
+				"name": "XEGDR"
+			},
+			{
+				"name": "ENQUEUE_GRP"
+			},
+			{
+				"name": "DAT_FZAU"
+			},
+			{
+				"name": "FMBDAT"
+			},
+			{
+				"name": "VSNMR_V"
+			},
+			{
+				"name": "HANDLE"
+			},
+			{
+				"name": "PROLI"
+			},
+			{
+				"name": "CONT_DG"
+			},
+			{
+				"name": "CRM_GUID"
+			},
+			{
+				"name": "UPD_TMSTMP"
+			},
+			{
+				"name": "MSR_ID"
+			},
+			{
+				"name": "TM_CTRL_KEY"
+			},
+			{
+				"name": "HANDOVERLOC"
+			},
+			{
+				"name": "FPART"
+			},
+			{
+				"name": "VCLASSIFIC"
+			},
+			{
+				"name": "/XLSO/SO_VALD_FM"
+			},
+			{
+				"name": "/XLSO/SO_VALD_TO"
+			},
+			{
+				"name": "/XLSO/PAYMENT_OP"
+			},
+			{
+				"name": "/XLSO/TRANS_CTXT"
+			},
+			{
+				"name": "/XLSO/CATALOG_ID"
+			},
+			{
+				"name": "/XLSO/VARIANT_ID"
+			},
+			{
+				"name": "AD01FAREG"
+			},
+			{
+				"name": "AD01BASDOC"
+			},
+			{
+				"name": "LASTVCHR"
+			},
+			{
+				"name": "PLC"
+			},
+			{
+				"name": "SMB"
+			},
+			{
+				"name": "ECC"
+			},
+			{
+				"name": "IPP"
+			},
+			{
+				"name": "CUR"
+			},
+			{
+				"name": "ECO"
+			},
+			{
+				"name": "PCO"
+			},
+			{
+				"name": "DPT"
+			},
+			{
+				"name": "TOP"
+			},
+			{
+				"name": "SUS"
+			},
+			{
+				"name": "PCN"
+			},
+			{
+				"name": "TRU"
+			},
+			{
+				"name": "PCY"
+			},
+			{
+				"name": "PCD"
+			},
+			{
+				"name": "PBN"
+			},
+			{
+				"name": "AMN"
+			},
+			{
+				"name": "DNO"
+			},
+			{
+				"name": "PSM_BUDAT"
+			},
+			{
+				"name": "SWENR"
+			},
+			{
+				"name": "SMENR"
+			},
+			{
+				"name": "PHASE"
+			},
+			{
+				"name": "MTLAUR"
+			},
+			{
+				"name": "STAGE"
+			},
+			{
+				"name": "HB_CONT_REASON"
+			},
+			{
+				"name": "HB_EXPDATE"
+			},
+			{
+				"name": "HB_RESDATE"
+			},
+			{
+				"name": "J_3GKBAUL"
+			},
+			{
+				"name": "MILL_APPL_ID"
+			},
+			{
+				"name": "TAS"
+			},
+			{
+				"name": "BETC"
+			},
+			{
+				"name": "MOD_ALLOW"
+			},
+			{
+				"name": "CANCEL_ALLOW"
+			},
+			{
+				"name": "PAY_METHOD"
+			},
+			{
+				"name": "BPN"
+			},
+			{
+				"name": "REP_FREQ"
+			},
+			{
+				"name": "LOGSYSB"
+			},
+			{
+				"name": "KALCD"
+			},
+			{
+				"name": "MULTI"
+			},
+			{
+				"name": "SPPAYM"
+			},
+			{
+				"name": "WTYSC_CLM_HDR"
+			},
+			{
+				"name": "ZZADUANA"
+			},
+			{
+				"name": "ZZPATENTE"
+			},
+			{
+				"name": "ZZUSOCFDI"
+			},
+			{
+				"name": "ZZMETPAG"
+			},
+			{
+				"name": "ZZFORPAG"
+			},
+			{
+				"name": "ZZNOPEDIMENTO"
+			},
+			{
+				"name": "ZZPREDIAL"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

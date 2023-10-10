@@ -1,0 +1,16 @@
+{
+	"name": "SourceDataset_zo5",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SapTable2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SapTableResource",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "VBKD"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

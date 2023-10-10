@@ -1,0 +1,198 @@
+{
+	"name": "SourceDataset_0pg",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage_VBFA",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "VBFA_20220326232909_1.csv",
+				"container": "mridulgupta"
+			},
+			"columnDelimiter": "|",
+			"rowDelimiter": "\n",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "MANDT",
+				"type": "String"
+			},
+			{
+				"name": "VBELV",
+				"type": "String"
+			},
+			{
+				"name": "POSNV",
+				"type": "String"
+			},
+			{
+				"name": "VBELN",
+				"type": "String"
+			},
+			{
+				"name": "POSNN",
+				"type": "String"
+			},
+			{
+				"name": "VBTYP_N",
+				"type": "String"
+			},
+			{
+				"name": "RFMNG",
+				"type": "String"
+			},
+			{
+				"name": "MEINS",
+				"type": "String"
+			},
+			{
+				"name": "RFWRT",
+				"type": "String"
+			},
+			{
+				"name": "WAERS",
+				"type": "String"
+			},
+			{
+				"name": "VBTYP_V",
+				"type": "String"
+			},
+			{
+				"name": "PLMIN",
+				"type": "String"
+			},
+			{
+				"name": "TAQUI",
+				"type": "String"
+			},
+			{
+				"name": "ERDAT",
+				"type": "String"
+			},
+			{
+				"name": "ERZET",
+				"type": "String"
+			},
+			{
+				"name": "MATNR",
+				"type": "String"
+			},
+			{
+				"name": "BWART",
+				"type": "String"
+			},
+			{
+				"name": "BDART",
+				"type": "String"
+			},
+			{
+				"name": "PLART",
+				"type": "String"
+			},
+			{
+				"name": "STUFE",
+				"type": "String"
+			},
+			{
+				"name": "LGNUM",
+				"type": "String"
+			},
+			{
+				"name": "AEDAT",
+				"type": "String"
+			},
+			{
+				"name": "FKTYP",
+				"type": "String"
+			},
+			{
+				"name": "BRGEW",
+				"type": "String"
+			},
+			{
+				"name": "GEWEI",
+				"type": "String"
+			},
+			{
+				"name": "VOLUM",
+				"type": "String"
+			},
+			{
+				"name": "VOLEH",
+				"type": "String"
+			},
+			{
+				"name": "FPLNR",
+				"type": "String"
+			},
+			{
+				"name": "FPLTR",
+				"type": "String"
+			},
+			{
+				"name": "RFMNG_FLO",
+				"type": "String"
+			},
+			{
+				"name": "RFMNG_FLT",
+				"type": "String"
+			},
+			{
+				"name": "VRKME",
+				"type": "String"
+			},
+			{
+				"name": "ABGES",
+				"type": "String"
+			},
+			{
+				"name": "SOBKZ",
+				"type": "String"
+			},
+			{
+				"name": "SONUM",
+				"type": "String"
+			},
+			{
+				"name": "KZBEF",
+				"type": "String"
+			},
+			{
+				"name": "NTGEW",
+				"type": "String"
+			},
+			{
+				"name": "LOGSYS",
+				"type": "String"
+			},
+			{
+				"name": "WBSTA",
+				"type": "String"
+			},
+			{
+				"name": "CMETH",
+				"type": "String"
+			},
+			{
+				"name": "MJAHR",
+				"type": "String"
+			},
+			{
+				"name": "VBTYPEXT_V",
+				"type": "String"
+			},
+			{
+				"name": "VBTYPEXT_N",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

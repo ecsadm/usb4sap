@@ -1,0 +1,24 @@
+{
+	"name": "Trigger_r8c",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "USB4SAP2ADLS",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Hour",
+				"interval": 24,
+				"startTime": "2023-09-27T06:17:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}

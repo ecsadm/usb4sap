@@ -1,0 +1,17 @@
+{
+	"name": "SapEcc1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SapEcc",
+		"typeProperties": {
+			"url": "sap2.remoteides.com",
+			"username": "ecc0732",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI5MmQ4M2FmYi1iMjY2LTRlZDYtOTgzYi1hOGQ1OGMyMzUwY2YiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "ECS-IR-004",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

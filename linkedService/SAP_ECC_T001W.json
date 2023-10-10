@@ -1,0 +1,22 @@
+{
+	"name": "SAP_ECC_T001W",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "T001W from ECC",
+		"annotations": [],
+		"type": "SapTable",
+		"typeProperties": {
+			"clientId": "800",
+			"language": "EN",
+			"sncMode": false,
+			"userName": "service1",
+			"server": "35.208.99.120 ",
+			"systemNumber": "00",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIxNmZkZTk0Zi1lZjk3LTQwMGUtODI5OS1jZjYzNmEwMjFkNzkiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "ir-az-vm002",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

@@ -1,0 +1,38 @@
+{
+	"name": "SAP-ODP2Cloud",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "SapOdpResource1",
+						"type": "DatasetReference"
+					},
+					"name": "OSstream1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText3",
+						"type": "DatasetReference"
+					},
+					"name": "CloudDL1"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     staged: true,",
+				"     readMode: 'fullLoad',",
+				"     format: 'sapObject') ~> OSstream1",
+				"OSstream1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> CloudDL1"
+			]
+		}
+	}
+}

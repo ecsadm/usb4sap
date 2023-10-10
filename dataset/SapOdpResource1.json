@@ -1,0 +1,17 @@
+{
+	"name": "SapOdpResource1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SAP_ODP_ECC",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SapOdpResource",
+		"schema": [],
+		"typeProperties": {
+			"context": "SAPI",
+			"objectName": "0AB_BILLDOC_ATTR"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

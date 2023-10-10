@@ -1,0 +1,17 @@
+{
+	"name": "Sapecc",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SapEcc",
+		"typeProperties": {
+			"url": "http://sap-ecc-ehp8.ecoservity.com:8000/sap/opu/odata/ECOS/OBJ2CLOUD_V2_2_SRV/",
+			"username": "service1",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJkNzVmNmRlMC1iZjlmLTQyZWEtYWI3Yy1mNTgxYjBhMWUzNmEiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "IR-061723",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

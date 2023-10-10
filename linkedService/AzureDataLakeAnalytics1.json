@@ -1,0 +1,21 @@
+{
+	"name": "AzureDataLakeAnalytics1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "adla1",
+		"annotations": [],
+		"type": "AzureDataLakeAnalytics",
+		"typeProperties": {
+			"accountName": "mydataanalytics01",
+			"servicePrincipalId": "SPID1",
+			"tenant": "403d0a69-ae6c-459e-a989-d89a3141d440",
+			"subscriptionId": "0255b63f-c086-4357-894d-bce6b2b98d6f",
+			"resourceGroupName": "my-resource-001",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI0YjczOGRhMC0wNzM5LTRmNjEtOTg4Yi1jNmU5NmUyNWQ4ZjEiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "ir-2",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

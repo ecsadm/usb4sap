@@ -1,0 +1,18 @@
+{
+	"name": "SAP_USB4SAP",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "USB4SAP connection via ADF",
+		"annotations": [],
+		"type": "SapEcc",
+		"typeProperties": {
+			"url": "http://sap-ecc-ehp8.ecoservity.com:8000/sap/opu/odata/ECOS/OBJ2CLOUD_V2_2_SRV/ET_DataSetSet",
+			"username": "service1",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJlZDVjMGUxMi1kZTNlLTQxNzItOTYxNC0wZWE2MjI1NjVlNTUiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "ir-az-vm002",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

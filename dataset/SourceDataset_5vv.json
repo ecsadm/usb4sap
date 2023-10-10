@@ -1,0 +1,16 @@
+{
+	"name": "SourceDataset_5vv",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SapTable2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SapTableResource",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "VBAK"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

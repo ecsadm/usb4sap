@@ -1,0 +1,78 @@
+{
+	"name": "DestinationDataset_5no",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSynapseAnalytics1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "MANDT",
+				"type": "char",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "VBELN",
+				"type": "char",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "POSNR",
+				"type": "int",
+				"precision": 10,
+				"scale": 255
+			},
+			{
+				"name": "KONDA",
+				"type": "char",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "BZIRK",
+				"type": "char",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "PLTYP",
+				"type": "char",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "PRSDT",
+				"type": "char",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "KDGRP",
+				"type": "char",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "FKDAT",
+				"type": "char",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "BSARK",
+				"type": "char",
+				"precision": 255,
+				"scale": 255
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "VBKD"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

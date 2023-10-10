@@ -1,0 +1,54 @@
+{
+	"name": "DestinationDataset_o4u",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSynapseAnalytics1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "MANDT",
+				"type": "char",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "VBELN",
+				"type": "char",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "POSNR",
+				"type": "int",
+				"precision": 10,
+				"scale": 255
+			},
+			{
+				"name": "LFSTA",
+				"type": "char",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "FKSTA",
+				"type": "char",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "GBSTA",
+				"type": "char",
+				"precision": 255,
+				"scale": 255
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "VBUP"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

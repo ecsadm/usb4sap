@@ -1,0 +1,16 @@
+{
+	"name": "SourceDataset_idp",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureTableStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureTable",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "Todo"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

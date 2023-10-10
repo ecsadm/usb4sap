@@ -1,0 +1,28 @@
+{
+	"name": "SourceDataset_r8c",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "USB4SAP_HTTP",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": "/sap/opu/odata/ECOS/OBJ2CLOUD_V2_2_SRV/ET_DataSetSet"
+			},
+			"columnDelimiter": "|",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "<feed xmlns=\"http://www.w3.org/2005/Atom\" xmlns:m=\"http://schemas.microsoft.com/ado/2007/08/dataservices/metadata\" xmlns:d=\"http://schemas.microsoft.com/ado/2007/08/dataservices\" xml:base=\"http://sap-ecc-ehp8.ecoservity.com:8000/sap/opu/odata/ECOS/OBJ2CLOUD_V2_2_SRV/\"><id>http://sap-ecc-ehp8.ecoservity.com:8000/sap/opu/odata/ECOS/OBJ2CLOUD_V2_2_SRV/ET_DataSetSet</id><title type=\"text\">ET_DataSetSet</title><updated>2023-09-27T06:24:05Z</updated><author><name/></author><link href=\"ET_DataSetSet\" rel=\"self\" title=\"ET_DataSetSet\"/></feed>",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

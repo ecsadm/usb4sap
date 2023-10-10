@@ -1,0 +1,199 @@
+{
+	"name": "CopyVBKDDatatoSQLDW",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_1tc",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "sapbw_output/VBKD_001.txt"
+					},
+					{
+						"name": "Destination",
+						"value": "dbo.VBKD"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureDataLakeStoreReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings",
+							"skipLineCount": 0
+						}
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"allowPolyBase": true,
+						"polyBaseSettings": {
+							"rejectValue": 0,
+							"rejectType": "value",
+							"useTypeDefault": true
+						}
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "AzureBlobStorage1",
+							"type": "LinkedServiceReference"
+						},
+						"path": "flatfile"
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "MANDT",
+									"type": "String"
+								},
+								"sink": {
+									"name": "MANDT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "VBELN",
+									"type": "String"
+								},
+								"sink": {
+									"name": "VBELN",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "POSNR",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "POSNR",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "KONDA",
+									"type": "String"
+								},
+								"sink": {
+									"name": "KONDA",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "BZIRK",
+									"type": "String"
+								},
+								"sink": {
+									"name": "BZIRK",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PLTYP",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PLTYP",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PRSDT",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PRSDT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "KDGRP",
+									"type": "String"
+								},
+								"sink": {
+									"name": "KDGRP",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "FKDAT",
+									"type": "String"
+								},
+								"sink": {
+									"name": "FKDAT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "BSARK",
+									"type": "String"
+								},
+								"sink": {
+									"name": "BSARK",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "BSTKD",
+									"type": "String"
+								},
+								"sink": {
+									"name": "BSTKD",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "BSTDK",
+									"type": "String"
+								},
+								"sink": {
+									"name": "BSTDK",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_1tc",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_1tc",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2020-03-21T11:41:09Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

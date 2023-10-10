@@ -1,0 +1,22 @@
+{
+	"name": "VBAK_AWS_S3",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ECS_AWS_S3",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AmazonS3Location",
+				"bucketName": "sap-erp-data"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

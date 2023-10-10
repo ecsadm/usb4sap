@@ -1,0 +1,16 @@
+{
+	"name": "Snowflake1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "Snowflake",
+		"typeProperties": {
+			"connectionString": "jdbc:snowflake://poa31436.us-east-1.snowflakecomputing.com/?user=anupamj&db=ECSSAPS4HANA&warehouse=COMPUTE_WH",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIwZmFmYTZlNy1iOTAxLTQ5YWItOGMxMi0zN2I4ODA1ZTMzZmMiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "ir-2",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

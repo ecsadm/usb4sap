@@ -1,0 +1,20 @@
+{
+	"name": "SourceDataset_zix",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "USB4SAP_1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Sheet1",
+			"location": {
+				"type": "HttpServerLocation"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

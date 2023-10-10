@@ -1,0 +1,349 @@
+{
+	"name": "SourceDataset_1tc",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStore2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureDataLakeStoreLocation",
+				"fileName": "VBKD_001.txt",
+				"folderPath": "sapbw_output"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "MANDT"
+			},
+			{
+				"name": "VBELN"
+			},
+			{
+				"name": "POSNR"
+			},
+			{
+				"name": "KONDA"
+			},
+			{
+				"name": "KDGRP"
+			},
+			{
+				"name": "BZIRK"
+			},
+			{
+				"name": "PLTYP"
+			},
+			{
+				"name": "INCO1"
+			},
+			{
+				"name": "INCO2"
+			},
+			{
+				"name": "KZAZU"
+			},
+			{
+				"name": "PERFK"
+			},
+			{
+				"name": "PERRL"
+			},
+			{
+				"name": "MRNKZ"
+			},
+			{
+				"name": "KURRF"
+			},
+			{
+				"name": "VALTG"
+			},
+			{
+				"name": "VALDT"
+			},
+			{
+				"name": "ZTERM"
+			},
+			{
+				"name": "ZLSCH"
+			},
+			{
+				"name": "KTGRD"
+			},
+			{
+				"name": "KURSK"
+			},
+			{
+				"name": "PRSDT"
+			},
+			{
+				"name": "FKDAT"
+			},
+			{
+				"name": "FBUDA"
+			},
+			{
+				"name": "GJAHR"
+			},
+			{
+				"name": "POPER"
+			},
+			{
+				"name": "STCUR"
+			},
+			{
+				"name": "MSCHL"
+			},
+			{
+				"name": "MANSP"
+			},
+			{
+				"name": "FPLNR"
+			},
+			{
+				"name": "WAKTION"
+			},
+			{
+				"name": "ABSSC"
+			},
+			{
+				"name": "LCNUM"
+			},
+			{
+				"name": "J_1AFITP"
+			},
+			{
+				"name": "J_1ARFZ"
+			},
+			{
+				"name": "J_1AREGIO"
+			},
+			{
+				"name": "J_1AGICD"
+			},
+			{
+				"name": "J_1ADTYP"
+			},
+			{
+				"name": "J_1ATXREL"
+			},
+			{
+				"name": "ABTNR"
+			},
+			{
+				"name": "EMPST"
+			},
+			{
+				"name": "BSTKD"
+			},
+			{
+				"name": "BSTDK"
+			},
+			{
+				"name": "BSARK"
+			},
+			{
+				"name": "IHREZ"
+			},
+			{
+				"name": "BSTKD_E"
+			},
+			{
+				"name": "BSTDK_E"
+			},
+			{
+				"name": "BSARK_E"
+			},
+			{
+				"name": "IHREZ_E"
+			},
+			{
+				"name": "POSEX_E"
+			},
+			{
+				"name": "KURSK_DAT"
+			},
+			{
+				"name": "KURRF_DAT"
+			},
+			{
+				"name": "KDKG1"
+			},
+			{
+				"name": "KDKG2"
+			},
+			{
+				"name": "KDKG3"
+			},
+			{
+				"name": "KDKG4"
+			},
+			{
+				"name": "KDKG5"
+			},
+			{
+				"name": "WKWAE"
+			},
+			{
+				"name": "WKKUR"
+			},
+			{
+				"name": "AKWAE"
+			},
+			{
+				"name": "AKKUR"
+			},
+			{
+				"name": "AKPRZ"
+			},
+			{
+				"name": "J_1AINDXP"
+			},
+			{
+				"name": "J_1AIDATEP"
+			},
+			{
+				"name": "BSTKD_M"
+			},
+			{
+				"name": "DELCO"
+			},
+			{
+				"name": "FFPRF"
+			},
+			{
+				"name": "BEMOT"
+			},
+			{
+				"name": "FAKTF"
+			},
+			{
+				"name": "RRREL"
+			},
+			{
+				"name": "ACDATV"
+			},
+			{
+				"name": "VSART"
+			},
+			{
+				"name": "TRATY"
+			},
+			{
+				"name": "TRMTYP"
+			},
+			{
+				"name": "SDABW"
+			},
+			{
+				"name": "WMINR"
+			},
+			{
+				"name": "FKBER"
+			},
+			{
+				"name": "PODKZ"
+			},
+			{
+				"name": "CAMPAIGN"
+			},
+			{
+				"name": "VKONT"
+			},
+			{
+				"name": "DPBP_REF_FPLNR"
+			},
+			{
+				"name": "DPBP_REF_FPLTR"
+			},
+			{
+				"name": "REVSP"
+			},
+			{
+				"name": "REVEVTYP"
+			},
+			{
+				"name": "VTREF"
+			},
+			{
+				"name": "BOOKING_FR"
+			},
+			{
+				"name": "BOOKING_TO"
+			},
+			{
+				"name": "SHIPPING_FR"
+			},
+			{
+				"name": "SHIPPING_TO"
+			},
+			{
+				"name": "BILLING_FR"
+			},
+			{
+				"name": "BILLING_TO"
+			},
+			{
+				"name": "EXERCISE_FR"
+			},
+			{
+				"name": "EXERCISE_TO"
+			},
+			{
+				"name": "DESIGN_REG_NO"
+			},
+			{
+				"name": "DROP_SHIP"
+			},
+			{
+				"name": "RFPLN"
+			},
+			{
+				"name": "SYNCH"
+			},
+			{
+				"name": "PACKNO"
+			},
+			{
+				"name": "PEROP_BEG"
+			},
+			{
+				"name": "PEROP_END"
+			},
+			{
+				"name": "STCODE"
+			},
+			{
+				"name": "FORMC1"
+			},
+			{
+				"name": "FORMC2"
+			},
+			{
+				"name": "STEUC"
+			},
+			{
+				"name": "COMPREAS"
+			},
+			{
+				"name": "MNDID"
+			},
+			{
+				"name": "PAY_TYPE"
+			},
+			{
+				"name": "SEPON"
+			},
+			{
+				"name": "MNDVG"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

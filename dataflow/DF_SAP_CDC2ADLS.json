@@ -1,0 +1,57 @@
+{
+	"name": "DF_SAP_CDC2ADLS",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"linkedService": {
+						"referenceName": "SAP_CDC",
+						"type": "LinkedServiceReference"
+					},
+					"name": "cdc1"
+				}
+			],
+			"sinks": [
+				{
+					"linkedService": {
+						"referenceName": "AzureDataLake_Gen2001",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     store: 'SapOdp',",
+				"     format: 'sapObject',",
+				"     staged: true,",
+				"     context: 'SAPI',",
+				"     objectName: '2LIS_11_VAHDR',",
+				"     readMode: 'fullAndIncrementalLoad',",
+				"     keys: ['VBELN'],",
+				"     fixDecimalPrecision: true) ~> cdc1",
+				"cdc1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'delta',",
+				"     fileSystem: 'input',",
+				"     mergeSchema: false,",
+				"     autoCompact: false,",
+				"     optimizedWrite: false,",
+				"     vacuum: 0,",
+				"     deletable: true,",
+				"     insertable: false,",
+				"     updateable: false,",
+				"     upsertable: true,",
+				"     keys:['VBELN'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
+			]
+		}
+	}
+}

@@ -1,0 +1,96 @@
+{
+	"name": "DestinationDataset_350",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSynapseAnalytics1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "MANDT",
+				"type": "char",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "VBELN",
+				"type": "char",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "POSNR",
+				"type": "int",
+				"precision": 10,
+				"scale": 255
+			},
+			{
+				"name": "MATNR",
+				"type": "char",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "KDMAT",
+				"type": "char",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "WAERK",
+				"type": "char",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "VRKME",
+				"type": "char",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "MEINS",
+				"type": "char",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "NETWR",
+				"type": "char",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "KWMENG",
+				"type": "char",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "LSMENG",
+				"type": "char",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "KBMENG",
+				"type": "char",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "KLMENG",
+				"type": "char",
+				"precision": 255,
+				"scale": 255
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "VBAP"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,16 @@
+{
+	"name": "DestinationDataset_idp",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "CosmosDb1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "CosmosDbSqlApiCollection",
+		"schema": {},
+		"typeProperties": {
+			"collectionName": "T001_W"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

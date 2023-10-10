@@ -1,0 +1,139 @@
+{
+	"name": "CopyVBUPtoSQLDW",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_o4u",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "sapbw_output/VBUP_002.txt"
+					},
+					{
+						"name": "Destination",
+						"value": "dbo.VBUP"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureDataLakeStoreReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings",
+							"skipLineCount": 0
+						}
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"allowPolyBase": true,
+						"polyBaseSettings": {
+							"rejectValue": 0,
+							"rejectType": "value",
+							"useTypeDefault": true
+						}
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "AzureBlobStorage1",
+							"type": "LinkedServiceReference"
+						},
+						"path": "flatfile"
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "MANDT",
+									"type": "String"
+								},
+								"sink": {
+									"name": "MANDT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "VBELN",
+									"type": "String"
+								},
+								"sink": {
+									"name": "VBELN",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "POSNR",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "POSNR",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "LFSTA",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LFSTA",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "FKSTA",
+									"type": "String"
+								},
+								"sink": {
+									"name": "FKSTA",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "GBSTA",
+									"type": "String"
+								},
+								"sink": {
+									"name": "GBSTA",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_o4u",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_o4u",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2020-03-21T10:12:39Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

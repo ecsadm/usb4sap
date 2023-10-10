@@ -1,0 +1,16 @@
+{
+	"name": "SourceDataset_ohl",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SapTable2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SapTableResource",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "VBAP"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

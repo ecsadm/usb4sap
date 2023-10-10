@@ -1,0 +1,16 @@
+{
+	"name": "SAP_ZCR500_00",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SapTable1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SapTableResource",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "ZCR500_00"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

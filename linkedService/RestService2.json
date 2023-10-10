@@ -1,0 +1,15 @@
+{
+	"name": "RestService2",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "http://35.208.99.120:8000/sap/opu/odata/ECOS/OBJ2CLOUD_V2_SRV/ET_DatasetSet?$filter=ObjectName eq 'WS_MONITOR_OUTB_DEL_GDSI' and ObjectType eq 'R' and Delimiter eq '|' and ImportGeneric eq 'ALVV1' and DataDest eq '0:0' &$format=json",
+			"enableServerCertificateValidation": false,
+			"authenticationType": "Basic",
+			"userName": "service1",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkVDUy1BREYtMDAxX2QxN2IwOWY1LWI1ZGQtNGQ3NC04ZWQxLTY0YzRiZTk3ZDA4NCINCn0="
+		}
+	}
+}

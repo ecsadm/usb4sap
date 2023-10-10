@@ -1,0 +1,26 @@
+{
+	"name": "SourceDataset_vp9",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ECS_ECC_DEV2",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"filter": {
+				"type": "string",
+				"defaultValue": "ObjectType%20eq%20'R'%20and%20ObjectName%20eq%20'WS_MONITOR_OUTB_DEL_PICK'%20and%20Delimiter%20eq%20'%7C'%20and%20DataDest%20eq%20'0%7C0%7C%7C'%20and%20ImportGeneric%20eq%20'TYPE:ALV|||FIELD_LABLE:B'%20"
+			},
+			"format": {
+				"type": "string",
+				"defaultValue": "json"
+			}
+		},
+		"annotations": [],
+		"type": "SapEccResource",
+		"schema": [],
+		"typeProperties": {
+			"path": "ET_DataSetSet"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

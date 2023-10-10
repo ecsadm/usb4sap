@@ -1,0 +1,55 @@
+{
+	"name": "Get-TCODE-from-USB4SAP",
+	"properties": {
+		"activities": [
+			{
+				"name": "USB4SAP-SICF",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "POST",
+						"requestBody": "{\n    \"OBJ_TYPE\": \"R\",\n    \"OBJ_ID\": \"SDBILLDL\",\n    \"OUTPUT_STYLE\": \"ALV\",\n    \"VARIANT\": \"USB4SAP1\",\n    \"FORMAT\": \"JSON\",\n    \"REQUESTER\": \"MS-PP\",\n    \"DATADEST\": \"0|0||\",\n\"FIELD_LABLE\": \"B\"\n}"
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings",
+							"quoteAllText": true
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "RestResource1",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ADLS_Dataset",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2023-10-10T05:13:24Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

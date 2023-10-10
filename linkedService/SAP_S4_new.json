@@ -1,0 +1,24 @@
+{
+	"name": "SAP_S4_new",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [
+			"S4HANA"
+		],
+		"type": "SapTable",
+		"typeProperties": {
+			"clientId": "100",
+			"language": "EN",
+			"sncMode": false,
+			"userName": "rem248",
+			"server": "sap2.remoteides.com",
+			"systemNumber": "24",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIzNGI4ZDA2My0xMzZjLTQ3MzYtYThhMi02NjFkZmM4MTg2MzIiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "ir-2",
+			"type": "IntegrationRuntimeReference"
+		},
+		"description": "S4 HANA system"
+	}
+}

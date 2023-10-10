@@ -1,0 +1,4171 @@
+{
+	"name": "DP_VBAP",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy VBAP",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SapTableSource",
+						"rowCount": 100,
+						"rfcTableOptions": "",
+						"customRfcReadTableFunctionModule": "",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "MANDT",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 1
+								}
+							},
+							{
+								"source": {
+									"name": "VBELN",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 2
+								}
+							},
+							{
+								"source": {
+									"name": "POSNR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 3
+								}
+							},
+							{
+								"source": {
+									"name": "MATNR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 4
+								}
+							},
+							{
+								"source": {
+									"name": "MATWA",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 5
+								}
+							},
+							{
+								"source": {
+									"name": "PMATN",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 6
+								}
+							},
+							{
+								"source": {
+									"name": "CHARG",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 7
+								}
+							},
+							{
+								"source": {
+									"name": "MATKL",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 8
+								}
+							},
+							{
+								"source": {
+									"name": "ARKTX",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 9
+								}
+							},
+							{
+								"source": {
+									"name": "PSTYV",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 10
+								}
+							},
+							{
+								"source": {
+									"name": "POSAR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 11
+								}
+							},
+							{
+								"source": {
+									"name": "LFREL",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 12
+								}
+							},
+							{
+								"source": {
+									"name": "FKREL",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 13
+								}
+							},
+							{
+								"source": {
+									"name": "UEPOS",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 14
+								}
+							},
+							{
+								"source": {
+									"name": "GRPOS",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 15
+								}
+							},
+							{
+								"source": {
+									"name": "ABGRU",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 16
+								}
+							},
+							{
+								"source": {
+									"name": "PRODH",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 17
+								}
+							},
+							{
+								"source": {
+									"name": "ZWERT",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 18
+								}
+							},
+							{
+								"source": {
+									"name": "ZMENG",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 19
+								}
+							},
+							{
+								"source": {
+									"name": "ZIEME",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 20
+								}
+							},
+							{
+								"source": {
+									"name": "UMZIZ",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 21
+								}
+							},
+							{
+								"source": {
+									"name": "UMZIN",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 22
+								}
+							},
+							{
+								"source": {
+									"name": "MEINS",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 23
+								}
+							},
+							{
+								"source": {
+									"name": "SMENG",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 24
+								}
+							},
+							{
+								"source": {
+									"name": "ABLFZ",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 25
+								}
+							},
+							{
+								"source": {
+									"name": "ABDAT",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 26
+								}
+							},
+							{
+								"source": {
+									"name": "ABSFZ",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 27
+								}
+							},
+							{
+								"source": {
+									"name": "POSEX",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 28
+								}
+							},
+							{
+								"source": {
+									"name": "KDMAT",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 29
+								}
+							},
+							{
+								"source": {
+									"name": "KBVER",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 30
+								}
+							},
+							{
+								"source": {
+									"name": "KEVER",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 31
+								}
+							},
+							{
+								"source": {
+									"name": "VKGRU",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 32
+								}
+							},
+							{
+								"source": {
+									"name": "VKAUS",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 33
+								}
+							},
+							{
+								"source": {
+									"name": "GRKOR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 34
+								}
+							},
+							{
+								"source": {
+									"name": "FMENG",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 35
+								}
+							},
+							{
+								"source": {
+									"name": "UEBTK",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 36
+								}
+							},
+							{
+								"source": {
+									"name": "UEBTO",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 37
+								}
+							},
+							{
+								"source": {
+									"name": "UNTTO",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 38
+								}
+							},
+							{
+								"source": {
+									"name": "FAKSP",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 39
+								}
+							},
+							{
+								"source": {
+									"name": "ATPKZ",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 40
+								}
+							},
+							{
+								"source": {
+									"name": "RKFKF",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 41
+								}
+							},
+							{
+								"source": {
+									"name": "SPART",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 42
+								}
+							},
+							{
+								"source": {
+									"name": "GSBER",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 43
+								}
+							},
+							{
+								"source": {
+									"name": "NETWR",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 44
+								}
+							},
+							{
+								"source": {
+									"name": "WAERK",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 45
+								}
+							},
+							{
+								"source": {
+									"name": "ANTLF",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 46
+								}
+							},
+							{
+								"source": {
+									"name": "KZTLF",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 47
+								}
+							},
+							{
+								"source": {
+									"name": "CHSPL",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 48
+								}
+							},
+							{
+								"source": {
+									"name": "KWMENG",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 49
+								}
+							},
+							{
+								"source": {
+									"name": "LSMENG",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 50
+								}
+							},
+							{
+								"source": {
+									"name": "KBMENG",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 51
+								}
+							},
+							{
+								"source": {
+									"name": "KLMENG",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 52
+								}
+							},
+							{
+								"source": {
+									"name": "VRKME",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 53
+								}
+							},
+							{
+								"source": {
+									"name": "UMVKZ",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 54
+								}
+							},
+							{
+								"source": {
+									"name": "UMVKN",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 55
+								}
+							},
+							{
+								"source": {
+									"name": "BRGEW",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 56
+								}
+							},
+							{
+								"source": {
+									"name": "NTGEW",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 57
+								}
+							},
+							{
+								"source": {
+									"name": "GEWEI",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 58
+								}
+							},
+							{
+								"source": {
+									"name": "VOLUM",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 59
+								}
+							},
+							{
+								"source": {
+									"name": "VOLEH",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 60
+								}
+							},
+							{
+								"source": {
+									"name": "VBELV",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 61
+								}
+							},
+							{
+								"source": {
+									"name": "POSNV",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 62
+								}
+							},
+							{
+								"source": {
+									"name": "VGBEL",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 63
+								}
+							},
+							{
+								"source": {
+									"name": "VGPOS",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 64
+								}
+							},
+							{
+								"source": {
+									"name": "VOREF",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 65
+								}
+							},
+							{
+								"source": {
+									"name": "UPFLU",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 66
+								}
+							},
+							{
+								"source": {
+									"name": "ERLRE",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 67
+								}
+							},
+							{
+								"source": {
+									"name": "LPRIO",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 68
+								}
+							},
+							{
+								"source": {
+									"name": "WERKS",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 69
+								}
+							},
+							{
+								"source": {
+									"name": "LGORT",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 70
+								}
+							},
+							{
+								"source": {
+									"name": "VSTEL",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 71
+								}
+							},
+							{
+								"source": {
+									"name": "ROUTE",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 72
+								}
+							},
+							{
+								"source": {
+									"name": "STKEY",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 73
+								}
+							},
+							{
+								"source": {
+									"name": "STDAT",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 74
+								}
+							},
+							{
+								"source": {
+									"name": "STLNR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 75
+								}
+							},
+							{
+								"source": {
+									"name": "STPOS",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 76
+								}
+							},
+							{
+								"source": {
+									"name": "AWAHR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 77
+								}
+							},
+							{
+								"source": {
+									"name": "ERDAT",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 78
+								}
+							},
+							{
+								"source": {
+									"name": "ERNAM",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 79
+								}
+							},
+							{
+								"source": {
+									"name": "ERZET",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 80
+								}
+							},
+							{
+								"source": {
+									"name": "TAXM1",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 81
+								}
+							},
+							{
+								"source": {
+									"name": "TAXM2",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 82
+								}
+							},
+							{
+								"source": {
+									"name": "TAXM3",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 83
+								}
+							},
+							{
+								"source": {
+									"name": "TAXM4",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 84
+								}
+							},
+							{
+								"source": {
+									"name": "TAXM5",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 85
+								}
+							},
+							{
+								"source": {
+									"name": "TAXM6",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 86
+								}
+							},
+							{
+								"source": {
+									"name": "TAXM7",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 87
+								}
+							},
+							{
+								"source": {
+									"name": "TAXM8",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 88
+								}
+							},
+							{
+								"source": {
+									"name": "TAXM9",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 89
+								}
+							},
+							{
+								"source": {
+									"name": "VBEAF",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 90
+								}
+							},
+							{
+								"source": {
+									"name": "VBEAV",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 91
+								}
+							},
+							{
+								"source": {
+									"name": "VGREF",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 92
+								}
+							},
+							{
+								"source": {
+									"name": "NETPR",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 93
+								}
+							},
+							{
+								"source": {
+									"name": "KPEIN",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 94
+								}
+							},
+							{
+								"source": {
+									"name": "KMEIN",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 95
+								}
+							},
+							{
+								"source": {
+									"name": "SHKZG",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 96
+								}
+							},
+							{
+								"source": {
+									"name": "SKTOF",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 97
+								}
+							},
+							{
+								"source": {
+									"name": "MTVFP",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 98
+								}
+							},
+							{
+								"source": {
+									"name": "SUMBD",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 99
+								}
+							},
+							{
+								"source": {
+									"name": "KONDM",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 100
+								}
+							},
+							{
+								"source": {
+									"name": "KTGRM",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 101
+								}
+							},
+							{
+								"source": {
+									"name": "BONUS",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 102
+								}
+							},
+							{
+								"source": {
+									"name": "PROVG",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 103
+								}
+							},
+							{
+								"source": {
+									"name": "EANNR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 104
+								}
+							},
+							{
+								"source": {
+									"name": "PRSOK",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 105
+								}
+							},
+							{
+								"source": {
+									"name": "BWTAR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 106
+								}
+							},
+							{
+								"source": {
+									"name": "BWTEX",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 107
+								}
+							},
+							{
+								"source": {
+									"name": "XCHPF",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 108
+								}
+							},
+							{
+								"source": {
+									"name": "XCHAR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 109
+								}
+							},
+							{
+								"source": {
+									"name": "LFMNG",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 110
+								}
+							},
+							{
+								"source": {
+									"name": "STAFO",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 111
+								}
+							},
+							{
+								"source": {
+									"name": "WAVWR",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 112
+								}
+							},
+							{
+								"source": {
+									"name": "KZWI1",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 113
+								}
+							},
+							{
+								"source": {
+									"name": "KZWI2",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 114
+								}
+							},
+							{
+								"source": {
+									"name": "KZWI3",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 115
+								}
+							},
+							{
+								"source": {
+									"name": "KZWI4",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 116
+								}
+							},
+							{
+								"source": {
+									"name": "KZWI5",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 117
+								}
+							},
+							{
+								"source": {
+									"name": "KZWI6",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 118
+								}
+							},
+							{
+								"source": {
+									"name": "STCUR",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 119
+								}
+							},
+							{
+								"source": {
+									"name": "AEDAT",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 120
+								}
+							},
+							{
+								"source": {
+									"name": "EAN11",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 121
+								}
+							},
+							{
+								"source": {
+									"name": "FIXMG",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 122
+								}
+							},
+							{
+								"source": {
+									"name": "PRCTR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 123
+								}
+							},
+							{
+								"source": {
+									"name": "MVGR1",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 124
+								}
+							},
+							{
+								"source": {
+									"name": "MVGR2",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 125
+								}
+							},
+							{
+								"source": {
+									"name": "MVGR3",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 126
+								}
+							},
+							{
+								"source": {
+									"name": "MVGR4",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 127
+								}
+							},
+							{
+								"source": {
+									"name": "MVGR5",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 128
+								}
+							},
+							{
+								"source": {
+									"name": "KMPMG",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 129
+								}
+							},
+							{
+								"source": {
+									"name": "SUGRD",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 130
+								}
+							},
+							{
+								"source": {
+									"name": "SOBKZ",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 131
+								}
+							},
+							{
+								"source": {
+									"name": "VPZUO",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 132
+								}
+							},
+							{
+								"source": {
+									"name": "PAOBJNR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 133
+								}
+							},
+							{
+								"source": {
+									"name": "PS_PSP_PNR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 134
+								}
+							},
+							{
+								"source": {
+									"name": "AUFNR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 135
+								}
+							},
+							{
+								"source": {
+									"name": "VPMAT",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 136
+								}
+							},
+							{
+								"source": {
+									"name": "VPWRK",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 137
+								}
+							},
+							{
+								"source": {
+									"name": "PRBME",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 138
+								}
+							},
+							{
+								"source": {
+									"name": "UMREF",
+									"type": "Double"
+								},
+								"sink": {
+									"type": "Double",
+									"ordinal": 139
+								}
+							},
+							{
+								"source": {
+									"name": "KNTTP",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 140
+								}
+							},
+							{
+								"source": {
+									"name": "KZVBR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 141
+								}
+							},
+							{
+								"source": {
+									"name": "SERNR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 142
+								}
+							},
+							{
+								"source": {
+									"name": "OBJNR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 143
+								}
+							},
+							{
+								"source": {
+									"name": "ABGRS",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 144
+								}
+							},
+							{
+								"source": {
+									"name": "BEDAE",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 145
+								}
+							},
+							{
+								"source": {
+									"name": "CMPRE",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 146
+								}
+							},
+							{
+								"source": {
+									"name": "CMTFG",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 147
+								}
+							},
+							{
+								"source": {
+									"name": "CMPNT",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 148
+								}
+							},
+							{
+								"source": {
+									"name": "CMKUA",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 149
+								}
+							},
+							{
+								"source": {
+									"name": "CUOBJ",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 150
+								}
+							},
+							{
+								"source": {
+									"name": "CUOBJ_CH",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 151
+								}
+							},
+							{
+								"source": {
+									"name": "CEPOK",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 152
+								}
+							},
+							{
+								"source": {
+									"name": "KOUPD",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 153
+								}
+							},
+							{
+								"source": {
+									"name": "SERAIL",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 154
+								}
+							},
+							{
+								"source": {
+									"name": "ANZSN",
+									"type": "Int32"
+								},
+								"sink": {
+									"type": "Int32",
+									"ordinal": 155
+								}
+							},
+							{
+								"source": {
+									"name": "NACHL",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 156
+								}
+							},
+							{
+								"source": {
+									"name": "MAGRV",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 157
+								}
+							},
+							{
+								"source": {
+									"name": "MPROK",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 158
+								}
+							},
+							{
+								"source": {
+									"name": "VGTYP",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 159
+								}
+							},
+							{
+								"source": {
+									"name": "PROSA",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 160
+								}
+							},
+							{
+								"source": {
+									"name": "UEPVW",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 161
+								}
+							},
+							{
+								"source": {
+									"name": "KALNR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 162
+								}
+							},
+							{
+								"source": {
+									"name": "KLVAR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 163
+								}
+							},
+							{
+								"source": {
+									"name": "SPOSN",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 164
+								}
+							},
+							{
+								"source": {
+									"name": "KOWRR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 165
+								}
+							},
+							{
+								"source": {
+									"name": "STADAT",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 166
+								}
+							},
+							{
+								"source": {
+									"name": "EXART",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 167
+								}
+							},
+							{
+								"source": {
+									"name": "PREFE",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 168
+								}
+							},
+							{
+								"source": {
+									"name": "KNUMH",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 169
+								}
+							},
+							{
+								"source": {
+									"name": "CLINT",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 170
+								}
+							},
+							{
+								"source": {
+									"name": "CHMVS",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 171
+								}
+							},
+							{
+								"source": {
+									"name": "STLTY",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 172
+								}
+							},
+							{
+								"source": {
+									"name": "STLKN",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 173
+								}
+							},
+							{
+								"source": {
+									"name": "STPOZ",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 174
+								}
+							},
+							{
+								"source": {
+									"name": "STMAN",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 175
+								}
+							},
+							{
+								"source": {
+									"name": "ZSCHL_K",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 176
+								}
+							},
+							{
+								"source": {
+									"name": "KALSM_K",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 177
+								}
+							},
+							{
+								"source": {
+									"name": "KALVAR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 178
+								}
+							},
+							{
+								"source": {
+									"name": "KOSCH",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 179
+								}
+							},
+							{
+								"source": {
+									"name": "UPMAT",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 180
+								}
+							},
+							{
+								"source": {
+									"name": "UKONM",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 181
+								}
+							},
+							{
+								"source": {
+									"name": "MFRGR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 182
+								}
+							},
+							{
+								"source": {
+									"name": "PLAVO",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 183
+								}
+							},
+							{
+								"source": {
+									"name": "KANNR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 184
+								}
+							},
+							{
+								"source": {
+									"name": "CMPRE_FLT",
+									"type": "Double"
+								},
+								"sink": {
+									"type": "Double",
+									"ordinal": 185
+								}
+							},
+							{
+								"source": {
+									"name": "ABFOR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 186
+								}
+							},
+							{
+								"source": {
+									"name": "ABGES",
+									"type": "Double"
+								},
+								"sink": {
+									"type": "Double",
+									"ordinal": 187
+								}
+							},
+							{
+								"source": {
+									"name": "J_1BCFOP",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 188
+								}
+							},
+							{
+								"source": {
+									"name": "J_1BTAXLW1",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 189
+								}
+							},
+							{
+								"source": {
+									"name": "J_1BTAXLW2",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 190
+								}
+							},
+							{
+								"source": {
+									"name": "J_1BTXSDC",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 191
+								}
+							},
+							{
+								"source": {
+									"name": "WKTNR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 192
+								}
+							},
+							{
+								"source": {
+									"name": "WKTPS",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 193
+								}
+							},
+							{
+								"source": {
+									"name": "SKOPF",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 194
+								}
+							},
+							{
+								"source": {
+									"name": "KZBWS",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 195
+								}
+							},
+							{
+								"source": {
+									"name": "WGRU1",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 196
+								}
+							},
+							{
+								"source": {
+									"name": "WGRU2",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 197
+								}
+							},
+							{
+								"source": {
+									"name": "KNUMA_PI",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 198
+								}
+							},
+							{
+								"source": {
+									"name": "KNUMA_AG",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 199
+								}
+							},
+							{
+								"source": {
+									"name": "KZFME",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 200
+								}
+							},
+							{
+								"source": {
+									"name": "LSTANR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 201
+								}
+							},
+							{
+								"source": {
+									"name": "TECHS",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 202
+								}
+							},
+							{
+								"source": {
+									"name": "MWSBP",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 203
+								}
+							},
+							{
+								"source": {
+									"name": "BERID",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 204
+								}
+							},
+							{
+								"source": {
+									"name": "PCTRF",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 205
+								}
+							},
+							{
+								"source": {
+									"name": "LOGSYS_EXT",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 206
+								}
+							},
+							{
+								"source": {
+									"name": "J_1BTAXLW3",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 207
+								}
+							},
+							{
+								"source": {
+									"name": "J_1BTAXLW4",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 208
+								}
+							},
+							{
+								"source": {
+									"name": "J_1BTAXLW5",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 209
+								}
+							},
+							{
+								"source": {
+									"name": "STOCKLOC",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 210
+								}
+							},
+							{
+								"source": {
+									"name": "SLOCTYPE",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 211
+								}
+							},
+							{
+								"source": {
+									"name": "MSR_RET_REASON",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 212
+								}
+							},
+							{
+								"source": {
+									"name": "MSR_REFUND_CODE",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 213
+								}
+							},
+							{
+								"source": {
+									"name": "MSR_APPROV_BLOCK",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 214
+								}
+							},
+							{
+								"source": {
+									"name": "NRAB_KNUMH",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 215
+								}
+							},
+							{
+								"source": {
+									"name": "TRMRISK_RELEVANT",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 216
+								}
+							},
+							{
+								"source": {
+									"name": "HANDOVERLOC",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 217
+								}
+							},
+							{
+								"source": {
+									"name": "HANDOVERDATE",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 218
+								}
+							},
+							{
+								"source": {
+									"name": "HANDOVERTIME",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 219
+								}
+							},
+							{
+								"source": {
+									"name": "Z_PRS_OFFSHORE",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 220
+								}
+							},
+							{
+								"source": {
+									"name": "Z_PRS_BILL_FLAG",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 221
+								}
+							},
+							{
+								"source": {
+									"name": "Z_PRS_COUNTRY",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 222
+								}
+							},
+							{
+								"source": {
+									"name": "Z_PRS_CHARGELEVL",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 223
+								}
+							},
+							{
+								"source": {
+									"name": "TC_AUT_DET",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 224
+								}
+							},
+							{
+								"source": {
+									"name": "MANUAL_TC_REASON",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 225
+								}
+							},
+							{
+								"source": {
+									"name": "FISCAL_INCENTIVE",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 226
+								}
+							},
+							{
+								"source": {
+									"name": "TAX_SUBJECT_ST",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 227
+								}
+							},
+							{
+								"source": {
+									"name": "FISCAL_INCENTIVE_ID",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 228
+								}
+							},
+							{
+								"source": {
+									"name": "SPCSTO",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 229
+								}
+							},
+							{
+								"source": {
+									"name": "/BEV1/SRFUND",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 230
+								}
+							},
+							{
+								"source": {
+									"name": "CPD_UPDAT",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 231
+								}
+							},
+							{
+								"source": {
+									"name": "AUFPL_OLC",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 232
+								}
+							},
+							{
+								"source": {
+									"name": "APLZL_OLC",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 233
+								}
+							},
+							{
+								"source": {
+									"name": "PLAUFZ",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 234
+								}
+							},
+							{
+								"source": {
+									"name": "PLAUEZ",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 235
+								}
+							},
+							{
+								"source": {
+									"name": "CONTNBR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 236
+								}
+							},
+							{
+								"source": {
+									"name": "CONTITM",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 237
+								}
+							},
+							{
+								"source": {
+									"name": "AUDAT",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 238
+								}
+							},
+							{
+								"source": {
+									"name": "/XLSO/COURSE_ID",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 239
+								}
+							},
+							{
+								"source": {
+									"name": "/XLSO/COURSE_BDA",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 240
+								}
+							},
+							{
+								"source": {
+									"name": "/XLSO/COURSE_EDA",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 241
+								}
+							},
+							{
+								"source": {
+									"name": "AD01PROFNR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 242
+								}
+							},
+							{
+								"source": {
+									"name": "ADMOI",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 243
+								}
+							},
+							{
+								"source": {
+									"name": "ADICC",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 244
+								}
+							},
+							{
+								"source": {
+									"name": "ADPRI",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 245
+								}
+							},
+							{
+								"source": {
+									"name": "SEL",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 246
+								}
+							},
+							{
+								"source": {
+									"name": "CCI",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 247
+								}
+							},
+							{
+								"source": {
+									"name": "SEN",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 248
+								}
+							},
+							{
+								"source": {
+									"name": "PSEL",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 249
+								}
+							},
+							{
+								"source": {
+									"name": "PCCI",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 250
+								}
+							},
+							{
+								"source": {
+									"name": "PSEN",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 251
+								}
+							},
+							{
+								"source": {
+									"name": "CAN",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 252
+								}
+							},
+							{
+								"source": {
+									"name": "ICY",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 253
+								}
+							},
+							{
+								"source": {
+									"name": "ITY",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 254
+								}
+							},
+							{
+								"source": {
+									"name": "KWD",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 255
+								}
+							},
+							{
+								"source": {
+									"name": "AGE",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 256
+								}
+							},
+							{
+								"source": {
+									"name": "SPQ",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 257
+								}
+							},
+							{
+								"source": {
+									"name": "PLT",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 258
+								}
+							},
+							{
+								"source": {
+									"name": "DMC",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 259
+								}
+							},
+							{
+								"source": {
+									"name": "MSQ",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 260
+								}
+							},
+							{
+								"source": {
+									"name": "PCA",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 261
+								}
+							},
+							{
+								"source": {
+									"name": "UDC",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 262
+								}
+							},
+							{
+								"source": {
+									"name": "SHM",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 263
+								}
+							},
+							{
+								"source": {
+									"name": "CAR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 264
+								}
+							},
+							{
+								"source": {
+									"name": "SHF",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 265
+								}
+							},
+							{
+								"source": {
+									"name": "COP",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 266
+								}
+							},
+							{
+								"source": {
+									"name": "IPP",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 267
+								}
+							},
+							{
+								"source": {
+									"name": "SIN",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 268
+								}
+							},
+							{
+								"source": {
+									"name": "TRU",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 269
+								}
+							},
+							{
+								"source": {
+									"name": "AMN",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 270
+								}
+							},
+							{
+								"source": {
+									"name": "ECC",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 271
+								}
+							},
+							{
+								"source": {
+									"name": "DNO",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 272
+								}
+							},
+							{
+								"source": {
+									"name": "STATUS",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 273
+								}
+							},
+							{
+								"source": {
+									"name": "LABSG",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 274
+								}
+							},
+							{
+								"source": {
+									"name": "FABSG",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 275
+								}
+							},
+							{
+								"source": {
+									"name": "PR_L_L",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 276
+								}
+							},
+							{
+								"source": {
+									"name": "PR_F_F",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 277
+								}
+							},
+							{
+								"source": {
+									"name": "PR_F_L",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 278
+								}
+							},
+							{
+								"source": {
+									"name": "FERC_IND",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 279
+								}
+							},
+							{
+								"source": {
+									"name": "KOSTL",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 280
+								}
+							},
+							{
+								"source": {
+									"name": "FONDS",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 281
+								}
+							},
+							{
+								"source": {
+									"name": "FISTL",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 282
+								}
+							},
+							{
+								"source": {
+									"name": "FKBER",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 283
+								}
+							},
+							{
+								"source": {
+									"name": "GRANT_NBR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 284
+								}
+							},
+							{
+								"source": {
+									"name": "BUDGET_PD",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 285
+								}
+							},
+							{
+								"source": {
+									"name": "FITLIST",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 286
+								}
+							},
+							{
+								"source": {
+									"name": "RULECHECK",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 287
+								}
+							},
+							{
+								"source": {
+									"name": "IUID_RELEVANT",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 288
+								}
+							},
+							{
+								"source": {
+									"name": "EQUNR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 289
+								}
+							},
+							{
+								"source": {
+									"name": "EQART",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 290
+								}
+							},
+							{
+								"source": {
+									"name": "J_3GLVART",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 291
+								}
+							},
+							{
+								"source": {
+									"name": "J_3GDATVO",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 292
+								}
+							},
+							{
+								"source": {
+									"name": "J_3GDATBI",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 293
+								}
+							},
+							{
+								"source": {
+									"name": "J_3GBELNRI",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 294
+								}
+							},
+							{
+								"source": {
+									"name": "J_3GPOSNRI",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 295
+								}
+							},
+							{
+								"source": {
+									"name": "MILL_SE_GPOSN",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 296
+								}
+							},
+							{
+								"source": {
+									"name": "MILL_BATCH_SEL_F",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 297
+								}
+							},
+							{
+								"source": {
+									"name": "OID_EXTBOL",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 298
+								}
+							},
+							{
+								"source": {
+									"name": "OID_MISCDL",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 299
+								}
+							},
+							{
+								"source": {
+									"name": "OIPLANTD",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 300
+								}
+							},
+							{
+								"source": {
+									"name": "OIBYPASS",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 301
+								}
+							},
+							{
+								"source": {
+									"name": "OIEDOK",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 302
+								}
+							},
+							{
+								"source": {
+									"name": "CMETH",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 303
+								}
+							},
+							{
+								"source": {
+									"name": "OITAXFROM",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 304
+								}
+							},
+							{
+								"source": {
+									"name": "OIHANTYP",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 305
+								}
+							},
+							{
+								"source": {
+									"name": "OITAXGRP",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 306
+								}
+							},
+							{
+								"source": {
+									"name": "OITAXTO",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 307
+								}
+							},
+							{
+								"source": {
+									"name": "OICERTF1",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 308
+								}
+							},
+							{
+								"source": {
+									"name": "OIOILCON",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 309
+								}
+							},
+							{
+								"source": {
+									"name": "OIEDBAL",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 310
+								}
+							},
+							{
+								"source": {
+									"name": "OIPRICIE",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 311
+								}
+							},
+							{
+								"source": {
+									"name": "OIINEX",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 312
+								}
+							},
+							{
+								"source": {
+									"name": "OIEDBALM",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 313
+								}
+							},
+							{
+								"source": {
+									"name": "OIDRC",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 314
+								}
+							},
+							{
+								"source": {
+									"name": "OIC_DRCTRY",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 315
+								}
+							},
+							{
+								"source": {
+									"name": "OIC_DRCREG",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 316
+								}
+							},
+							{
+								"source": {
+									"name": "OIMETIND",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 317
+								}
+							},
+							{
+								"source": {
+									"name": "OIWAP",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 318
+								}
+							},
+							{
+								"source": {
+									"name": "OISLF",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 319
+								}
+							},
+							{
+								"source": {
+									"name": "OIPSDRC",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 320
+								}
+							},
+							{
+								"source": {
+									"name": "OIPIPEVAL",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 321
+								}
+							},
+							{
+								"source": {
+									"name": "OIC_LIFNR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 322
+								}
+							},
+							{
+								"source": {
+									"name": "OIC_DCITYC",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 323
+								}
+							},
+							{
+								"source": {
+									"name": "OIC_DCOUNC",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 324
+								}
+							},
+							{
+								"source": {
+									"name": "OIC_DREGIO",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 325
+								}
+							},
+							{
+								"source": {
+									"name": "OIC_DLAND1",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 326
+								}
+							},
+							{
+								"source": {
+									"name": "OIC_OCITYC",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 327
+								}
+							},
+							{
+								"source": {
+									"name": "OIC_OCOUNC",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 328
+								}
+							},
+							{
+								"source": {
+									"name": "OIC_OREGIO",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 329
+								}
+							},
+							{
+								"source": {
+									"name": "OIC_OLAND1",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 330
+								}
+							},
+							{
+								"source": {
+									"name": "OIC_PORGIN",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 331
+								}
+							},
+							{
+								"source": {
+									"name": "OIC_PDESTN",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 332
+								}
+							},
+							{
+								"source": {
+									"name": "OIC_PTRIP",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 333
+								}
+							},
+							{
+								"source": {
+									"name": "OIC_PBATCH",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 334
+								}
+							},
+							{
+								"source": {
+									"name": "OIC_MOT",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 335
+								}
+							},
+							{
+								"source": {
+									"name": "OIC_AORGIN",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 336
+								}
+							},
+							{
+								"source": {
+									"name": "OIC_ADESTN",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 337
+								}
+							},
+							{
+								"source": {
+									"name": "OIC_TRUCKN",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 338
+								}
+							},
+							{
+								"source": {
+									"name": "OIA_BASELO",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 339
+								}
+							},
+							{
+								"source": {
+									"name": "OIEXGNUM",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 340
+								}
+							},
+							{
+								"source": {
+									"name": "OIEXGTYP",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 341
+								}
+							},
+							{
+								"source": {
+									"name": "OIFEETOT",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 342
+								}
+							},
+							{
+								"source": {
+									"name": "OIFEEDT",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 343
+								}
+							},
+							{
+								"source": {
+									"name": "OINETCYC",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 344
+								}
+							},
+							{
+								"source": {
+									"name": "OICONTNR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 345
+								}
+							},
+							{
+								"source": {
+									"name": "OIC_KMPOS",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 346
+								}
+							},
+							{
+								"source": {
+									"name": "OIFEECH",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 347
+								}
+							},
+							{
+								"source": {
+									"name": "OIH_LICTP",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 348
+								}
+							},
+							{
+								"source": {
+									"name": "OIH_LICIN",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 349
+								}
+							},
+							{
+								"source": {
+									"name": "OIH_LCFOL",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 350
+								}
+							},
+							{
+								"source": {
+									"name": "OIH_FOLQTY",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 351
+								}
+							},
+							{
+								"source": {
+									"name": "OISBREL",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 352
+								}
+							},
+							{
+								"source": {
+									"name": "OIBASPROD",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 353
+								}
+							},
+							{
+								"source": {
+									"name": "OIDMSG_PRD",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 354
+								}
+							},
+							{
+								"source": {
+									"name": "OIDMSG_QTY",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 355
+								}
+							},
+							{
+								"source": {
+									"name": "OIDMSG_UOM",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 356
+								}
+							},
+							{
+								"source": {
+									"name": "OIDMSG_DAT",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 357
+								}
+							},
+							{
+								"source": {
+									"name": "OIDMSG_TRM",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 358
+								}
+							},
+							{
+								"source": {
+									"name": "OIDMSG_SHP",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 359
+								}
+							},
+							{
+								"source": {
+									"name": "OIGNRULE",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 360
+								}
+							},
+							{
+								"source": {
+									"name": "OID_SHIP",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 361
+								}
+							},
+							{
+								"source": {
+									"name": "OIBWTAR_IM",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 362
+								}
+							},
+							{
+								"source": {
+									"name": "OIHANTYP_IM",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 363
+								}
+							},
+							{
+								"source": {
+									"name": "OITAXGRP_IM",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 364
+								}
+							},
+							{
+								"source": {
+									"name": "OITAXFROM_IM",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 365
+								}
+							},
+							{
+								"source": {
+									"name": "OITAXTO_IM",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 366
+								}
+							},
+							{
+								"source": {
+									"name": "OIEDBAL_IM",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 367
+								}
+							},
+							{
+								"source": {
+									"name": "OIEDBALM_IM",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 368
+								}
+							},
+							{
+								"source": {
+									"name": "OIPRICIE_IM",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 369
+								}
+							},
+							{
+								"source": {
+									"name": "OIBWTAR_EX",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 370
+								}
+							},
+							{
+								"source": {
+									"name": "OIHANTYP_EX",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 371
+								}
+							},
+							{
+								"source": {
+									"name": "OITAXGRP_EX",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 372
+								}
+							},
+							{
+								"source": {
+									"name": "OITAXFROM_EX",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 373
+								}
+							},
+							{
+								"source": {
+									"name": "OITAXTO_EX",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 374
+								}
+							},
+							{
+								"source": {
+									"name": "OIEDBAL_EX",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 375
+								}
+							},
+							{
+								"source": {
+									"name": "OIEDBALM_EX",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 376
+								}
+							},
+							{
+								"source": {
+									"name": "OIPRICIE_EX",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 377
+								}
+							},
+							{
+								"source": {
+									"name": "OIINEX_EX",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 378
+								}
+							},
+							{
+								"source": {
+									"name": "OICERTF1_EX",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 379
+								}
+							},
+							{
+								"source": {
+									"name": "OIH_LICTP_EX",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 380
+								}
+							},
+							{
+								"source": {
+									"name": "OIH_LICIN_EX",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 381
+								}
+							},
+							{
+								"source": {
+									"name": "OIH_LCFOL_EX",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 382
+								}
+							},
+							{
+								"source": {
+									"name": "OIH_FOLQTY_EX",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "Decimal",
+									"ordinal": 383
+								}
+							},
+							{
+								"source": {
+									"name": "OIHTAXRCP_EX",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 384
+								}
+							},
+							{
+								"source": {
+									"name": "OIHNOTWERKS",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 385
+								}
+							},
+							{
+								"source": {
+									"name": "OIHNOTLGORT",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 386
+								}
+							},
+							{
+								"source": {
+									"name": "OIHCOTDISCH",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 387
+								}
+							},
+							{
+								"source": {
+									"name": "PRS_OBJNR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 388
+								}
+							},
+							{
+								"source": {
+									"name": "PRS_SD_SPSNR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 389
+								}
+							},
+							{
+								"source": {
+									"name": "PRS_WORK_PERIOD",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 390
+								}
+							},
+							{
+								"source": {
+									"name": "TAS",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 391
+								}
+							},
+							{
+								"source": {
+									"name": "BETC",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 392
+								}
+							},
+							{
+								"source": {
+									"name": "MOD_ALLOW",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 393
+								}
+							},
+							{
+								"source": {
+									"name": "CANCEL_ALLOW",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 394
+								}
+							},
+							{
+								"source": {
+									"name": "PAY_METHOD",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 395
+								}
+							},
+							{
+								"source": {
+									"name": "BPN",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 396
+								}
+							},
+							{
+								"source": {
+									"name": "REP_FREQ",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 397
+								}
+							},
+							{
+								"source": {
+									"name": "PARGB",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 398
+								}
+							},
+							{
+								"source": {
+									"name": "AUFPL_OAA",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 399
+								}
+							},
+							{
+								"source": {
+									"name": "APLZL_OAA",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 400
+								}
+							},
+							{
+								"source": {
+									"name": "SCNBR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 401
+								}
+							},
+							{
+								"source": {
+									"name": "SCITEM",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 402
+								}
+							},
+							{
+								"source": {
+									"name": "SCMATNR",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 403
+								}
+							},
+							{
+								"source": {
+									"name": "PROFILE",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 404
+								}
+							},
+							{
+								"source": {
+									"name": "VARIANT",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 405
+								}
+							},
+							{
+								"source": {
+									"name": "VLCENDCU",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 406
+								}
+							},
+							{
+								"source": {
+									"name": "ARSNUM",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 407
+								}
+							},
+							{
+								"source": {
+									"name": "ARSPOS",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 408
+								}
+							},
+							{
+								"source": {
+									"name": "WTYSC_CLMITEM",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 409
+								}
+							},
+							{
+								"source": {
+									"name": "ZZDEA_LICENSE",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 410
+								}
+							},
+							{
+								"source": {
+									"name": "ZZDEA_SCHEDULE",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 411
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SAP_VBAP",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Extract_VBAP",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2023-06-17T22:57:49Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

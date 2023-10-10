@@ -1,0 +1,17 @@
+{
+	"name": "ECS_AWS_S3",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AmazonS3",
+		"typeProperties": {
+			"serviceUrl": "",
+			"accessKeyId": "AKIAIS4EJHZ2PNXHNVJQ",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI2YzhhMGIxOS1jNjY1LTQ4NTEtYmIyZC1kN2I0MDQ4MDM4NTYiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntime1",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

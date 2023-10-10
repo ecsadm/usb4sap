@@ -1,0 +1,17 @@
+{
+	"name": "SnowflakeTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Snowflake1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SnowflakeTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "SAP_S4_1809",
+			"table": "VBAK"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

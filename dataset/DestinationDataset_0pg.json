@@ -1,0 +1,23 @@
+{
+	"name": "DestinationDataset_0pg",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage_VBFA",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "vbfa_final",
+				"container": "mridulgupta"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

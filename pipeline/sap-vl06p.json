@@ -1,0 +1,66 @@
+{
+	"name": "sap-vl06p",
+	"properties": {
+		"activities": [
+			{
+				"name": "Get-VBAK-from-USB4SAP",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SapTableSource",
+						"rowCount": 99,
+						"rfcTableOptions": "",
+						"customRfcReadTableFunctionModule": "",
+						"rfcTableFields": "/XLSO/CATALOG_ID,/XLSO/PAYMENT_OP,/XLSO/SO_VALD_FM,/XLSO/SO_VALD_TO,/XLSO/TRANS_CTXT,/XLSO/VARIANT_ID,ABDIS,ABHOB,ABHOD,ABHOV,ABRUF_PART,ABRVW,AEDAT,AGRZR,AMTBL,ANGDT,AUART,AUDAT,AUFNR,AUGRU,AUTLF,AWAHR,BETC,BNAME,BNDDT,BPN,BSARK,BSTDK,BSTNK,BSTZD,BUKRS_VF,CANCEL_ALLOW,CMFRE,CMNGV,CMNUP,CMWAE,CONT_DG,CRM_GUID,CTLPC,DAT_FZAU,ENQUEUE_GRP,ERDAT,ERNAM,ERZET,FAKSK,FKARA,FMBDAT,FSH_CANDATE,FSH_CQ_CHECK,FSH_KVGR10,FSH_KVGR6,FSH_KVGR7,FSH_KVGR8,FSH_KVGR9,FSH_OS_STG_CHANGE,FSH_REREG,FSH_SS,FSH_TRANSACTION,FSH_VAS_CG,FSH_VRSN_STATUS,GRUPP,GSBER,GSKST,GUEBG,GUEEN,GWLDT,HANDLE,HANDOVERLOC,HB_CONT_REASON,HB_EXPDATE,HB_RESDATE,HITYP_PR,IHREZ,KALCD,KALSM,KALSM_CH,KKBER,KNKLI,KNUMA,KNUMV,KOKRS,KOSTL,KTEXT,KUNNR,KURST,KVGR1,KVGR2,KVGR3,KVGR4,KVGR5,LANDTX,LIFSK,LOGSYSB,MAHDT,MAHZA,MANDT,MILL_APPL_ID,MOD_ALLOW,MSR_ID,MTLAUR,MULTI,NETWR,OBJNR,PAY_METHOD,PHASE,PROLI,PSM_BUDAT,PS_PSP_PNR,QMNUM,REP_FREQ,RPLNR,SBGRP,SCHEME_GRP,SMENR,SPART,SPPAYM,STAFO,STAGE,STCEG_L,STWAE,SUBMI,SWENR,TAS,TAXK1,TAXK2,TAXK3,TAXK4,TAXK5,TAXK6,TAXK7,TAXK8,TAXK9,TELF1,TM_CTRL_KEY,TRVOG,UPD_TMSTMP,VBELN,VBELN_GRP,VBKLA,VBKLT,VBTYP,VDATU,VGBEL,VGTYP,VKBUR,VKGRP,VKORG,VPRGR,VSBED,VSNMR_V,VTWEG,VZEIT,WAERK,WTYSC_CLM_HDR,XBLNR,XEGDR,ZUONR,_DATAAGING",
+						"partitionOption": "None",
+						"sapDataColumnDelimiter": "|"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SAP_VBAK",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DelimitedText3",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2023-06-20T17:12:00Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

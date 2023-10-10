@@ -1,0 +1,121 @@
+{
+	"name": "Task_file_from_ADLS2ADLS",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_File",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Web_FE",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "sap-data-out/Extract_08_2021/"
+					},
+					{
+						"name": "Destination",
+						"value": "sap-data-out/Back_up-07-11-21/"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": false,
+							"wildcardFileName": "*",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings",
+							"skipLineCount": 0
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"validateDataConsistency": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Source_file",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Destination_File",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Web_FE",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": {
+						"value": "@pipeline().Pipeline",
+						"type": "Expression"
+					},
+					"method": "POST",
+					"headers": {
+						"content-type": "application/json"
+					},
+					"body": {
+						"prompt": "Provide information on SAP ECC"
+					},
+					"authentication": {
+						"type": "Basic",
+						"username": "usb4sap0@ecoservity.com",
+						"password": {
+							"type": "SecureString",
+							"value": "**********"
+						}
+					}
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2023-06-21T18:45:24Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
