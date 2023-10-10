@@ -1,5 +1,5 @@
 {
-	"name": "Table-Delta-DocumentNumber-from-USB4SAP_copy1",
+	"name": "SAP-Table-Delta-DocNo-ItemNo-from-USB4SAP",
 	"properties": {
 		"description": "Get SAP table data (with delta) based on Document # & Item #",
 		"activities": [
