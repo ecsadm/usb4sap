@@ -3256,7 +3256,7 @@
 					},
 					{
 						"pipelineReference": {
-							"referenceName": "Table-Delta-Timeseries-from-USB4SAP",
+							"referenceName": "SAP-Table-Delta-Timeseries-from-USB4SAP",
 							"type": "PipelineReference"
 						},
 						"parameters": {}
