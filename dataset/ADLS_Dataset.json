@@ -12,7 +12,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": {
-					"value": "@concat('AFPO_',utcnow(),'.json')",
+					"value": "@concat('VTTK_',utcnow(),'.txt')",
 					"type": "Expression"
 				},
 				"folderPath": "Extract_08_2021/From-ADF",
