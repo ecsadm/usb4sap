@@ -12205,6 +12205,72 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/Table-Delta-DocumentNumber-from-USB4SAP_copy1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Get SAP table data (with delta) based on Document # & Item #",
+				"activities": [
+					{
+						"name": "USB4SAP-SICF",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "POST",
+								"requestBody": "{\n    \"DELIMITER\": \"|\",\n    \"OBJ_TYPE\": \"T\",\n    \"OBJ_ID\": \"AFPO\",\n    \"DELTA_FILTER\": \"AUFNR:I:GE::|POSNR:I:GE::\",\n\"DATADEST\": \"0|0||\"\n}"
+							},
+							"sink": {
+								"type": "JsonSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "JsonWriteSettings",
+									"quoteAllText": true
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "RestResource1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "ADLS_Dataset",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": [],
+				"lastPublishTime": "2023-10-10T05:28:57Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/RestResource1')]",
+				"[concat(variables('factoryId'), '/datasets/ADLS_Dataset')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Table-Delta-Timeseries-from-USB4SAP')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -15079,7 +15145,7 @@
 					"location": {
 						"type": "AzureBlobFSLocation",
 						"fileName": {
-							"value": "@concat('SDBILLDL_',utcnow(),'.json')",
+							"value": "@concat('AFPO_',utcnow(),'.json')",
 							"type": "Expression"
 						},
 						"folderPath": "Extract_08_2021/From-ADF",

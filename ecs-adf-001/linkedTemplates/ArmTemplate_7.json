@@ -13,6 +13,34 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/SourceDataset_vp9')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ECS_ECC_DEV2",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"filter": {
+						"type": "string",
+						"defaultValue": "ObjectType%20eq%20'R'%20and%20ObjectName%20eq%20'WS_MONITOR_OUTB_DEL_PICK'%20and%20Delimiter%20eq%20'%7C'%20and%20DataDest%20eq%20'0%7C0%7C%7C'%20and%20ImportGeneric%20eq%20'TYPE:ALV|||FIELD_LABLE:B'%20"
+					},
+					"format": {
+						"type": "string",
+						"defaultValue": "json"
+					}
+				},
+				"annotations": [],
+				"type": "SapEccResource",
+				"schema": [],
+				"typeProperties": {
+					"path": "ET_DataSetSet"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SourceDataset_yaa')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -9601,197 +9629,6 @@
 				},
 				"annotations": [],
 				"lastPublishTime": "2023-06-20T17:33:32Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/IncrementalCopyFromSAP_VBAK')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "CopyFromSAPTable",
-						"description": "Copy incremental data from SAP table to AzureBlobStorage",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "LookupLastCopiedDate",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "SapTableSource",
-								"rowCount": 10,
-								"rfcTableOptions": {
-									"value": "@{concat(pipeline().parameters.SapTableDateColumn,' LE ',formatDateTime(adddays(pipeline().TriggerTime,-1),'yyyyMMdd'), ' AND ',pipeline().parameters.SapTableDateColumn,' GE ', formatDateTime(activity('LookupLastCopiedDate').output.firstRow.Prop_0, 'yyyyMMdd'))}",
-									"type": "Expression"
-								},
-								"customRfcReadTableFunctionModule": "",
-								"partitionOption": "None"
-							},
-							"sink": {
-								"type": "DelimitedTextSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "DelimitedTextWriteSettings",
-									"quoteAllText": true,
-									"fileExtension": ".txt"
-								}
-							},
-							"enableStaging": false
-						},
-						"inputs": [
-							{
-								"referenceName": "SAPTableSource_Incremental1",
-								"type": "DatasetReference",
-								"parameters": {
-									"SapTableName": "VBAK"
-								}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DelimitedTextSink1",
-								"type": "DatasetReference",
-								"parameters": {
-									"DelimitedTextSinkContainer": {
-										"value": "@pipeline().parameters.DelimitedTextSinkContainer",
-										"type": "Expression"
-									},
-									"DelimitedTextSinkDirectory": {
-										"value": "@pipeline().parameters.DelimitedTextSinkDirectory",
-										"type": "Expression"
-									}
-								}
-							}
-						]
-					},
-					{
-						"name": "LookupLastCopiedDate",
-						"description": "Copy incremental data from SAP table to AzureBlobStorage",
-						"type": "Lookup",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": false,
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
-								}
-							},
-							"dataset": {
-								"referenceName": "SAP_Table_Incremental_File",
-								"type": "DatasetReference",
-								"parameters": {
-									"HighWatermarkBlobDirectory": {
-										"value": "@pipeline().parameters.HighWatermarkBlobDirectory",
-										"type": "Expression"
-									},
-									"HighWatermarkBlobName": {
-										"value": "@pipeline().parameters.HighWatermarkBlobName",
-										"type": "Expression"
-									},
-									"HighWatermarkBlobContainer": {
-										"value": "@pipeline().parameters.HighWatermarkBlobContainer",
-										"type": "Expression"
-									}
-								}
-							}
-						}
-					},
-					{
-						"name": "SetLastCopiedDate",
-						"description": "Store the last copied date into blob by calling Logic App",
-						"type": "WebActivity",
-						"dependsOn": [
-							{
-								"activity": "CopyFromSAPTable",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"url": {
-								"value": "@pipeline().parameters.LogicAppURL",
-								"type": "Expression"
-							},
-							"method": "POST",
-							"headers": {
-								"Content-Type": "application/json"
-							},
-							"body": {
-								"value": "{\"copiedDate\":\"@{pipeline().TriggerTime}\"",
-								"type": "Expression"
-							}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"parameters": {
-					"HighWatermarkBlobDirectory": {
-						"type": "string"
-					},
-					"HighWatermarkBlobName": {
-						"type": "string"
-					},
-					"HighWatermarkBlobContainer": {
-						"type": "string"
-					},
-					"SapTableName": {
-						"type": "string"
-					},
-					"DelimitedTextSinkContainer": {
-						"type": "string"
-					},
-					"DelimitedTextSinkDirectory": {
-						"type": "string"
-					},
-					"LogicAppURL": {
-						"type": "string"
-					},
-					"SapTableDateColumn": {
-						"type": "string"
-					}
-				},
-				"annotations": [],
-				"lastPublishTime": "2020-03-25T02:32:03Z"
 			},
 			"dependsOn": []
 		}
