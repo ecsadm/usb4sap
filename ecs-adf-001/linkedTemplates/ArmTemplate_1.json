@@ -1,0 +1,725 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "ecs-adf-001"
+		},
+		"USB4SAP_SICF_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'USB4SAP_SICF'"
+		},
+		"linkedServicesql1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'linkedServicesql1'"
+		},
+		"USB4SAP_SICF_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "http://sap-ecc-ehp8.ecoservity.com:8000/sap/ecs_spu/rest/v1/USB4SAP?sap-client=800"
+		},
+		"USB4SAP_SICF_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "service1"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/USB4SAP_SICF')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('USB4SAP_SICF_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": false,
+					"authenticationType": "Basic",
+					"userName": "[parameters('USB4SAP_SICF_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('USB4SAP_SICF_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/linkedServicesql1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"connectionString": "[parameters('linkedServicesql1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ECS-IR-004')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/IR-061723')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/IR-092021')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"description": "IR on 09/20/21",
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/integrationRuntime1')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/integrationRuntime2')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ir-2')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"description": "on aj-lappie",
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ir-az-vm002')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ADLS_Dataset')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Connection to your Azure Data Lake Store",
+				"linkedServiceName": {
+					"referenceName": "AzureDataLake_Gen2001",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@concat('SDBILLDL_',utcnow(),'.json')",
+							"type": "Expression"
+						},
+						"folderPath": "Extract_08_2021/From-ADF",
+						"fileSystem": "sap-data-out"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBlobDelimitedDataset')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"HighWatermarkBlobDirectory": {
+						"type": "string"
+					},
+					"HighWatermarkBlobName": {
+						"type": "string"
+					},
+					"HighWatermarkBlobContainer": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@dataset().HighWatermarkBlobName",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().HighWatermarkBlobDirectory",
+							"type": "Expression"
+						},
+						"container": {
+							"value": "@dataset().HighWatermarkBlobContainer",
+							"type": "Expression"
+						}
+					},
+					"columnDelimiter": "|",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStore1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureDataLakeStoreLocation",
+						"folderPath": "sapbw_output"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText2')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "100 Sales Records.csv",
+						"container": "iptraining"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText3')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "cust",
+						"container": "sap-data-out"
+					},
+					"columnDelimiter": "|",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedTextSink')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "DelimitedText sink",
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"DelimitedTextSinkContainer": {
+						"type": "string"
+					},
+					"DelimitedTextSinkDirectory": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": {
+							"value": "@dataset().DelimitedTextSinkDirectory",
+							"type": "Expression"
+						},
+						"container": {
+							"value": "@dataset().DelimitedTextSinkContainer",
+							"type": "Expression"
+						}
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"nullValue": "\\N",
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedTextSink1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "DelimitedText sink",
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"DelimitedTextSinkContainer": {
+						"type": "string",
+						"defaultValue": "lookupsapvbak"
+					},
+					"DelimitedTextSinkDirectory": {
+						"type": "string",
+						"defaultValue": "https://ecoservity001.blob.core.windows.net/"
+					}
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": {
+							"value": "@dataset().DelimitedTextSinkDirectory",
+							"type": "Expression"
+						},
+						"container": {
+							"value": "@dataset().DelimitedTextSinkContainer",
+							"type": "Expression"
+						}
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"nullValue": "\\N",
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DestinationDataset_0pg')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage_VBFA",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "vbfa_final",
+						"container": "mridulgupta"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DestinationDataset_1tc')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSynapseAnalytics1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlDWTable",
+				"schema": [
+					{
+						"name": "MANDT",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "VBELN",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "POSNR",
+						"type": "int",
+						"precision": 10,
+						"scale": 255
+					},
+					{
+						"name": "KONDA",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "BZIRK",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "PLTYP",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "PRSDT",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "KDGRP",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "FKDAT",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "BSARK",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "BSTKD",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "BSTDK",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "VBKD"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DestinationDataset_350')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSynapseAnalytics1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlDWTable",
+				"schema": [
+					{
+						"name": "MANDT",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "VBELN",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "POSNR",
+						"type": "int",
+						"precision": 10,
+						"scale": 255
+					},
+					{
+						"name": "MATNR",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "KDMAT",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "WAERK",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "VRKME",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "MEINS",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "NETWR",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "KWMENG",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "LSMENG",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "KBMENG",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "KLMENG",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "VBAP"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DestinationDataset_4h9')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSynapseAnalytics1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlDWTable",
+				"schema": [
+					{
+						"name": "MANDT",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "VBELN",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "POSNR",
+						"type": "int",
+						"precision": 10,
+						"scale": 255
+					},
+					{
+						"name": "MATNR",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "KDMAT",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "WAERK",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "VRKME",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "MEINS",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "NETWR",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "KWMENG",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "LSMENG",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "KBMENG",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "KLMENG",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "VBAP"
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

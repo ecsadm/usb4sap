@@ -1,0 +1,4940 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "ecs-adf-001"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/Extract_VBAK')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStore1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureDataLakeStoreLocation",
+						"folderPath": "sapbw_output"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Extract_VBAK2GCP_S3')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ECS_GCP_S3",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "GoogleCloudStorageLocation",
+						"bucketName": "ecs-sap-data-bucket2"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Extract_VBAK_Delta')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStore1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureDataLakeStoreLocation",
+						"folderPath": "sapbw_output"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Extract_VBAP')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLake_Gen2001",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"folderPath": "capgemini-sea",
+						"fileSystem": "sap-data-out"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/IP_VBAK_For_XForm')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "flatfile"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Json_from_sap')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLake_Gen2001",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/OP_From_Xform_VBAK2')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "flatfile"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Parquet1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "cust",
+						"container": "sap-data-out"
+					},
+					"compressionCodec": "none"
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/REST_AWS_S3')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RestService1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RestResource')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Connection to your REST/HTTP",
+				"linkedServiceName": {
+					"referenceName": "RestService2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RestResource1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Connection to your REST/HTTP",
+				"linkedServiceName": {
+					"referenceName": "USB4SAP_SICF",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SAP_Table_Incremental_File')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"HighWatermarkBlobDirectory": {
+						"type": "string"
+					},
+					"HighWatermarkBlobName": {
+						"type": "string"
+					},
+					"HighWatermarkBlobContainer": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@dataset().HighWatermarkBlobName",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().HighWatermarkBlobDirectory",
+							"type": "Expression"
+						},
+						"container": {
+							"value": "@dataset().HighWatermarkBlobContainer",
+							"type": "Expression"
+						}
+					},
+					"columnDelimiter": "|",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SAP_VBAK_4_AWS_S3')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "flatfile"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SinkDataset')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Connection to your Azure Data Lake Store",
+				"linkedServiceName": {
+					"referenceName": "AzureDataLake_Gen2001",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"Container": {
+						"type": "string"
+					},
+					"Directory": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"folderPath": {
+							"value": "@dataset().Directory",
+							"type": "Expression"
+						},
+						"fileSystem": {
+							"value": "@dataset().Container",
+							"type": "Expression"
+						}
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SourceDataset_0pg')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage_VBFA",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "VBFA_20220326232909_1.csv",
+						"container": "mridulgupta"
+					},
+					"columnDelimiter": "|",
+					"rowDelimiter": "\n",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "MANDT",
+						"type": "String"
+					},
+					{
+						"name": "VBELV",
+						"type": "String"
+					},
+					{
+						"name": "POSNV",
+						"type": "String"
+					},
+					{
+						"name": "VBELN",
+						"type": "String"
+					},
+					{
+						"name": "POSNN",
+						"type": "String"
+					},
+					{
+						"name": "VBTYP_N",
+						"type": "String"
+					},
+					{
+						"name": "RFMNG",
+						"type": "String"
+					},
+					{
+						"name": "MEINS",
+						"type": "String"
+					},
+					{
+						"name": "RFWRT",
+						"type": "String"
+					},
+					{
+						"name": "WAERS",
+						"type": "String"
+					},
+					{
+						"name": "VBTYP_V",
+						"type": "String"
+					},
+					{
+						"name": "PLMIN",
+						"type": "String"
+					},
+					{
+						"name": "TAQUI",
+						"type": "String"
+					},
+					{
+						"name": "ERDAT",
+						"type": "String"
+					},
+					{
+						"name": "ERZET",
+						"type": "String"
+					},
+					{
+						"name": "MATNR",
+						"type": "String"
+					},
+					{
+						"name": "BWART",
+						"type": "String"
+					},
+					{
+						"name": "BDART",
+						"type": "String"
+					},
+					{
+						"name": "PLART",
+						"type": "String"
+					},
+					{
+						"name": "STUFE",
+						"type": "String"
+					},
+					{
+						"name": "LGNUM",
+						"type": "String"
+					},
+					{
+						"name": "AEDAT",
+						"type": "String"
+					},
+					{
+						"name": "FKTYP",
+						"type": "String"
+					},
+					{
+						"name": "BRGEW",
+						"type": "String"
+					},
+					{
+						"name": "GEWEI",
+						"type": "String"
+					},
+					{
+						"name": "VOLUM",
+						"type": "String"
+					},
+					{
+						"name": "VOLEH",
+						"type": "String"
+					},
+					{
+						"name": "FPLNR",
+						"type": "String"
+					},
+					{
+						"name": "FPLTR",
+						"type": "String"
+					},
+					{
+						"name": "RFMNG_FLO",
+						"type": "String"
+					},
+					{
+						"name": "RFMNG_FLT",
+						"type": "String"
+					},
+					{
+						"name": "VRKME",
+						"type": "String"
+					},
+					{
+						"name": "ABGES",
+						"type": "String"
+					},
+					{
+						"name": "SOBKZ",
+						"type": "String"
+					},
+					{
+						"name": "SONUM",
+						"type": "String"
+					},
+					{
+						"name": "KZBEF",
+						"type": "String"
+					},
+					{
+						"name": "NTGEW",
+						"type": "String"
+					},
+					{
+						"name": "LOGSYS",
+						"type": "String"
+					},
+					{
+						"name": "WBSTA",
+						"type": "String"
+					},
+					{
+						"name": "CMETH",
+						"type": "String"
+					},
+					{
+						"name": "MJAHR",
+						"type": "String"
+					},
+					{
+						"name": "VBTYPEXT_V",
+						"type": "String"
+					},
+					{
+						"name": "VBTYPEXT_N",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SourceDataset_1tc')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStore2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureDataLakeStoreLocation",
+						"fileName": "VBKD_001.txt",
+						"folderPath": "sapbw_output"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "MANDT"
+					},
+					{
+						"name": "VBELN"
+					},
+					{
+						"name": "POSNR"
+					},
+					{
+						"name": "KONDA"
+					},
+					{
+						"name": "KDGRP"
+					},
+					{
+						"name": "BZIRK"
+					},
+					{
+						"name": "PLTYP"
+					},
+					{
+						"name": "INCO1"
+					},
+					{
+						"name": "INCO2"
+					},
+					{
+						"name": "KZAZU"
+					},
+					{
+						"name": "PERFK"
+					},
+					{
+						"name": "PERRL"
+					},
+					{
+						"name": "MRNKZ"
+					},
+					{
+						"name": "KURRF"
+					},
+					{
+						"name": "VALTG"
+					},
+					{
+						"name": "VALDT"
+					},
+					{
+						"name": "ZTERM"
+					},
+					{
+						"name": "ZLSCH"
+					},
+					{
+						"name": "KTGRD"
+					},
+					{
+						"name": "KURSK"
+					},
+					{
+						"name": "PRSDT"
+					},
+					{
+						"name": "FKDAT"
+					},
+					{
+						"name": "FBUDA"
+					},
+					{
+						"name": "GJAHR"
+					},
+					{
+						"name": "POPER"
+					},
+					{
+						"name": "STCUR"
+					},
+					{
+						"name": "MSCHL"
+					},
+					{
+						"name": "MANSP"
+					},
+					{
+						"name": "FPLNR"
+					},
+					{
+						"name": "WAKTION"
+					},
+					{
+						"name": "ABSSC"
+					},
+					{
+						"name": "LCNUM"
+					},
+					{
+						"name": "J_1AFITP"
+					},
+					{
+						"name": "J_1ARFZ"
+					},
+					{
+						"name": "J_1AREGIO"
+					},
+					{
+						"name": "J_1AGICD"
+					},
+					{
+						"name": "J_1ADTYP"
+					},
+					{
+						"name": "J_1ATXREL"
+					},
+					{
+						"name": "ABTNR"
+					},
+					{
+						"name": "EMPST"
+					},
+					{
+						"name": "BSTKD"
+					},
+					{
+						"name": "BSTDK"
+					},
+					{
+						"name": "BSARK"
+					},
+					{
+						"name": "IHREZ"
+					},
+					{
+						"name": "BSTKD_E"
+					},
+					{
+						"name": "BSTDK_E"
+					},
+					{
+						"name": "BSARK_E"
+					},
+					{
+						"name": "IHREZ_E"
+					},
+					{
+						"name": "POSEX_E"
+					},
+					{
+						"name": "KURSK_DAT"
+					},
+					{
+						"name": "KURRF_DAT"
+					},
+					{
+						"name": "KDKG1"
+					},
+					{
+						"name": "KDKG2"
+					},
+					{
+						"name": "KDKG3"
+					},
+					{
+						"name": "KDKG4"
+					},
+					{
+						"name": "KDKG5"
+					},
+					{
+						"name": "WKWAE"
+					},
+					{
+						"name": "WKKUR"
+					},
+					{
+						"name": "AKWAE"
+					},
+					{
+						"name": "AKKUR"
+					},
+					{
+						"name": "AKPRZ"
+					},
+					{
+						"name": "J_1AINDXP"
+					},
+					{
+						"name": "J_1AIDATEP"
+					},
+					{
+						"name": "BSTKD_M"
+					},
+					{
+						"name": "DELCO"
+					},
+					{
+						"name": "FFPRF"
+					},
+					{
+						"name": "BEMOT"
+					},
+					{
+						"name": "FAKTF"
+					},
+					{
+						"name": "RRREL"
+					},
+					{
+						"name": "ACDATV"
+					},
+					{
+						"name": "VSART"
+					},
+					{
+						"name": "TRATY"
+					},
+					{
+						"name": "TRMTYP"
+					},
+					{
+						"name": "SDABW"
+					},
+					{
+						"name": "WMINR"
+					},
+					{
+						"name": "FKBER"
+					},
+					{
+						"name": "PODKZ"
+					},
+					{
+						"name": "CAMPAIGN"
+					},
+					{
+						"name": "VKONT"
+					},
+					{
+						"name": "DPBP_REF_FPLNR"
+					},
+					{
+						"name": "DPBP_REF_FPLTR"
+					},
+					{
+						"name": "REVSP"
+					},
+					{
+						"name": "REVEVTYP"
+					},
+					{
+						"name": "VTREF"
+					},
+					{
+						"name": "BOOKING_FR"
+					},
+					{
+						"name": "BOOKING_TO"
+					},
+					{
+						"name": "SHIPPING_FR"
+					},
+					{
+						"name": "SHIPPING_TO"
+					},
+					{
+						"name": "BILLING_FR"
+					},
+					{
+						"name": "BILLING_TO"
+					},
+					{
+						"name": "EXERCISE_FR"
+					},
+					{
+						"name": "EXERCISE_TO"
+					},
+					{
+						"name": "DESIGN_REG_NO"
+					},
+					{
+						"name": "DROP_SHIP"
+					},
+					{
+						"name": "RFPLN"
+					},
+					{
+						"name": "SYNCH"
+					},
+					{
+						"name": "PACKNO"
+					},
+					{
+						"name": "PEROP_BEG"
+					},
+					{
+						"name": "PEROP_END"
+					},
+					{
+						"name": "STCODE"
+					},
+					{
+						"name": "FORMC1"
+					},
+					{
+						"name": "FORMC2"
+					},
+					{
+						"name": "STEUC"
+					},
+					{
+						"name": "COMPREAS"
+					},
+					{
+						"name": "MNDID"
+					},
+					{
+						"name": "PAY_TYPE"
+					},
+					{
+						"name": "SEPON"
+					},
+					{
+						"name": "MNDVG"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SourceDataset_350')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStore2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureDataLakeStoreLocation",
+						"fileName": "VBAP_002.txt",
+						"folderPath": "sapbw_output"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "MANDT"
+					},
+					{
+						"name": "VBELN"
+					},
+					{
+						"name": "POSNR"
+					},
+					{
+						"name": "MATNR"
+					},
+					{
+						"name": "MATWA"
+					},
+					{
+						"name": "PMATN"
+					},
+					{
+						"name": "CHARG"
+					},
+					{
+						"name": "MATKL"
+					},
+					{
+						"name": "ARKTX"
+					},
+					{
+						"name": "PSTYV"
+					},
+					{
+						"name": "POSAR"
+					},
+					{
+						"name": "LFREL"
+					},
+					{
+						"name": "FKREL"
+					},
+					{
+						"name": "UEPOS"
+					},
+					{
+						"name": "GRPOS"
+					},
+					{
+						"name": "ABGRU"
+					},
+					{
+						"name": "PRODH"
+					},
+					{
+						"name": "ZWERT"
+					},
+					{
+						"name": "ZMENG"
+					},
+					{
+						"name": "ZIEME"
+					},
+					{
+						"name": "UMZIZ"
+					},
+					{
+						"name": "UMZIN"
+					},
+					{
+						"name": "MEINS"
+					},
+					{
+						"name": "SMENG"
+					},
+					{
+						"name": "ABLFZ"
+					},
+					{
+						"name": "ABDAT"
+					},
+					{
+						"name": "ABSFZ"
+					},
+					{
+						"name": "POSEX"
+					},
+					{
+						"name": "KDMAT"
+					},
+					{
+						"name": "KBVER"
+					},
+					{
+						"name": "KEVER"
+					},
+					{
+						"name": "VKGRU"
+					},
+					{
+						"name": "VKAUS"
+					},
+					{
+						"name": "GRKOR"
+					},
+					{
+						"name": "FMENG"
+					},
+					{
+						"name": "UEBTK"
+					},
+					{
+						"name": "UEBTO"
+					},
+					{
+						"name": "UNTTO"
+					},
+					{
+						"name": "FAKSP"
+					},
+					{
+						"name": "ATPKZ"
+					},
+					{
+						"name": "RKFKF"
+					},
+					{
+						"name": "SPART"
+					},
+					{
+						"name": "GSBER"
+					},
+					{
+						"name": "NETWR"
+					},
+					{
+						"name": "WAERK"
+					},
+					{
+						"name": "ANTLF"
+					},
+					{
+						"name": "KZTLF"
+					},
+					{
+						"name": "CHSPL"
+					},
+					{
+						"name": "KWMENG"
+					},
+					{
+						"name": "LSMENG"
+					},
+					{
+						"name": "KBMENG"
+					},
+					{
+						"name": "KLMENG"
+					},
+					{
+						"name": "VRKME"
+					},
+					{
+						"name": "UMVKZ"
+					},
+					{
+						"name": "UMVKN"
+					},
+					{
+						"name": "BRGEW"
+					},
+					{
+						"name": "NTGEW"
+					},
+					{
+						"name": "GEWEI"
+					},
+					{
+						"name": "VOLUM"
+					},
+					{
+						"name": "VOLEH"
+					},
+					{
+						"name": "VBELV"
+					},
+					{
+						"name": "POSNV"
+					},
+					{
+						"name": "VGBEL"
+					},
+					{
+						"name": "VGPOS"
+					},
+					{
+						"name": "VOREF"
+					},
+					{
+						"name": "UPFLU"
+					},
+					{
+						"name": "ERLRE"
+					},
+					{
+						"name": "LPRIO"
+					},
+					{
+						"name": "WERKS"
+					},
+					{
+						"name": "LGORT"
+					},
+					{
+						"name": "VSTEL"
+					},
+					{
+						"name": "ROUTE"
+					},
+					{
+						"name": "STKEY"
+					},
+					{
+						"name": "STDAT"
+					},
+					{
+						"name": "STLNR"
+					},
+					{
+						"name": "STPOS"
+					},
+					{
+						"name": "AWAHR"
+					},
+					{
+						"name": "ERDAT"
+					},
+					{
+						"name": "ERNAM"
+					},
+					{
+						"name": "ERZET"
+					},
+					{
+						"name": "TAXM1"
+					},
+					{
+						"name": "TAXM2"
+					},
+					{
+						"name": "TAXM3"
+					},
+					{
+						"name": "TAXM4"
+					},
+					{
+						"name": "TAXM5"
+					},
+					{
+						"name": "TAXM6"
+					},
+					{
+						"name": "TAXM7"
+					},
+					{
+						"name": "TAXM8"
+					},
+					{
+						"name": "TAXM9"
+					},
+					{
+						"name": "VBEAF"
+					},
+					{
+						"name": "VBEAV"
+					},
+					{
+						"name": "VGREF"
+					},
+					{
+						"name": "NETPR"
+					},
+					{
+						"name": "KPEIN"
+					},
+					{
+						"name": "KMEIN"
+					},
+					{
+						"name": "SHKZG"
+					},
+					{
+						"name": "SKTOF"
+					},
+					{
+						"name": "MTVFP"
+					},
+					{
+						"name": "SUMBD"
+					},
+					{
+						"name": "KONDM"
+					},
+					{
+						"name": "KTGRM"
+					},
+					{
+						"name": "BONUS"
+					},
+					{
+						"name": "PROVG"
+					},
+					{
+						"name": "EANNR"
+					},
+					{
+						"name": "PRSOK"
+					},
+					{
+						"name": "BWTAR"
+					},
+					{
+						"name": "BWTEX"
+					},
+					{
+						"name": "XCHPF"
+					},
+					{
+						"name": "XCHAR"
+					},
+					{
+						"name": "LFMNG"
+					},
+					{
+						"name": "STAFO"
+					},
+					{
+						"name": "WAVWR"
+					},
+					{
+						"name": "KZWI1"
+					},
+					{
+						"name": "KZWI2"
+					},
+					{
+						"name": "KZWI3"
+					},
+					{
+						"name": "KZWI4"
+					},
+					{
+						"name": "KZWI5"
+					},
+					{
+						"name": "KZWI6"
+					},
+					{
+						"name": "STCUR"
+					},
+					{
+						"name": "AEDAT"
+					},
+					{
+						"name": "EAN11"
+					},
+					{
+						"name": "FIXMG"
+					},
+					{
+						"name": "PRCTR"
+					},
+					{
+						"name": "MVGR1"
+					},
+					{
+						"name": "MVGR2"
+					},
+					{
+						"name": "MVGR3"
+					},
+					{
+						"name": "MVGR4"
+					},
+					{
+						"name": "MVGR5"
+					},
+					{
+						"name": "KMPMG"
+					},
+					{
+						"name": "SUGRD"
+					},
+					{
+						"name": "SOBKZ"
+					},
+					{
+						"name": "VPZUO"
+					},
+					{
+						"name": "PAOBJNR"
+					},
+					{
+						"name": "PS_PSP_PNR"
+					},
+					{
+						"name": "AUFNR"
+					},
+					{
+						"name": "VPMAT"
+					},
+					{
+						"name": "VPWRK"
+					},
+					{
+						"name": "PRBME"
+					},
+					{
+						"name": "UMREF"
+					},
+					{
+						"name": "KNTTP"
+					},
+					{
+						"name": "KZVBR"
+					},
+					{
+						"name": "SERNR"
+					},
+					{
+						"name": "OBJNR"
+					},
+					{
+						"name": "ABGRS"
+					},
+					{
+						"name": "BEDAE"
+					},
+					{
+						"name": "CMPRE"
+					},
+					{
+						"name": "CMTFG"
+					},
+					{
+						"name": "CMPNT"
+					},
+					{
+						"name": "CMKUA"
+					},
+					{
+						"name": "CUOBJ"
+					},
+					{
+						"name": "CUOBJ_CH"
+					},
+					{
+						"name": "CEPOK"
+					},
+					{
+						"name": "KOUPD"
+					},
+					{
+						"name": "SERAIL"
+					},
+					{
+						"name": "ANZSN"
+					},
+					{
+						"name": "NACHL"
+					},
+					{
+						"name": "MAGRV"
+					},
+					{
+						"name": "MPROK"
+					},
+					{
+						"name": "VGTYP"
+					},
+					{
+						"name": "PROSA"
+					},
+					{
+						"name": "UEPVW"
+					},
+					{
+						"name": "KALNR"
+					},
+					{
+						"name": "KLVAR"
+					},
+					{
+						"name": "SPOSN"
+					},
+					{
+						"name": "KOWRR"
+					},
+					{
+						"name": "STADAT"
+					},
+					{
+						"name": "EXART"
+					},
+					{
+						"name": "PREFE"
+					},
+					{
+						"name": "KNUMH"
+					},
+					{
+						"name": "CLINT"
+					},
+					{
+						"name": "CHMVS"
+					},
+					{
+						"name": "STLTY"
+					},
+					{
+						"name": "STLKN"
+					},
+					{
+						"name": "STPOZ"
+					},
+					{
+						"name": "STMAN"
+					},
+					{
+						"name": "ZSCHL_K"
+					},
+					{
+						"name": "KALSM_K"
+					},
+					{
+						"name": "KALVAR"
+					},
+					{
+						"name": "KOSCH"
+					},
+					{
+						"name": "UPMAT"
+					},
+					{
+						"name": "UKONM"
+					},
+					{
+						"name": "MFRGR"
+					},
+					{
+						"name": "PLAVO"
+					},
+					{
+						"name": "KANNR"
+					},
+					{
+						"name": "CMPRE_FLT"
+					},
+					{
+						"name": "ABFOR"
+					},
+					{
+						"name": "ABGES"
+					},
+					{
+						"name": "J_1BCFOP"
+					},
+					{
+						"name": "J_1BTAXLW1"
+					},
+					{
+						"name": "J_1BTAXLW2"
+					},
+					{
+						"name": "J_1BTXSDC"
+					},
+					{
+						"name": "WKTNR"
+					},
+					{
+						"name": "WKTPS"
+					},
+					{
+						"name": "SKOPF"
+					},
+					{
+						"name": "KZBWS"
+					},
+					{
+						"name": "WGRU1"
+					},
+					{
+						"name": "WGRU2"
+					},
+					{
+						"name": "KNUMA_PI"
+					},
+					{
+						"name": "KNUMA_AG"
+					},
+					{
+						"name": "KZFME"
+					},
+					{
+						"name": "LSTANR"
+					},
+					{
+						"name": "TECHS"
+					},
+					{
+						"name": "MWSBP"
+					},
+					{
+						"name": "BERID"
+					},
+					{
+						"name": "PCTRF"
+					},
+					{
+						"name": "LOGSYS_EXT"
+					},
+					{
+						"name": "J_1BTAXLW3"
+					},
+					{
+						"name": "J_1BTAXLW4"
+					},
+					{
+						"name": "J_1BTAXLW5"
+					},
+					{
+						"name": "STOCKLOC"
+					},
+					{
+						"name": "SLOCTYPE"
+					},
+					{
+						"name": "MSR_RET_REASON"
+					},
+					{
+						"name": "MSR_REFUND_CODE"
+					},
+					{
+						"name": "MSR_APPROV_BLOCK"
+					},
+					{
+						"name": "NRAB_KNUMH"
+					},
+					{
+						"name": "TRMRISK_RELEVANT"
+					},
+					{
+						"name": "HANDOVERLOC"
+					},
+					{
+						"name": "HANDOVERDATE"
+					},
+					{
+						"name": "HANDOVERTIME"
+					},
+					{
+						"name": "Z_PRS_OFFSHORE"
+					},
+					{
+						"name": "Z_PRS_BILL_FLAG"
+					},
+					{
+						"name": "Z_PRS_COUNTRY"
+					},
+					{
+						"name": "Z_PRS_CHARGELEVL"
+					},
+					{
+						"name": "TC_AUT_DET"
+					},
+					{
+						"name": "MANUAL_TC_REASON"
+					},
+					{
+						"name": "FISCAL_INCENTIVE"
+					},
+					{
+						"name": "TAX_SUBJECT_ST"
+					},
+					{
+						"name": "FISCAL_INCENTIVE_ID"
+					},
+					{
+						"name": "SPCSTO"
+					},
+					{
+						"name": "/BEV1/SRFUND"
+					},
+					{
+						"name": "CPD_UPDAT"
+					},
+					{
+						"name": "AUFPL_OLC"
+					},
+					{
+						"name": "APLZL_OLC"
+					},
+					{
+						"name": "PLAUFZ"
+					},
+					{
+						"name": "PLAUEZ"
+					},
+					{
+						"name": "CONTNBR"
+					},
+					{
+						"name": "CONTITM"
+					},
+					{
+						"name": "AUDAT"
+					},
+					{
+						"name": "/XLSO/COURSE_ID"
+					},
+					{
+						"name": "/XLSO/COURSE_BDA"
+					},
+					{
+						"name": "/XLSO/COURSE_EDA"
+					},
+					{
+						"name": "AD01PROFNR"
+					},
+					{
+						"name": "ADMOI"
+					},
+					{
+						"name": "ADICC"
+					},
+					{
+						"name": "ADPRI"
+					},
+					{
+						"name": "SEL"
+					},
+					{
+						"name": "CCI"
+					},
+					{
+						"name": "SEN"
+					},
+					{
+						"name": "PSEL"
+					},
+					{
+						"name": "PCCI"
+					},
+					{
+						"name": "PSEN"
+					},
+					{
+						"name": "CAN"
+					},
+					{
+						"name": "ICY"
+					},
+					{
+						"name": "ITY"
+					},
+					{
+						"name": "KWD"
+					},
+					{
+						"name": "AGE"
+					},
+					{
+						"name": "SPQ"
+					},
+					{
+						"name": "PLT"
+					},
+					{
+						"name": "DMC"
+					},
+					{
+						"name": "MSQ"
+					},
+					{
+						"name": "PCA"
+					},
+					{
+						"name": "UDC"
+					},
+					{
+						"name": "SHM"
+					},
+					{
+						"name": "CAR"
+					},
+					{
+						"name": "SHF"
+					},
+					{
+						"name": "COP"
+					},
+					{
+						"name": "IPP"
+					},
+					{
+						"name": "SIN"
+					},
+					{
+						"name": "TRU"
+					},
+					{
+						"name": "AMN"
+					},
+					{
+						"name": "ECC"
+					},
+					{
+						"name": "DNO"
+					},
+					{
+						"name": "STATUS"
+					},
+					{
+						"name": "LABSG"
+					},
+					{
+						"name": "FABSG"
+					},
+					{
+						"name": "PR_L_L"
+					},
+					{
+						"name": "PR_F_F"
+					},
+					{
+						"name": "PR_F_L"
+					},
+					{
+						"name": "FERC_IND"
+					},
+					{
+						"name": "KOSTL"
+					},
+					{
+						"name": "FONDS"
+					},
+					{
+						"name": "FISTL"
+					},
+					{
+						"name": "FKBER"
+					},
+					{
+						"name": "GRANT_NBR"
+					},
+					{
+						"name": "BUDGET_PD"
+					},
+					{
+						"name": "FITLIST"
+					},
+					{
+						"name": "RULECHECK"
+					},
+					{
+						"name": "IUID_RELEVANT"
+					},
+					{
+						"name": "EQUNR"
+					},
+					{
+						"name": "EQART"
+					},
+					{
+						"name": "J_3GLVART"
+					},
+					{
+						"name": "J_3GDATVO"
+					},
+					{
+						"name": "J_3GDATBI"
+					},
+					{
+						"name": "J_3GBELNRI"
+					},
+					{
+						"name": "J_3GPOSNRI"
+					},
+					{
+						"name": "MILL_SE_GPOSN"
+					},
+					{
+						"name": "MILL_BATCH_SEL_F"
+					},
+					{
+						"name": "OID_EXTBOL"
+					},
+					{
+						"name": "OID_MISCDL"
+					},
+					{
+						"name": "OIPLANTD"
+					},
+					{
+						"name": "OIBYPASS"
+					},
+					{
+						"name": "OIEDOK"
+					},
+					{
+						"name": "CMETH"
+					},
+					{
+						"name": "OITAXFROM"
+					},
+					{
+						"name": "OIHANTYP"
+					},
+					{
+						"name": "OITAXGRP"
+					},
+					{
+						"name": "OITAXTO"
+					},
+					{
+						"name": "OICERTF1"
+					},
+					{
+						"name": "OIOILCON"
+					},
+					{
+						"name": "OIEDBAL"
+					},
+					{
+						"name": "OIPRICIE"
+					},
+					{
+						"name": "OIINEX"
+					},
+					{
+						"name": "OIEDBALM"
+					},
+					{
+						"name": "OIDRC"
+					},
+					{
+						"name": "OIC_DRCTRY"
+					},
+					{
+						"name": "OIC_DRCREG"
+					},
+					{
+						"name": "OIMETIND"
+					},
+					{
+						"name": "OIWAP"
+					},
+					{
+						"name": "OISLF"
+					},
+					{
+						"name": "OIPSDRC"
+					},
+					{
+						"name": "OIPIPEVAL"
+					},
+					{
+						"name": "OIC_LIFNR"
+					},
+					{
+						"name": "OIC_DCITYC"
+					},
+					{
+						"name": "OIC_DCOUNC"
+					},
+					{
+						"name": "OIC_DREGIO"
+					},
+					{
+						"name": "OIC_DLAND1"
+					},
+					{
+						"name": "OIC_OCITYC"
+					},
+					{
+						"name": "OIC_OCOUNC"
+					},
+					{
+						"name": "OIC_OREGIO"
+					},
+					{
+						"name": "OIC_OLAND1"
+					},
+					{
+						"name": "OIC_PORGIN"
+					},
+					{
+						"name": "OIC_PDESTN"
+					},
+					{
+						"name": "OIC_PTRIP"
+					},
+					{
+						"name": "OIC_PBATCH"
+					},
+					{
+						"name": "OIC_MOT"
+					},
+					{
+						"name": "OIC_AORGIN"
+					},
+					{
+						"name": "OIC_ADESTN"
+					},
+					{
+						"name": "OIC_TRUCKN"
+					},
+					{
+						"name": "OIA_BASELO"
+					},
+					{
+						"name": "OIEXGNUM"
+					},
+					{
+						"name": "OIEXGTYP"
+					},
+					{
+						"name": "OIFEETOT"
+					},
+					{
+						"name": "OIFEEDT"
+					},
+					{
+						"name": "OINETCYC"
+					},
+					{
+						"name": "OICONTNR"
+					},
+					{
+						"name": "OIC_KMPOS"
+					},
+					{
+						"name": "OIFEECH"
+					},
+					{
+						"name": "OIH_LICTP"
+					},
+					{
+						"name": "OIH_LICIN"
+					},
+					{
+						"name": "OIH_LCFOL"
+					},
+					{
+						"name": "OIH_FOLQTY"
+					},
+					{
+						"name": "OISBREL"
+					},
+					{
+						"name": "OIBASPROD"
+					},
+					{
+						"name": "OIDMSG_PRD"
+					},
+					{
+						"name": "OIDMSG_QTY"
+					},
+					{
+						"name": "OIDMSG_UOM"
+					},
+					{
+						"name": "OIDMSG_DAT"
+					},
+					{
+						"name": "OIDMSG_TRM"
+					},
+					{
+						"name": "OIDMSG_SHP"
+					},
+					{
+						"name": "OIGNRULE"
+					},
+					{
+						"name": "OID_SHIP"
+					},
+					{
+						"name": "OIBWTAR_IM"
+					},
+					{
+						"name": "OIHANTYP_IM"
+					},
+					{
+						"name": "OITAXGRP_IM"
+					},
+					{
+						"name": "OITAXFROM_IM"
+					},
+					{
+						"name": "OITAXTO_IM"
+					},
+					{
+						"name": "OIEDBAL_IM"
+					},
+					{
+						"name": "OIEDBALM_IM"
+					},
+					{
+						"name": "OIPRICIE_IM"
+					},
+					{
+						"name": "OIBWTAR_EX"
+					},
+					{
+						"name": "OIHANTYP_EX"
+					},
+					{
+						"name": "OITAXGRP_EX"
+					},
+					{
+						"name": "OITAXFROM_EX"
+					},
+					{
+						"name": "OITAXTO_EX"
+					},
+					{
+						"name": "OIEDBAL_EX"
+					},
+					{
+						"name": "OIEDBALM_EX"
+					},
+					{
+						"name": "OIPRICIE_EX"
+					},
+					{
+						"name": "OIINEX_EX"
+					},
+					{
+						"name": "OICERTF1_EX"
+					},
+					{
+						"name": "OIH_LICTP_EX"
+					},
+					{
+						"name": "OIH_LICIN_EX"
+					},
+					{
+						"name": "OIH_LCFOL_EX"
+					},
+					{
+						"name": "OIH_FOLQTY_EX"
+					},
+					{
+						"name": "OIHTAXRCP_EX"
+					},
+					{
+						"name": "OIHNOTWERKS"
+					},
+					{
+						"name": "OIHNOTLGORT"
+					},
+					{
+						"name": "OIHCOTDISCH"
+					},
+					{
+						"name": "PRS_OBJNR"
+					},
+					{
+						"name": "PRS_SD_SPSNR"
+					},
+					{
+						"name": "PRS_WORK_PERIOD"
+					},
+					{
+						"name": "TAS"
+					},
+					{
+						"name": "BETC"
+					},
+					{
+						"name": "MOD_ALLOW"
+					},
+					{
+						"name": "CANCEL_ALLOW"
+					},
+					{
+						"name": "PAY_METHOD"
+					},
+					{
+						"name": "BPN"
+					},
+					{
+						"name": "REP_FREQ"
+					},
+					{
+						"name": "PARGB"
+					},
+					{
+						"name": "AUFPL_OAA"
+					},
+					{
+						"name": "APLZL_OAA"
+					},
+					{
+						"name": "SCNBR"
+					},
+					{
+						"name": "SCITEM"
+					},
+					{
+						"name": "SCMATNR"
+					},
+					{
+						"name": "PROFILE"
+					},
+					{
+						"name": "VARIANT"
+					},
+					{
+						"name": "VLCENDCU"
+					},
+					{
+						"name": "ARSNUM"
+					},
+					{
+						"name": "ARSPOS"
+					},
+					{
+						"name": "WTYSC_CLMITEM"
+					},
+					{
+						"name": "ZZDEA_LICENSE"
+					},
+					{
+						"name": "ZZDEA_SCHEDULE"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SourceDataset_4h9')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStore2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureDataLakeStoreLocation",
+						"fileName": "VBAP_002.txt",
+						"folderPath": "sapbw_output"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "MANDT"
+					},
+					{
+						"name": "VBELN"
+					},
+					{
+						"name": "POSNR"
+					},
+					{
+						"name": "MATNR"
+					},
+					{
+						"name": "MATWA"
+					},
+					{
+						"name": "PMATN"
+					},
+					{
+						"name": "CHARG"
+					},
+					{
+						"name": "MATKL"
+					},
+					{
+						"name": "ARKTX"
+					},
+					{
+						"name": "PSTYV"
+					},
+					{
+						"name": "POSAR"
+					},
+					{
+						"name": "LFREL"
+					},
+					{
+						"name": "FKREL"
+					},
+					{
+						"name": "UEPOS"
+					},
+					{
+						"name": "GRPOS"
+					},
+					{
+						"name": "ABGRU"
+					},
+					{
+						"name": "PRODH"
+					},
+					{
+						"name": "ZWERT"
+					},
+					{
+						"name": "ZMENG"
+					},
+					{
+						"name": "ZIEME"
+					},
+					{
+						"name": "UMZIZ"
+					},
+					{
+						"name": "UMZIN"
+					},
+					{
+						"name": "MEINS"
+					},
+					{
+						"name": "SMENG"
+					},
+					{
+						"name": "ABLFZ"
+					},
+					{
+						"name": "ABDAT"
+					},
+					{
+						"name": "ABSFZ"
+					},
+					{
+						"name": "POSEX"
+					},
+					{
+						"name": "KDMAT"
+					},
+					{
+						"name": "KBVER"
+					},
+					{
+						"name": "KEVER"
+					},
+					{
+						"name": "VKGRU"
+					},
+					{
+						"name": "VKAUS"
+					},
+					{
+						"name": "GRKOR"
+					},
+					{
+						"name": "FMENG"
+					},
+					{
+						"name": "UEBTK"
+					},
+					{
+						"name": "UEBTO"
+					},
+					{
+						"name": "UNTTO"
+					},
+					{
+						"name": "FAKSP"
+					},
+					{
+						"name": "ATPKZ"
+					},
+					{
+						"name": "RKFKF"
+					},
+					{
+						"name": "SPART"
+					},
+					{
+						"name": "GSBER"
+					},
+					{
+						"name": "NETWR"
+					},
+					{
+						"name": "WAERK"
+					},
+					{
+						"name": "ANTLF"
+					},
+					{
+						"name": "KZTLF"
+					},
+					{
+						"name": "CHSPL"
+					},
+					{
+						"name": "KWMENG"
+					},
+					{
+						"name": "LSMENG"
+					},
+					{
+						"name": "KBMENG"
+					},
+					{
+						"name": "KLMENG"
+					},
+					{
+						"name": "VRKME"
+					},
+					{
+						"name": "UMVKZ"
+					},
+					{
+						"name": "UMVKN"
+					},
+					{
+						"name": "BRGEW"
+					},
+					{
+						"name": "NTGEW"
+					},
+					{
+						"name": "GEWEI"
+					},
+					{
+						"name": "VOLUM"
+					},
+					{
+						"name": "VOLEH"
+					},
+					{
+						"name": "VBELV"
+					},
+					{
+						"name": "POSNV"
+					},
+					{
+						"name": "VGBEL"
+					},
+					{
+						"name": "VGPOS"
+					},
+					{
+						"name": "VOREF"
+					},
+					{
+						"name": "UPFLU"
+					},
+					{
+						"name": "ERLRE"
+					},
+					{
+						"name": "LPRIO"
+					},
+					{
+						"name": "WERKS"
+					},
+					{
+						"name": "LGORT"
+					},
+					{
+						"name": "VSTEL"
+					},
+					{
+						"name": "ROUTE"
+					},
+					{
+						"name": "STKEY"
+					},
+					{
+						"name": "STDAT"
+					},
+					{
+						"name": "STLNR"
+					},
+					{
+						"name": "STPOS"
+					},
+					{
+						"name": "AWAHR"
+					},
+					{
+						"name": "ERDAT"
+					},
+					{
+						"name": "ERNAM"
+					},
+					{
+						"name": "ERZET"
+					},
+					{
+						"name": "TAXM1"
+					},
+					{
+						"name": "TAXM2"
+					},
+					{
+						"name": "TAXM3"
+					},
+					{
+						"name": "TAXM4"
+					},
+					{
+						"name": "TAXM5"
+					},
+					{
+						"name": "TAXM6"
+					},
+					{
+						"name": "TAXM7"
+					},
+					{
+						"name": "TAXM8"
+					},
+					{
+						"name": "TAXM9"
+					},
+					{
+						"name": "VBEAF"
+					},
+					{
+						"name": "VBEAV"
+					},
+					{
+						"name": "VGREF"
+					},
+					{
+						"name": "NETPR"
+					},
+					{
+						"name": "KPEIN"
+					},
+					{
+						"name": "KMEIN"
+					},
+					{
+						"name": "SHKZG"
+					},
+					{
+						"name": "SKTOF"
+					},
+					{
+						"name": "MTVFP"
+					},
+					{
+						"name": "SUMBD"
+					},
+					{
+						"name": "KONDM"
+					},
+					{
+						"name": "KTGRM"
+					},
+					{
+						"name": "BONUS"
+					},
+					{
+						"name": "PROVG"
+					},
+					{
+						"name": "EANNR"
+					},
+					{
+						"name": "PRSOK"
+					},
+					{
+						"name": "BWTAR"
+					},
+					{
+						"name": "BWTEX"
+					},
+					{
+						"name": "XCHPF"
+					},
+					{
+						"name": "XCHAR"
+					},
+					{
+						"name": "LFMNG"
+					},
+					{
+						"name": "STAFO"
+					},
+					{
+						"name": "WAVWR"
+					},
+					{
+						"name": "KZWI1"
+					},
+					{
+						"name": "KZWI2"
+					},
+					{
+						"name": "KZWI3"
+					},
+					{
+						"name": "KZWI4"
+					},
+					{
+						"name": "KZWI5"
+					},
+					{
+						"name": "KZWI6"
+					},
+					{
+						"name": "STCUR"
+					},
+					{
+						"name": "AEDAT"
+					},
+					{
+						"name": "EAN11"
+					},
+					{
+						"name": "FIXMG"
+					},
+					{
+						"name": "PRCTR"
+					},
+					{
+						"name": "MVGR1"
+					},
+					{
+						"name": "MVGR2"
+					},
+					{
+						"name": "MVGR3"
+					},
+					{
+						"name": "MVGR4"
+					},
+					{
+						"name": "MVGR5"
+					},
+					{
+						"name": "KMPMG"
+					},
+					{
+						"name": "SUGRD"
+					},
+					{
+						"name": "SOBKZ"
+					},
+					{
+						"name": "VPZUO"
+					},
+					{
+						"name": "PAOBJNR"
+					},
+					{
+						"name": "PS_PSP_PNR"
+					},
+					{
+						"name": "AUFNR"
+					},
+					{
+						"name": "VPMAT"
+					},
+					{
+						"name": "VPWRK"
+					},
+					{
+						"name": "PRBME"
+					},
+					{
+						"name": "UMREF"
+					},
+					{
+						"name": "KNTTP"
+					},
+					{
+						"name": "KZVBR"
+					},
+					{
+						"name": "SERNR"
+					},
+					{
+						"name": "OBJNR"
+					},
+					{
+						"name": "ABGRS"
+					},
+					{
+						"name": "BEDAE"
+					},
+					{
+						"name": "CMPRE"
+					},
+					{
+						"name": "CMTFG"
+					},
+					{
+						"name": "CMPNT"
+					},
+					{
+						"name": "CMKUA"
+					},
+					{
+						"name": "CUOBJ"
+					},
+					{
+						"name": "CUOBJ_CH"
+					},
+					{
+						"name": "CEPOK"
+					},
+					{
+						"name": "KOUPD"
+					},
+					{
+						"name": "SERAIL"
+					},
+					{
+						"name": "ANZSN"
+					},
+					{
+						"name": "NACHL"
+					},
+					{
+						"name": "MAGRV"
+					},
+					{
+						"name": "MPROK"
+					},
+					{
+						"name": "VGTYP"
+					},
+					{
+						"name": "PROSA"
+					},
+					{
+						"name": "UEPVW"
+					},
+					{
+						"name": "KALNR"
+					},
+					{
+						"name": "KLVAR"
+					},
+					{
+						"name": "SPOSN"
+					},
+					{
+						"name": "KOWRR"
+					},
+					{
+						"name": "STADAT"
+					},
+					{
+						"name": "EXART"
+					},
+					{
+						"name": "PREFE"
+					},
+					{
+						"name": "KNUMH"
+					},
+					{
+						"name": "CLINT"
+					},
+					{
+						"name": "CHMVS"
+					},
+					{
+						"name": "STLTY"
+					},
+					{
+						"name": "STLKN"
+					},
+					{
+						"name": "STPOZ"
+					},
+					{
+						"name": "STMAN"
+					},
+					{
+						"name": "ZSCHL_K"
+					},
+					{
+						"name": "KALSM_K"
+					},
+					{
+						"name": "KALVAR"
+					},
+					{
+						"name": "KOSCH"
+					},
+					{
+						"name": "UPMAT"
+					},
+					{
+						"name": "UKONM"
+					},
+					{
+						"name": "MFRGR"
+					},
+					{
+						"name": "PLAVO"
+					},
+					{
+						"name": "KANNR"
+					},
+					{
+						"name": "CMPRE_FLT"
+					},
+					{
+						"name": "ABFOR"
+					},
+					{
+						"name": "ABGES"
+					},
+					{
+						"name": "J_1BCFOP"
+					},
+					{
+						"name": "J_1BTAXLW1"
+					},
+					{
+						"name": "J_1BTAXLW2"
+					},
+					{
+						"name": "J_1BTXSDC"
+					},
+					{
+						"name": "WKTNR"
+					},
+					{
+						"name": "WKTPS"
+					},
+					{
+						"name": "SKOPF"
+					},
+					{
+						"name": "KZBWS"
+					},
+					{
+						"name": "WGRU1"
+					},
+					{
+						"name": "WGRU2"
+					},
+					{
+						"name": "KNUMA_PI"
+					},
+					{
+						"name": "KNUMA_AG"
+					},
+					{
+						"name": "KZFME"
+					},
+					{
+						"name": "LSTANR"
+					},
+					{
+						"name": "TECHS"
+					},
+					{
+						"name": "MWSBP"
+					},
+					{
+						"name": "BERID"
+					},
+					{
+						"name": "PCTRF"
+					},
+					{
+						"name": "LOGSYS_EXT"
+					},
+					{
+						"name": "J_1BTAXLW3"
+					},
+					{
+						"name": "J_1BTAXLW4"
+					},
+					{
+						"name": "J_1BTAXLW5"
+					},
+					{
+						"name": "STOCKLOC"
+					},
+					{
+						"name": "SLOCTYPE"
+					},
+					{
+						"name": "MSR_RET_REASON"
+					},
+					{
+						"name": "MSR_REFUND_CODE"
+					},
+					{
+						"name": "MSR_APPROV_BLOCK"
+					},
+					{
+						"name": "NRAB_KNUMH"
+					},
+					{
+						"name": "TRMRISK_RELEVANT"
+					},
+					{
+						"name": "HANDOVERLOC"
+					},
+					{
+						"name": "HANDOVERDATE"
+					},
+					{
+						"name": "HANDOVERTIME"
+					},
+					{
+						"name": "Z_PRS_OFFSHORE"
+					},
+					{
+						"name": "Z_PRS_BILL_FLAG"
+					},
+					{
+						"name": "Z_PRS_COUNTRY"
+					},
+					{
+						"name": "Z_PRS_CHARGELEVL"
+					},
+					{
+						"name": "TC_AUT_DET"
+					},
+					{
+						"name": "MANUAL_TC_REASON"
+					},
+					{
+						"name": "FISCAL_INCENTIVE"
+					},
+					{
+						"name": "TAX_SUBJECT_ST"
+					},
+					{
+						"name": "FISCAL_INCENTIVE_ID"
+					},
+					{
+						"name": "SPCSTO"
+					},
+					{
+						"name": "/BEV1/SRFUND"
+					},
+					{
+						"name": "CPD_UPDAT"
+					},
+					{
+						"name": "AUFPL_OLC"
+					},
+					{
+						"name": "APLZL_OLC"
+					},
+					{
+						"name": "PLAUFZ"
+					},
+					{
+						"name": "PLAUEZ"
+					},
+					{
+						"name": "CONTNBR"
+					},
+					{
+						"name": "CONTITM"
+					},
+					{
+						"name": "AUDAT"
+					},
+					{
+						"name": "/XLSO/COURSE_ID"
+					},
+					{
+						"name": "/XLSO/COURSE_BDA"
+					},
+					{
+						"name": "/XLSO/COURSE_EDA"
+					},
+					{
+						"name": "AD01PROFNR"
+					},
+					{
+						"name": "ADMOI"
+					},
+					{
+						"name": "ADICC"
+					},
+					{
+						"name": "ADPRI"
+					},
+					{
+						"name": "SEL"
+					},
+					{
+						"name": "CCI"
+					},
+					{
+						"name": "SEN"
+					},
+					{
+						"name": "PSEL"
+					},
+					{
+						"name": "PCCI"
+					},
+					{
+						"name": "PSEN"
+					},
+					{
+						"name": "CAN"
+					},
+					{
+						"name": "ICY"
+					},
+					{
+						"name": "ITY"
+					},
+					{
+						"name": "KWD"
+					},
+					{
+						"name": "AGE"
+					},
+					{
+						"name": "SPQ"
+					},
+					{
+						"name": "PLT"
+					},
+					{
+						"name": "DMC"
+					},
+					{
+						"name": "MSQ"
+					},
+					{
+						"name": "PCA"
+					},
+					{
+						"name": "UDC"
+					},
+					{
+						"name": "SHM"
+					},
+					{
+						"name": "CAR"
+					},
+					{
+						"name": "SHF"
+					},
+					{
+						"name": "COP"
+					},
+					{
+						"name": "IPP"
+					},
+					{
+						"name": "SIN"
+					},
+					{
+						"name": "TRU"
+					},
+					{
+						"name": "AMN"
+					},
+					{
+						"name": "ECC"
+					},
+					{
+						"name": "DNO"
+					},
+					{
+						"name": "STATUS"
+					},
+					{
+						"name": "LABSG"
+					},
+					{
+						"name": "FABSG"
+					},
+					{
+						"name": "PR_L_L"
+					},
+					{
+						"name": "PR_F_F"
+					},
+					{
+						"name": "PR_F_L"
+					},
+					{
+						"name": "FERC_IND"
+					},
+					{
+						"name": "KOSTL"
+					},
+					{
+						"name": "FONDS"
+					},
+					{
+						"name": "FISTL"
+					},
+					{
+						"name": "FKBER"
+					},
+					{
+						"name": "GRANT_NBR"
+					},
+					{
+						"name": "BUDGET_PD"
+					},
+					{
+						"name": "FITLIST"
+					},
+					{
+						"name": "RULECHECK"
+					},
+					{
+						"name": "IUID_RELEVANT"
+					},
+					{
+						"name": "EQUNR"
+					},
+					{
+						"name": "EQART"
+					},
+					{
+						"name": "J_3GLVART"
+					},
+					{
+						"name": "J_3GDATVO"
+					},
+					{
+						"name": "J_3GDATBI"
+					},
+					{
+						"name": "J_3GBELNRI"
+					},
+					{
+						"name": "J_3GPOSNRI"
+					},
+					{
+						"name": "MILL_SE_GPOSN"
+					},
+					{
+						"name": "MILL_BATCH_SEL_F"
+					},
+					{
+						"name": "OID_EXTBOL"
+					},
+					{
+						"name": "OID_MISCDL"
+					},
+					{
+						"name": "OIPLANTD"
+					},
+					{
+						"name": "OIBYPASS"
+					},
+					{
+						"name": "OIEDOK"
+					},
+					{
+						"name": "CMETH"
+					},
+					{
+						"name": "OITAXFROM"
+					},
+					{
+						"name": "OIHANTYP"
+					},
+					{
+						"name": "OITAXGRP"
+					},
+					{
+						"name": "OITAXTO"
+					},
+					{
+						"name": "OICERTF1"
+					},
+					{
+						"name": "OIOILCON"
+					},
+					{
+						"name": "OIEDBAL"
+					},
+					{
+						"name": "OIPRICIE"
+					},
+					{
+						"name": "OIINEX"
+					},
+					{
+						"name": "OIEDBALM"
+					},
+					{
+						"name": "OIDRC"
+					},
+					{
+						"name": "OIC_DRCTRY"
+					},
+					{
+						"name": "OIC_DRCREG"
+					},
+					{
+						"name": "OIMETIND"
+					},
+					{
+						"name": "OIWAP"
+					},
+					{
+						"name": "OISLF"
+					},
+					{
+						"name": "OIPSDRC"
+					},
+					{
+						"name": "OIPIPEVAL"
+					},
+					{
+						"name": "OIC_LIFNR"
+					},
+					{
+						"name": "OIC_DCITYC"
+					},
+					{
+						"name": "OIC_DCOUNC"
+					},
+					{
+						"name": "OIC_DREGIO"
+					},
+					{
+						"name": "OIC_DLAND1"
+					},
+					{
+						"name": "OIC_OCITYC"
+					},
+					{
+						"name": "OIC_OCOUNC"
+					},
+					{
+						"name": "OIC_OREGIO"
+					},
+					{
+						"name": "OIC_OLAND1"
+					},
+					{
+						"name": "OIC_PORGIN"
+					},
+					{
+						"name": "OIC_PDESTN"
+					},
+					{
+						"name": "OIC_PTRIP"
+					},
+					{
+						"name": "OIC_PBATCH"
+					},
+					{
+						"name": "OIC_MOT"
+					},
+					{
+						"name": "OIC_AORGIN"
+					},
+					{
+						"name": "OIC_ADESTN"
+					},
+					{
+						"name": "OIC_TRUCKN"
+					},
+					{
+						"name": "OIA_BASELO"
+					},
+					{
+						"name": "OIEXGNUM"
+					},
+					{
+						"name": "OIEXGTYP"
+					},
+					{
+						"name": "OIFEETOT"
+					},
+					{
+						"name": "OIFEEDT"
+					},
+					{
+						"name": "OINETCYC"
+					},
+					{
+						"name": "OICONTNR"
+					},
+					{
+						"name": "OIC_KMPOS"
+					},
+					{
+						"name": "OIFEECH"
+					},
+					{
+						"name": "OIH_LICTP"
+					},
+					{
+						"name": "OIH_LICIN"
+					},
+					{
+						"name": "OIH_LCFOL"
+					},
+					{
+						"name": "OIH_FOLQTY"
+					},
+					{
+						"name": "OISBREL"
+					},
+					{
+						"name": "OIBASPROD"
+					},
+					{
+						"name": "OIDMSG_PRD"
+					},
+					{
+						"name": "OIDMSG_QTY"
+					},
+					{
+						"name": "OIDMSG_UOM"
+					},
+					{
+						"name": "OIDMSG_DAT"
+					},
+					{
+						"name": "OIDMSG_TRM"
+					},
+					{
+						"name": "OIDMSG_SHP"
+					},
+					{
+						"name": "OIGNRULE"
+					},
+					{
+						"name": "OID_SHIP"
+					},
+					{
+						"name": "OIBWTAR_IM"
+					},
+					{
+						"name": "OIHANTYP_IM"
+					},
+					{
+						"name": "OITAXGRP_IM"
+					},
+					{
+						"name": "OITAXFROM_IM"
+					},
+					{
+						"name": "OITAXTO_IM"
+					},
+					{
+						"name": "OIEDBAL_IM"
+					},
+					{
+						"name": "OIEDBALM_IM"
+					},
+					{
+						"name": "OIPRICIE_IM"
+					},
+					{
+						"name": "OIBWTAR_EX"
+					},
+					{
+						"name": "OIHANTYP_EX"
+					},
+					{
+						"name": "OITAXGRP_EX"
+					},
+					{
+						"name": "OITAXFROM_EX"
+					},
+					{
+						"name": "OITAXTO_EX"
+					},
+					{
+						"name": "OIEDBAL_EX"
+					},
+					{
+						"name": "OIEDBALM_EX"
+					},
+					{
+						"name": "OIPRICIE_EX"
+					},
+					{
+						"name": "OIINEX_EX"
+					},
+					{
+						"name": "OICERTF1_EX"
+					},
+					{
+						"name": "OIH_LICTP_EX"
+					},
+					{
+						"name": "OIH_LICIN_EX"
+					},
+					{
+						"name": "OIH_LCFOL_EX"
+					},
+					{
+						"name": "OIH_FOLQTY_EX"
+					},
+					{
+						"name": "OIHTAXRCP_EX"
+					},
+					{
+						"name": "OIHNOTWERKS"
+					},
+					{
+						"name": "OIHNOTLGORT"
+					},
+					{
+						"name": "OIHCOTDISCH"
+					},
+					{
+						"name": "PRS_OBJNR"
+					},
+					{
+						"name": "PRS_SD_SPSNR"
+					},
+					{
+						"name": "PRS_WORK_PERIOD"
+					},
+					{
+						"name": "TAS"
+					},
+					{
+						"name": "BETC"
+					},
+					{
+						"name": "MOD_ALLOW"
+					},
+					{
+						"name": "CANCEL_ALLOW"
+					},
+					{
+						"name": "PAY_METHOD"
+					},
+					{
+						"name": "BPN"
+					},
+					{
+						"name": "REP_FREQ"
+					},
+					{
+						"name": "PARGB"
+					},
+					{
+						"name": "AUFPL_OAA"
+					},
+					{
+						"name": "APLZL_OAA"
+					},
+					{
+						"name": "SCNBR"
+					},
+					{
+						"name": "SCITEM"
+					},
+					{
+						"name": "SCMATNR"
+					},
+					{
+						"name": "PROFILE"
+					},
+					{
+						"name": "VARIANT"
+					},
+					{
+						"name": "VLCENDCU"
+					},
+					{
+						"name": "ARSNUM"
+					},
+					{
+						"name": "ARSPOS"
+					},
+					{
+						"name": "WTYSC_CLMITEM"
+					},
+					{
+						"name": "ZZDEA_LICENSE"
+					},
+					{
+						"name": "ZZDEA_SCHEDULE"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SourceDataset_5no')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStore2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureDataLakeStoreLocation",
+						"fileName": "VBKD_001.txt",
+						"folderPath": "sapbw_output"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "MANDT"
+					},
+					{
+						"name": "VBELN"
+					},
+					{
+						"name": "POSNR"
+					},
+					{
+						"name": "KONDA"
+					},
+					{
+						"name": "KDGRP"
+					},
+					{
+						"name": "BZIRK"
+					},
+					{
+						"name": "PLTYP"
+					},
+					{
+						"name": "INCO1"
+					},
+					{
+						"name": "INCO2"
+					},
+					{
+						"name": "KZAZU"
+					},
+					{
+						"name": "PERFK"
+					},
+					{
+						"name": "PERRL"
+					},
+					{
+						"name": "MRNKZ"
+					},
+					{
+						"name": "KURRF"
+					},
+					{
+						"name": "VALTG"
+					},
+					{
+						"name": "VALDT"
+					},
+					{
+						"name": "ZTERM"
+					},
+					{
+						"name": "ZLSCH"
+					},
+					{
+						"name": "KTGRD"
+					},
+					{
+						"name": "KURSK"
+					},
+					{
+						"name": "PRSDT"
+					},
+					{
+						"name": "FKDAT"
+					},
+					{
+						"name": "FBUDA"
+					},
+					{
+						"name": "GJAHR"
+					},
+					{
+						"name": "POPER"
+					},
+					{
+						"name": "STCUR"
+					},
+					{
+						"name": "MSCHL"
+					},
+					{
+						"name": "MANSP"
+					},
+					{
+						"name": "FPLNR"
+					},
+					{
+						"name": "WAKTION"
+					},
+					{
+						"name": "ABSSC"
+					},
+					{
+						"name": "LCNUM"
+					},
+					{
+						"name": "J_1AFITP"
+					},
+					{
+						"name": "J_1ARFZ"
+					},
+					{
+						"name": "J_1AREGIO"
+					},
+					{
+						"name": "J_1AGICD"
+					},
+					{
+						"name": "J_1ADTYP"
+					},
+					{
+						"name": "J_1ATXREL"
+					},
+					{
+						"name": "ABTNR"
+					},
+					{
+						"name": "EMPST"
+					},
+					{
+						"name": "BSTKD"
+					},
+					{
+						"name": "BSTDK"
+					},
+					{
+						"name": "BSARK"
+					},
+					{
+						"name": "IHREZ"
+					},
+					{
+						"name": "BSTKD_E"
+					},
+					{
+						"name": "BSTDK_E"
+					},
+					{
+						"name": "BSARK_E"
+					},
+					{
+						"name": "IHREZ_E"
+					},
+					{
+						"name": "POSEX_E"
+					},
+					{
+						"name": "KURSK_DAT"
+					},
+					{
+						"name": "KURRF_DAT"
+					},
+					{
+						"name": "KDKG1"
+					},
+					{
+						"name": "KDKG2"
+					},
+					{
+						"name": "KDKG3"
+					},
+					{
+						"name": "KDKG4"
+					},
+					{
+						"name": "KDKG5"
+					},
+					{
+						"name": "WKWAE"
+					},
+					{
+						"name": "WKKUR"
+					},
+					{
+						"name": "AKWAE"
+					},
+					{
+						"name": "AKKUR"
+					},
+					{
+						"name": "AKPRZ"
+					},
+					{
+						"name": "J_1AINDXP"
+					},
+					{
+						"name": "J_1AIDATEP"
+					},
+					{
+						"name": "BSTKD_M"
+					},
+					{
+						"name": "DELCO"
+					},
+					{
+						"name": "FFPRF"
+					},
+					{
+						"name": "BEMOT"
+					},
+					{
+						"name": "FAKTF"
+					},
+					{
+						"name": "RRREL"
+					},
+					{
+						"name": "ACDATV"
+					},
+					{
+						"name": "VSART"
+					},
+					{
+						"name": "TRATY"
+					},
+					{
+						"name": "TRMTYP"
+					},
+					{
+						"name": "SDABW"
+					},
+					{
+						"name": "WMINR"
+					},
+					{
+						"name": "FKBER"
+					},
+					{
+						"name": "PODKZ"
+					},
+					{
+						"name": "CAMPAIGN"
+					},
+					{
+						"name": "VKONT"
+					},
+					{
+						"name": "DPBP_REF_FPLNR"
+					},
+					{
+						"name": "DPBP_REF_FPLTR"
+					},
+					{
+						"name": "REVSP"
+					},
+					{
+						"name": "REVEVTYP"
+					},
+					{
+						"name": "VTREF"
+					},
+					{
+						"name": "BOOKING_FR"
+					},
+					{
+						"name": "BOOKING_TO"
+					},
+					{
+						"name": "SHIPPING_FR"
+					},
+					{
+						"name": "SHIPPING_TO"
+					},
+					{
+						"name": "BILLING_FR"
+					},
+					{
+						"name": "BILLING_TO"
+					},
+					{
+						"name": "EXERCISE_FR"
+					},
+					{
+						"name": "EXERCISE_TO"
+					},
+					{
+						"name": "DESIGN_REG_NO"
+					},
+					{
+						"name": "DROP_SHIP"
+					},
+					{
+						"name": "RFPLN"
+					},
+					{
+						"name": "SYNCH"
+					},
+					{
+						"name": "PACKNO"
+					},
+					{
+						"name": "PEROP_BEG"
+					},
+					{
+						"name": "PEROP_END"
+					},
+					{
+						"name": "STCODE"
+					},
+					{
+						"name": "FORMC1"
+					},
+					{
+						"name": "FORMC2"
+					},
+					{
+						"name": "STEUC"
+					},
+					{
+						"name": "COMPREAS"
+					},
+					{
+						"name": "MNDID"
+					},
+					{
+						"name": "PAY_TYPE"
+					},
+					{
+						"name": "SEPON"
+					},
+					{
+						"name": "MNDVG"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SourceDataset_882')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStore2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureDataLakeStoreLocation",
+						"fileName": "VBAK_001.txt",
+						"folderPath": "sapbw_output"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "MANDT"
+					},
+					{
+						"name": "VBELN"
+					},
+					{
+						"name": "ERDAT"
+					},
+					{
+						"name": "ERZET"
+					},
+					{
+						"name": "ERNAM"
+					},
+					{
+						"name": "ANGDT"
+					},
+					{
+						"name": "BNDDT"
+					},
+					{
+						"name": "AUDAT"
+					},
+					{
+						"name": "VBTYP"
+					},
+					{
+						"name": "TRVOG"
+					},
+					{
+						"name": "AUART"
+					},
+					{
+						"name": "AUGRU"
+					},
+					{
+						"name": "GWLDT"
+					},
+					{
+						"name": "SUBMI"
+					},
+					{
+						"name": "LIFSK"
+					},
+					{
+						"name": "FAKSK"
+					},
+					{
+						"name": "NETWR"
+					},
+					{
+						"name": "WAERK"
+					},
+					{
+						"name": "VKORG"
+					},
+					{
+						"name": "VTWEG"
+					},
+					{
+						"name": "SPART"
+					},
+					{
+						"name": "VKGRP"
+					},
+					{
+						"name": "VKBUR"
+					},
+					{
+						"name": "GSBER"
+					},
+					{
+						"name": "GSKST"
+					},
+					{
+						"name": "GUEBG"
+					},
+					{
+						"name": "GUEEN"
+					},
+					{
+						"name": "KNUMV"
+					},
+					{
+						"name": "VDATU"
+					},
+					{
+						"name": "VPRGR"
+					},
+					{
+						"name": "AUTLF"
+					},
+					{
+						"name": "VBKLA"
+					},
+					{
+						"name": "VBKLT"
+					},
+					{
+						"name": "KALSM"
+					},
+					{
+						"name": "VSBED"
+					},
+					{
+						"name": "FKARA"
+					},
+					{
+						"name": "AWAHR"
+					},
+					{
+						"name": "KTEXT"
+					},
+					{
+						"name": "BSTNK"
+					},
+					{
+						"name": "BSARK"
+					},
+					{
+						"name": "BSTDK"
+					},
+					{
+						"name": "BSTZD"
+					},
+					{
+						"name": "IHREZ"
+					},
+					{
+						"name": "BNAME"
+					},
+					{
+						"name": "TELF1"
+					},
+					{
+						"name": "MAHZA"
+					},
+					{
+						"name": "MAHDT"
+					},
+					{
+						"name": "KUNNR"
+					},
+					{
+						"name": "KOSTL"
+					},
+					{
+						"name": "STAFO"
+					},
+					{
+						"name": "STWAE"
+					},
+					{
+						"name": "AEDAT"
+					},
+					{
+						"name": "KVGR1"
+					},
+					{
+						"name": "KVGR2"
+					},
+					{
+						"name": "KVGR3"
+					},
+					{
+						"name": "KVGR4"
+					},
+					{
+						"name": "KVGR5"
+					},
+					{
+						"name": "KNUMA"
+					},
+					{
+						"name": "KOKRS"
+					},
+					{
+						"name": "PS_PSP_PNR"
+					},
+					{
+						"name": "KURST"
+					},
+					{
+						"name": "KKBER"
+					},
+					{
+						"name": "KNKLI"
+					},
+					{
+						"name": "GRUPP"
+					},
+					{
+						"name": "SBGRP"
+					},
+					{
+						"name": "CTLPC"
+					},
+					{
+						"name": "CMWAE"
+					},
+					{
+						"name": "CMFRE"
+					},
+					{
+						"name": "CMNUP"
+					},
+					{
+						"name": "CMNGV"
+					},
+					{
+						"name": "AMTBL"
+					},
+					{
+						"name": "HITYP_PR"
+					},
+					{
+						"name": "ABRVW"
+					},
+					{
+						"name": "ABDIS"
+					},
+					{
+						"name": "VGBEL"
+					},
+					{
+						"name": "OBJNR"
+					},
+					{
+						"name": "BUKRS_VF"
+					},
+					{
+						"name": "TAXK1"
+					},
+					{
+						"name": "TAXK2"
+					},
+					{
+						"name": "TAXK3"
+					},
+					{
+						"name": "TAXK4"
+					},
+					{
+						"name": "TAXK5"
+					},
+					{
+						"name": "TAXK6"
+					},
+					{
+						"name": "TAXK7"
+					},
+					{
+						"name": "TAXK8"
+					},
+					{
+						"name": "TAXK9"
+					},
+					{
+						"name": "XBLNR"
+					},
+					{
+						"name": "ZUONR"
+					},
+					{
+						"name": "VGTYP"
+					},
+					{
+						"name": "KALSM_CH"
+					},
+					{
+						"name": "AGRZR"
+					},
+					{
+						"name": "AUFNR"
+					},
+					{
+						"name": "QMNUM"
+					},
+					{
+						"name": "VBELN_GRP"
+					},
+					{
+						"name": "SCHEME_GRP"
+					},
+					{
+						"name": "ABRUF_PART"
+					},
+					{
+						"name": "ABHOD"
+					},
+					{
+						"name": "ABHOV"
+					},
+					{
+						"name": "ABHOB"
+					},
+					{
+						"name": "RPLNR"
+					},
+					{
+						"name": "VZEIT"
+					},
+					{
+						"name": "STCEG_L"
+					},
+					{
+						"name": "LANDTX"
+					},
+					{
+						"name": "XEGDR"
+					},
+					{
+						"name": "ENQUEUE_GRP"
+					},
+					{
+						"name": "DAT_FZAU"
+					},
+					{
+						"name": "FMBDAT"
+					},
+					{
+						"name": "VSNMR_V"
+					},
+					{
+						"name": "HANDLE"
+					},
+					{
+						"name": "PROLI"
+					},
+					{
+						"name": "CONT_DG"
+					},
+					{
+						"name": "CRM_GUID"
+					},
+					{
+						"name": "UPD_TMSTMP"
+					},
+					{
+						"name": "MSR_ID"
+					},
+					{
+						"name": "TM_CTRL_KEY"
+					},
+					{
+						"name": "HANDOVERLOC"
+					},
+					{
+						"name": "FPART"
+					},
+					{
+						"name": "VCLASSIFIC"
+					},
+					{
+						"name": "/XLSO/SO_VALD_FM"
+					},
+					{
+						"name": "/XLSO/SO_VALD_TO"
+					},
+					{
+						"name": "/XLSO/PAYMENT_OP"
+					},
+					{
+						"name": "/XLSO/TRANS_CTXT"
+					},
+					{
+						"name": "/XLSO/CATALOG_ID"
+					},
+					{
+						"name": "/XLSO/VARIANT_ID"
+					},
+					{
+						"name": "AD01FAREG"
+					},
+					{
+						"name": "AD01BASDOC"
+					},
+					{
+						"name": "LASTVCHR"
+					},
+					{
+						"name": "PLC"
+					},
+					{
+						"name": "SMB"
+					},
+					{
+						"name": "ECC"
+					},
+					{
+						"name": "IPP"
+					},
+					{
+						"name": "CUR"
+					},
+					{
+						"name": "ECO"
+					},
+					{
+						"name": "PCO"
+					},
+					{
+						"name": "DPT"
+					},
+					{
+						"name": "TOP"
+					},
+					{
+						"name": "SUS"
+					},
+					{
+						"name": "PCN"
+					},
+					{
+						"name": "TRU"
+					},
+					{
+						"name": "PCY"
+					},
+					{
+						"name": "PCD"
+					},
+					{
+						"name": "PBN"
+					},
+					{
+						"name": "AMN"
+					},
+					{
+						"name": "DNO"
+					},
+					{
+						"name": "PSM_BUDAT"
+					},
+					{
+						"name": "SWENR"
+					},
+					{
+						"name": "SMENR"
+					},
+					{
+						"name": "PHASE"
+					},
+					{
+						"name": "MTLAUR"
+					},
+					{
+						"name": "STAGE"
+					},
+					{
+						"name": "HB_CONT_REASON"
+					},
+					{
+						"name": "HB_EXPDATE"
+					},
+					{
+						"name": "HB_RESDATE"
+					},
+					{
+						"name": "J_3GKBAUL"
+					},
+					{
+						"name": "MILL_APPL_ID"
+					},
+					{
+						"name": "TAS"
+					},
+					{
+						"name": "BETC"
+					},
+					{
+						"name": "MOD_ALLOW"
+					},
+					{
+						"name": "CANCEL_ALLOW"
+					},
+					{
+						"name": "PAY_METHOD"
+					},
+					{
+						"name": "BPN"
+					},
+					{
+						"name": "REP_FREQ"
+					},
+					{
+						"name": "LOGSYSB"
+					},
+					{
+						"name": "KALCD"
+					},
+					{
+						"name": "MULTI"
+					},
+					{
+						"name": "SPPAYM"
+					},
+					{
+						"name": "WTYSC_CLM_HDR"
+					},
+					{
+						"name": "ZZADUANA"
+					},
+					{
+						"name": "ZZPATENTE"
+					},
+					{
+						"name": "ZZUSOCFDI"
+					},
+					{
+						"name": "ZZMETPAG"
+					},
+					{
+						"name": "ZZFORPAG"
+					},
+					{
+						"name": "ZZNOPEDIMENTO"
+					},
+					{
+						"name": "ZZPREDIAL"
+					}
+				]
+			},
+			"dependsOn": []
+		}
+	]
+}

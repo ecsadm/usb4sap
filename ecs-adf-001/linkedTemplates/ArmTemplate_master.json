@@ -1,0 +1,902 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "ecs-adf-001"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
+		"AzureBlobStorage2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage2'"
+		},
+		"AzureBlobStorage_VBFA_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage_VBFA'"
+		},
+		"AzureDataLakeAnalytics1_servicePrincipalKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'servicePrincipalKey' of 'AzureDataLakeAnalytics1'"
+		},
+		"AzureDataLake_Gen2001_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLake_Gen2001'"
+		},
+		"AzurePostgreSql1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzurePostgreSql1'"
+		},
+		"AzureSynapseAnalytics1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSynapseAnalytics1'"
+		},
+		"AzureSynapseAnalytics2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSynapseAnalytics2'"
+		},
+		"AzureTableStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureTableStorage1'"
+		},
+		"AzureTableStorage_VBFA_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureTableStorage_VBFA'"
+		},
+		"CosmosDb1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'CosmosDb1'"
+		},
+		"ECS_AWS_S3_secretAccessKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'secretAccessKey' of 'ECS_AWS_S3'"
+		},
+		"ECS_DEV_ECC_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ECS_DEV_ECC'"
+		},
+		"ECS_ECC_DEV_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ECS_ECC_DEV'"
+		},
+		"ECS_ECC_DEV2_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ECS_ECC_DEV2'"
+		},
+		"ECS_GCP_S3_secretAccessKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'secretAccessKey' of 'ECS_GCP_S3'"
+		},
+		"RestService2_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'RestService2'"
+		},
+		"SAP_CDC_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'SAP_CDC'"
+		},
+		"SAP_ECC_T001W_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'SAP_ECC_T001W'"
+		},
+		"SAP_ODP_ECC_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'SAP_ODP_ECC'"
+		},
+		"SAP_S4_new_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'SAP_S4_new'"
+		},
+		"SAP_USB4SAP_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'SAP_USB4SAP'"
+		},
+		"SapEcc1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'SapEcc1'"
+		},
+		"SapTable1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'SapTable1'"
+		},
+		"SapTable2_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'SapTable2'"
+		},
+		"Sapecc_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Sapecc'"
+		},
+		"Snowflake1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Snowflake1'"
+		},
+		"USB4SAP_1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'USB4SAP_1'"
+		},
+		"USB4SAP_HTTP_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'USB4SAP_HTTP'"
+		},
+		"USB4SAP_REST_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'USB4SAP_REST'"
+		},
+		"USB4SAP_SICF_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'USB4SAP_SICF'"
+		},
+		"ecc_ecs_ehp8_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ecc_ecs_ehp8'"
+		},
+		"linkedServicesql1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'linkedServicesql1'"
+		},
+		"AzureDataLakeAnalytics1_properties_typeProperties_accountName": {
+			"type": "string",
+			"defaultValue": "mydataanalytics01"
+		},
+		"AzureDataLakeAnalytics1_properties_typeProperties_servicePrincipalId": {
+			"type": "string",
+			"defaultValue": "SPID1"
+		},
+		"AzureDataLakeAnalytics1_properties_typeProperties_tenant": {
+			"type": "string",
+			"defaultValue": "403d0a69-ae6c-459e-a989-d89a3141d440"
+		},
+		"AzureDataLakeAnalytics1_properties_typeProperties_subscriptionId": {
+			"type": "string",
+			"defaultValue": "0255b63f-c086-4357-894d-bce6b2b98d6f"
+		},
+		"AzureDataLakeAnalytics1_properties_typeProperties_resourceGroupName": {
+			"type": "string",
+			"defaultValue": "my-resource-001"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri": {
+			"type": "string",
+			"defaultValue": "https://ecsadls001.azuredatalakestore.net/webhdfs/v1"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_tenant": {
+			"type": "string",
+			"defaultValue": "403d0a69-ae6c-459e-a989-d89a3141d440"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_subscriptionId": {
+			"type": "string",
+			"defaultValue": "0255b63f-c086-4357-894d-bce6b2b98d6f"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_resourceGroupName": {
+			"type": "string",
+			"defaultValue": "my-resource-001"
+		},
+		"AzureDataLakeStore2_properties_typeProperties_dataLakeStoreUri": {
+			"type": "string",
+			"defaultValue": "https://ecsadls001.azuredatalakestore.net/webhdfs/v1"
+		},
+		"AzureDataLakeStore2_properties_typeProperties_tenant": {
+			"type": "string",
+			"defaultValue": "403d0a69-ae6c-459e-a989-d89a3141d440"
+		},
+		"AzureDataLakeStore2_properties_typeProperties_subscriptionId": {
+			"type": "string",
+			"defaultValue": "0255b63f-c086-4357-894d-bce6b2b98d6f"
+		},
+		"AzureDataLakeStore2_properties_typeProperties_resourceGroupName": {
+			"type": "string",
+			"defaultValue": "my-resource-001"
+		},
+		"AzureDataLake_Gen2001_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://datalakegen2001.dfs.core.windows.net"
+		},
+		"ECS_AWS_S3_properties_typeProperties_accessKeyId": {
+			"type": "string",
+			"defaultValue": "AKIAIS4EJHZ2PNXHNVJQ"
+		},
+		"ECS_DEV_ECC_properties_typeProperties_clientId": {
+			"type": "string",
+			"defaultValue": "800"
+		},
+		"ECS_DEV_ECC_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "service1"
+		},
+		"ECS_DEV_ECC_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "35.208.99.120"
+		},
+		"ECS_DEV_ECC_properties_typeProperties_systemNumber": {
+			"type": "string",
+			"defaultValue": "00"
+		},
+		"ECS_ECC_DEV_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "http://sap-ecc-ehp8.ecoservity.com:8000/sap/opu/odata/$metadata"
+		},
+		"ECS_ECC_DEV_properties_typeProperties_username": {
+			"type": "string",
+			"defaultValue": "service1"
+		},
+		"ECS_ECC_DEV2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "http://sap-ecc-ehp8.ecoservity.com:8000/sap/opu/odata/ECOS/OBJ2CLOUD_V2_2_SRV/"
+		},
+		"ECS_ECC_DEV2_properties_typeProperties_username": {
+			"type": "string",
+			"defaultValue": "service1"
+		},
+		"ECS_GCP_S3_properties_typeProperties_accessKeyId": {
+			"type": "string",
+			"defaultValue": "GOOG1E4YFBZNH3I7OK5NQM6VHASINBEDQD2NYT3XVDB6XA6JFKA3AYOR2L5PA"
+		},
+		"RestService1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sap-erp-data.s3.amazonaws.com"
+		},
+		"RestService2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "http://35.208.99.120:8000/sap/opu/odata/ECOS/OBJ2CLOUD_V2_SRV/ET_DatasetSet?$filter=ObjectName eq 'WS_MONITOR_OUTB_DEL_GDSI' and ObjectType eq 'R' and Delimiter eq '|' and ImportGeneric eq 'ALVV1' and DataDest eq '0:0' &$format=json"
+		},
+		"RestService2_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "service1"
+		},
+		"SAP_CDC_properties_typeProperties_clientId": {
+			"type": "string",
+			"defaultValue": "800"
+		},
+		"SAP_CDC_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "service1"
+		},
+		"SAP_CDC_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "sap-ecc-ehp8.ecoservity.com"
+		},
+		"SAP_CDC_properties_typeProperties_systemNumber": {
+			"type": "string",
+			"defaultValue": "00"
+		},
+		"SAP_ECC_T001W_properties_typeProperties_clientId": {
+			"type": "string",
+			"defaultValue": "800"
+		},
+		"SAP_ECC_T001W_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "service1"
+		},
+		"SAP_ECC_T001W_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "35.208.99.120 "
+		},
+		"SAP_ECC_T001W_properties_typeProperties_systemNumber": {
+			"type": "string",
+			"defaultValue": "00"
+		},
+		"SAP_ODP_ECC_properties_typeProperties_clientId": {
+			"type": "string",
+			"defaultValue": "800"
+		},
+		"SAP_ODP_ECC_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "service1"
+		},
+		"SAP_ODP_ECC_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "sap-ecc-ehp8.ecoservity.com"
+		},
+		"SAP_ODP_ECC_properties_typeProperties_systemNumber": {
+			"type": "string",
+			"defaultValue": "00"
+		},
+		"SAP_S4_new_properties_typeProperties_clientId": {
+			"type": "string",
+			"defaultValue": "100"
+		},
+		"SAP_S4_new_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "rem248"
+		},
+		"SAP_S4_new_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "sap2.remoteides.com"
+		},
+		"SAP_S4_new_properties_typeProperties_systemNumber": {
+			"type": "string",
+			"defaultValue": "24"
+		},
+		"SAP_USB4SAP_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "http://sap-ecc-ehp8.ecoservity.com:8000/sap/opu/odata/ECOS/OBJ2CLOUD_V2_2_SRV/ET_DataSetSet"
+		},
+		"SAP_USB4SAP_properties_typeProperties_username": {
+			"type": "string",
+			"defaultValue": "service1"
+		},
+		"SapEcc1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "sap2.remoteides.com"
+		},
+		"SapEcc1_properties_typeProperties_username": {
+			"type": "string",
+			"defaultValue": "ecc0732"
+		},
+		"SapTable1_properties_typeProperties_clientId": {
+			"type": "string",
+			"defaultValue": "800"
+		},
+		"SapTable1_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "service1"
+		},
+		"SapTable1_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "sap-ecc-ehp8.ecoservity.com"
+		},
+		"SapTable1_properties_typeProperties_systemNumber": {
+			"type": "string",
+			"defaultValue": "00"
+		},
+		"SapTable2_properties_typeProperties_clientId": {
+			"type": "string",
+			"defaultValue": "800"
+		},
+		"SapTable2_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "ecc0732"
+		},
+		"SapTable2_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "sap2.remoteides.com"
+		},
+		"SapTable2_properties_typeProperties_systemNumber": {
+			"type": "string",
+			"defaultValue": "07"
+		},
+		"Sapecc_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "http://sap-ecc-ehp8.ecoservity.com:8000/sap/opu/odata/ECOS/OBJ2CLOUD_V2_2_SRV/"
+		},
+		"Sapecc_properties_typeProperties_username": {
+			"type": "string",
+			"defaultValue": "service1"
+		},
+		"USB4SAP_1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "http://sap-ecc-ehp8.ecoservity.com:8000/sap/opu/odata/ECOS/OBJ2CLOUD_V2_2_SRV/ET_DataSetSet?$filter=ObjectName eq 'RM07DOCS' and ObjectType eq 'R' and Delimiter eq '|' and ImportGeneric eq 'TYPE:ALV|VARIANT:USB4SAP1|FIELD_LABLE:B|' and DataDest eq '0|0||' &$format=xlsx"
+		},
+		"USB4SAP_1_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "service1"
+		},
+		"USB4SAP_HTTP_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "http://sap-ecc-ehp8.ecoservity.com:8000"
+		},
+		"USB4SAP_HTTP_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "service1"
+		},
+		"USB4SAP_REST_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "http://sap-ecc-ehp8.ecoservity.com:8000"
+		},
+		"USB4SAP_REST_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "service1"
+		},
+		"USB4SAP_SICF_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "http://sap-ecc-ehp8.ecoservity.com:8000/sap/ecs_spu/rest/v1/USB4SAP?sap-client=800"
+		},
+		"USB4SAP_SICF_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "service1"
+		},
+		"ecc_ecs_ehp8_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "http://sap-ecc-ehp8.ecoservity.com:8000/sap/opu/odata/ECOS/OBJ2CLOUD_V2_2_SRV/"
+		},
+		"ecc_ecs_ehp8_properties_typeProperties_username": {
+			"type": "string",
+			"defaultValue": "service1"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "ecs-adf-001_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureBlobStorage1_connectionString": {
+						"value": "[parameters('AzureBlobStorage1_connectionString')]"
+					},
+					"AzureBlobStorage2_connectionString": {
+						"value": "[parameters('AzureBlobStorage2_connectionString')]"
+					},
+					"AzureBlobStorage_VBFA_connectionString": {
+						"value": "[parameters('AzureBlobStorage_VBFA_connectionString')]"
+					},
+					"AzureDataLake_Gen2001_accountKey": {
+						"value": "[parameters('AzureDataLake_Gen2001_accountKey')]"
+					},
+					"AzurePostgreSql1_connectionString": {
+						"value": "[parameters('AzurePostgreSql1_connectionString')]"
+					},
+					"AzureSynapseAnalytics1_connectionString": {
+						"value": "[parameters('AzureSynapseAnalytics1_connectionString')]"
+					},
+					"AzureSynapseAnalytics2_connectionString": {
+						"value": "[parameters('AzureSynapseAnalytics2_connectionString')]"
+					},
+					"AzureTableStorage1_connectionString": {
+						"value": "[parameters('AzureTableStorage1_connectionString')]"
+					},
+					"AzureTableStorage_VBFA_connectionString": {
+						"value": "[parameters('AzureTableStorage_VBFA_connectionString')]"
+					},
+					"CosmosDb1_connectionString": {
+						"value": "[parameters('CosmosDb1_connectionString')]"
+					},
+					"ECS_GCP_S3_secretAccessKey": {
+						"value": "[parameters('ECS_GCP_S3_secretAccessKey')]"
+					},
+					"RestService2_password": {
+						"value": "[parameters('RestService2_password')]"
+					},
+					"USB4SAP_1_password": {
+						"value": "[parameters('USB4SAP_1_password')]"
+					},
+					"USB4SAP_HTTP_password": {
+						"value": "[parameters('USB4SAP_HTTP_password')]"
+					},
+					"USB4SAP_REST_password": {
+						"value": "[parameters('USB4SAP_REST_password')]"
+					},
+					"AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri": {
+						"value": "[parameters('AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri')]"
+					},
+					"AzureDataLakeStore1_properties_typeProperties_tenant": {
+						"value": "[parameters('AzureDataLakeStore1_properties_typeProperties_tenant')]"
+					},
+					"AzureDataLakeStore1_properties_typeProperties_subscriptionId": {
+						"value": "[parameters('AzureDataLakeStore1_properties_typeProperties_subscriptionId')]"
+					},
+					"AzureDataLakeStore1_properties_typeProperties_resourceGroupName": {
+						"value": "[parameters('AzureDataLakeStore1_properties_typeProperties_resourceGroupName')]"
+					},
+					"AzureDataLakeStore2_properties_typeProperties_dataLakeStoreUri": {
+						"value": "[parameters('AzureDataLakeStore2_properties_typeProperties_dataLakeStoreUri')]"
+					},
+					"AzureDataLakeStore2_properties_typeProperties_tenant": {
+						"value": "[parameters('AzureDataLakeStore2_properties_typeProperties_tenant')]"
+					},
+					"AzureDataLakeStore2_properties_typeProperties_subscriptionId": {
+						"value": "[parameters('AzureDataLakeStore2_properties_typeProperties_subscriptionId')]"
+					},
+					"AzureDataLakeStore2_properties_typeProperties_resourceGroupName": {
+						"value": "[parameters('AzureDataLakeStore2_properties_typeProperties_resourceGroupName')]"
+					},
+					"AzureDataLake_Gen2001_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLake_Gen2001_properties_typeProperties_url')]"
+					},
+					"ECS_GCP_S3_properties_typeProperties_accessKeyId": {
+						"value": "[parameters('ECS_GCP_S3_properties_typeProperties_accessKeyId')]"
+					},
+					"RestService1_properties_typeProperties_url": {
+						"value": "[parameters('RestService1_properties_typeProperties_url')]"
+					},
+					"RestService2_properties_typeProperties_url": {
+						"value": "[parameters('RestService2_properties_typeProperties_url')]"
+					},
+					"RestService2_properties_typeProperties_userName": {
+						"value": "[parameters('RestService2_properties_typeProperties_userName')]"
+					},
+					"USB4SAP_1_properties_typeProperties_url": {
+						"value": "[parameters('USB4SAP_1_properties_typeProperties_url')]"
+					},
+					"USB4SAP_1_properties_typeProperties_userName": {
+						"value": "[parameters('USB4SAP_1_properties_typeProperties_userName')]"
+					},
+					"USB4SAP_HTTP_properties_typeProperties_url": {
+						"value": "[parameters('USB4SAP_HTTP_properties_typeProperties_url')]"
+					},
+					"USB4SAP_HTTP_properties_typeProperties_userName": {
+						"value": "[parameters('USB4SAP_HTTP_properties_typeProperties_userName')]"
+					},
+					"USB4SAP_REST_properties_typeProperties_url": {
+						"value": "[parameters('USB4SAP_REST_properties_typeProperties_url')]"
+					},
+					"USB4SAP_REST_properties_typeProperties_userName": {
+						"value": "[parameters('USB4SAP_REST_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "ecs-adf-001_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"USB4SAP_SICF_password": {
+						"value": "[parameters('USB4SAP_SICF_password')]"
+					},
+					"linkedServicesql1_connectionString": {
+						"value": "[parameters('linkedServicesql1_connectionString')]"
+					},
+					"USB4SAP_SICF_properties_typeProperties_url": {
+						"value": "[parameters('USB4SAP_SICF_properties_typeProperties_url')]"
+					},
+					"USB4SAP_SICF_properties_typeProperties_userName": {
+						"value": "[parameters('USB4SAP_SICF_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'ecs-adf-001_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "ecs-adf-001_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'ecs-adf-001_ArmTemplate_1')]"
+			]
+		},
+		{
+			"name": "ecs-adf-001_ArmTemplate_3",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_3.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'ecs-adf-001_ArmTemplate_2')]"
+			]
+		},
+		{
+			"name": "ecs-adf-001_ArmTemplate_4",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_4.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureDataLakeAnalytics1_servicePrincipalKey": {
+						"value": "[parameters('AzureDataLakeAnalytics1_servicePrincipalKey')]"
+					},
+					"ECS_AWS_S3_secretAccessKey": {
+						"value": "[parameters('ECS_AWS_S3_secretAccessKey')]"
+					},
+					"ECS_DEV_ECC_password": {
+						"value": "[parameters('ECS_DEV_ECC_password')]"
+					},
+					"ECS_ECC_DEV_password": {
+						"value": "[parameters('ECS_ECC_DEV_password')]"
+					},
+					"ECS_ECC_DEV2_password": {
+						"value": "[parameters('ECS_ECC_DEV2_password')]"
+					},
+					"SAP_CDC_password": {
+						"value": "[parameters('SAP_CDC_password')]"
+					},
+					"SAP_ECC_T001W_password": {
+						"value": "[parameters('SAP_ECC_T001W_password')]"
+					},
+					"SAP_ODP_ECC_password": {
+						"value": "[parameters('SAP_ODP_ECC_password')]"
+					},
+					"SAP_S4_new_password": {
+						"value": "[parameters('SAP_S4_new_password')]"
+					},
+					"SAP_USB4SAP_password": {
+						"value": "[parameters('SAP_USB4SAP_password')]"
+					},
+					"AzureDataLakeAnalytics1_properties_typeProperties_accountName": {
+						"value": "[parameters('AzureDataLakeAnalytics1_properties_typeProperties_accountName')]"
+					},
+					"AzureDataLakeAnalytics1_properties_typeProperties_servicePrincipalId": {
+						"value": "[parameters('AzureDataLakeAnalytics1_properties_typeProperties_servicePrincipalId')]"
+					},
+					"AzureDataLakeAnalytics1_properties_typeProperties_tenant": {
+						"value": "[parameters('AzureDataLakeAnalytics1_properties_typeProperties_tenant')]"
+					},
+					"AzureDataLakeAnalytics1_properties_typeProperties_subscriptionId": {
+						"value": "[parameters('AzureDataLakeAnalytics1_properties_typeProperties_subscriptionId')]"
+					},
+					"AzureDataLakeAnalytics1_properties_typeProperties_resourceGroupName": {
+						"value": "[parameters('AzureDataLakeAnalytics1_properties_typeProperties_resourceGroupName')]"
+					},
+					"ECS_AWS_S3_properties_typeProperties_accessKeyId": {
+						"value": "[parameters('ECS_AWS_S3_properties_typeProperties_accessKeyId')]"
+					},
+					"ECS_DEV_ECC_properties_typeProperties_clientId": {
+						"value": "[parameters('ECS_DEV_ECC_properties_typeProperties_clientId')]"
+					},
+					"ECS_DEV_ECC_properties_typeProperties_userName": {
+						"value": "[parameters('ECS_DEV_ECC_properties_typeProperties_userName')]"
+					},
+					"ECS_DEV_ECC_properties_typeProperties_server": {
+						"value": "[parameters('ECS_DEV_ECC_properties_typeProperties_server')]"
+					},
+					"ECS_DEV_ECC_properties_typeProperties_systemNumber": {
+						"value": "[parameters('ECS_DEV_ECC_properties_typeProperties_systemNumber')]"
+					},
+					"ECS_ECC_DEV_properties_typeProperties_url": {
+						"value": "[parameters('ECS_ECC_DEV_properties_typeProperties_url')]"
+					},
+					"ECS_ECC_DEV_properties_typeProperties_username": {
+						"value": "[parameters('ECS_ECC_DEV_properties_typeProperties_username')]"
+					},
+					"ECS_ECC_DEV2_properties_typeProperties_url": {
+						"value": "[parameters('ECS_ECC_DEV2_properties_typeProperties_url')]"
+					},
+					"ECS_ECC_DEV2_properties_typeProperties_username": {
+						"value": "[parameters('ECS_ECC_DEV2_properties_typeProperties_username')]"
+					},
+					"SAP_CDC_properties_typeProperties_clientId": {
+						"value": "[parameters('SAP_CDC_properties_typeProperties_clientId')]"
+					},
+					"SAP_CDC_properties_typeProperties_userName": {
+						"value": "[parameters('SAP_CDC_properties_typeProperties_userName')]"
+					},
+					"SAP_CDC_properties_typeProperties_server": {
+						"value": "[parameters('SAP_CDC_properties_typeProperties_server')]"
+					},
+					"SAP_CDC_properties_typeProperties_systemNumber": {
+						"value": "[parameters('SAP_CDC_properties_typeProperties_systemNumber')]"
+					},
+					"SAP_ECC_T001W_properties_typeProperties_clientId": {
+						"value": "[parameters('SAP_ECC_T001W_properties_typeProperties_clientId')]"
+					},
+					"SAP_ECC_T001W_properties_typeProperties_userName": {
+						"value": "[parameters('SAP_ECC_T001W_properties_typeProperties_userName')]"
+					},
+					"SAP_ECC_T001W_properties_typeProperties_server": {
+						"value": "[parameters('SAP_ECC_T001W_properties_typeProperties_server')]"
+					},
+					"SAP_ECC_T001W_properties_typeProperties_systemNumber": {
+						"value": "[parameters('SAP_ECC_T001W_properties_typeProperties_systemNumber')]"
+					},
+					"SAP_ODP_ECC_properties_typeProperties_clientId": {
+						"value": "[parameters('SAP_ODP_ECC_properties_typeProperties_clientId')]"
+					},
+					"SAP_ODP_ECC_properties_typeProperties_userName": {
+						"value": "[parameters('SAP_ODP_ECC_properties_typeProperties_userName')]"
+					},
+					"SAP_ODP_ECC_properties_typeProperties_server": {
+						"value": "[parameters('SAP_ODP_ECC_properties_typeProperties_server')]"
+					},
+					"SAP_ODP_ECC_properties_typeProperties_systemNumber": {
+						"value": "[parameters('SAP_ODP_ECC_properties_typeProperties_systemNumber')]"
+					},
+					"SAP_S4_new_properties_typeProperties_clientId": {
+						"value": "[parameters('SAP_S4_new_properties_typeProperties_clientId')]"
+					},
+					"SAP_S4_new_properties_typeProperties_userName": {
+						"value": "[parameters('SAP_S4_new_properties_typeProperties_userName')]"
+					},
+					"SAP_S4_new_properties_typeProperties_server": {
+						"value": "[parameters('SAP_S4_new_properties_typeProperties_server')]"
+					},
+					"SAP_S4_new_properties_typeProperties_systemNumber": {
+						"value": "[parameters('SAP_S4_new_properties_typeProperties_systemNumber')]"
+					},
+					"SAP_USB4SAP_properties_typeProperties_url": {
+						"value": "[parameters('SAP_USB4SAP_properties_typeProperties_url')]"
+					},
+					"SAP_USB4SAP_properties_typeProperties_username": {
+						"value": "[parameters('SAP_USB4SAP_properties_typeProperties_username')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'ecs-adf-001_ArmTemplate_3')]"
+			]
+		},
+		{
+			"name": "ecs-adf-001_ArmTemplate_5",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_5.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"SapEcc1_password": {
+						"value": "[parameters('SapEcc1_password')]"
+					},
+					"SapTable1_password": {
+						"value": "[parameters('SapTable1_password')]"
+					},
+					"SapTable2_password": {
+						"value": "[parameters('SapTable2_password')]"
+					},
+					"Sapecc_password": {
+						"value": "[parameters('Sapecc_password')]"
+					},
+					"Snowflake1_connectionString": {
+						"value": "[parameters('Snowflake1_connectionString')]"
+					},
+					"ecc_ecs_ehp8_password": {
+						"value": "[parameters('ecc_ecs_ehp8_password')]"
+					},
+					"SapEcc1_properties_typeProperties_url": {
+						"value": "[parameters('SapEcc1_properties_typeProperties_url')]"
+					},
+					"SapEcc1_properties_typeProperties_username": {
+						"value": "[parameters('SapEcc1_properties_typeProperties_username')]"
+					},
+					"SapTable1_properties_typeProperties_clientId": {
+						"value": "[parameters('SapTable1_properties_typeProperties_clientId')]"
+					},
+					"SapTable1_properties_typeProperties_userName": {
+						"value": "[parameters('SapTable1_properties_typeProperties_userName')]"
+					},
+					"SapTable1_properties_typeProperties_server": {
+						"value": "[parameters('SapTable1_properties_typeProperties_server')]"
+					},
+					"SapTable1_properties_typeProperties_systemNumber": {
+						"value": "[parameters('SapTable1_properties_typeProperties_systemNumber')]"
+					},
+					"SapTable2_properties_typeProperties_clientId": {
+						"value": "[parameters('SapTable2_properties_typeProperties_clientId')]"
+					},
+					"SapTable2_properties_typeProperties_userName": {
+						"value": "[parameters('SapTable2_properties_typeProperties_userName')]"
+					},
+					"SapTable2_properties_typeProperties_server": {
+						"value": "[parameters('SapTable2_properties_typeProperties_server')]"
+					},
+					"SapTable2_properties_typeProperties_systemNumber": {
+						"value": "[parameters('SapTable2_properties_typeProperties_systemNumber')]"
+					},
+					"Sapecc_properties_typeProperties_url": {
+						"value": "[parameters('Sapecc_properties_typeProperties_url')]"
+					},
+					"Sapecc_properties_typeProperties_username": {
+						"value": "[parameters('Sapecc_properties_typeProperties_username')]"
+					},
+					"ecc_ecs_ehp8_properties_typeProperties_url": {
+						"value": "[parameters('ecc_ecs_ehp8_properties_typeProperties_url')]"
+					},
+					"ecc_ecs_ehp8_properties_typeProperties_username": {
+						"value": "[parameters('ecc_ecs_ehp8_properties_typeProperties_username')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'ecs-adf-001_ArmTemplate_4')]"
+			]
+		},
+		{
+			"name": "ecs-adf-001_ArmTemplate_6",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_6.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'ecs-adf-001_ArmTemplate_5')]"
+			]
+		},
+		{
+			"name": "ecs-adf-001_ArmTemplate_7",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_7.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'ecs-adf-001_ArmTemplate_6')]"
+			]
+		},
+		{
+			"name": "ecs-adf-001_ArmTemplate_8",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_8.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'ecs-adf-001_ArmTemplate_7')]"
+			]
+		}
+	]
+}

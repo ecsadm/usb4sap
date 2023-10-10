@@ -1,0 +1,315 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "ecs-adf-001"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"AzureBlobStorage2_connectionString": {
+			"value": ""
+		},
+		"AzureBlobStorage_VBFA_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeAnalytics1_servicePrincipalKey": {
+			"value": ""
+		},
+		"AzureDataLake_Gen2001_accountKey": {
+			"value": ""
+		},
+		"AzurePostgreSql1_connectionString": {
+			"value": ""
+		},
+		"AzureSynapseAnalytics1_connectionString": {
+			"value": ""
+		},
+		"AzureSynapseAnalytics2_connectionString": {
+			"value": ""
+		},
+		"AzureTableStorage1_connectionString": {
+			"value": ""
+		},
+		"AzureTableStorage_VBFA_connectionString": {
+			"value": ""
+		},
+		"CosmosDb1_connectionString": {
+			"value": ""
+		},
+		"ECS_AWS_S3_secretAccessKey": {
+			"value": ""
+		},
+		"ECS_DEV_ECC_password": {
+			"value": ""
+		},
+		"ECS_ECC_DEV_password": {
+			"value": ""
+		},
+		"ECS_ECC_DEV2_password": {
+			"value": ""
+		},
+		"ECS_GCP_S3_secretAccessKey": {
+			"value": ""
+		},
+		"RestService2_password": {
+			"value": ""
+		},
+		"SAP_CDC_password": {
+			"value": ""
+		},
+		"SAP_ECC_T001W_password": {
+			"value": ""
+		},
+		"SAP_ODP_ECC_password": {
+			"value": ""
+		},
+		"SAP_S4_new_password": {
+			"value": ""
+		},
+		"SAP_USB4SAP_password": {
+			"value": ""
+		},
+		"SapEcc1_password": {
+			"value": ""
+		},
+		"SapTable1_password": {
+			"value": ""
+		},
+		"SapTable2_password": {
+			"value": ""
+		},
+		"Sapecc_password": {
+			"value": ""
+		},
+		"Snowflake1_connectionString": {
+			"value": ""
+		},
+		"USB4SAP_1_password": {
+			"value": ""
+		},
+		"USB4SAP_HTTP_password": {
+			"value": ""
+		},
+		"USB4SAP_REST_password": {
+			"value": ""
+		},
+		"USB4SAP_SICF_password": {
+			"value": ""
+		},
+		"ecc_ecs_ehp8_password": {
+			"value": ""
+		},
+		"linkedServicesql1_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeAnalytics1_properties_typeProperties_accountName": {
+			"value": "mydataanalytics01"
+		},
+		"AzureDataLakeAnalytics1_properties_typeProperties_servicePrincipalId": {
+			"value": "SPID1"
+		},
+		"AzureDataLakeAnalytics1_properties_typeProperties_tenant": {
+			"value": "403d0a69-ae6c-459e-a989-d89a3141d440"
+		},
+		"AzureDataLakeAnalytics1_properties_typeProperties_subscriptionId": {
+			"value": "0255b63f-c086-4357-894d-bce6b2b98d6f"
+		},
+		"AzureDataLakeAnalytics1_properties_typeProperties_resourceGroupName": {
+			"value": "my-resource-001"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri": {
+			"value": "https://ecsadls001.azuredatalakestore.net/webhdfs/v1"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_tenant": {
+			"value": "403d0a69-ae6c-459e-a989-d89a3141d440"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_subscriptionId": {
+			"value": "0255b63f-c086-4357-894d-bce6b2b98d6f"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_resourceGroupName": {
+			"value": "my-resource-001"
+		},
+		"AzureDataLakeStore2_properties_typeProperties_dataLakeStoreUri": {
+			"value": "https://ecsadls001.azuredatalakestore.net/webhdfs/v1"
+		},
+		"AzureDataLakeStore2_properties_typeProperties_tenant": {
+			"value": "403d0a69-ae6c-459e-a989-d89a3141d440"
+		},
+		"AzureDataLakeStore2_properties_typeProperties_subscriptionId": {
+			"value": "0255b63f-c086-4357-894d-bce6b2b98d6f"
+		},
+		"AzureDataLakeStore2_properties_typeProperties_resourceGroupName": {
+			"value": "my-resource-001"
+		},
+		"AzureDataLake_Gen2001_properties_typeProperties_url": {
+			"value": "https://datalakegen2001.dfs.core.windows.net"
+		},
+		"ECS_AWS_S3_properties_typeProperties_accessKeyId": {
+			"value": "AKIAIS4EJHZ2PNXHNVJQ"
+		},
+		"ECS_DEV_ECC_properties_typeProperties_clientId": {
+			"value": "800"
+		},
+		"ECS_DEV_ECC_properties_typeProperties_userName": {
+			"value": "service1"
+		},
+		"ECS_DEV_ECC_properties_typeProperties_server": {
+			"value": "35.208.99.120"
+		},
+		"ECS_DEV_ECC_properties_typeProperties_systemNumber": {
+			"value": "00"
+		},
+		"ECS_ECC_DEV_properties_typeProperties_url": {
+			"value": "http://sap-ecc-ehp8.ecoservity.com:8000/sap/opu/odata/$metadata"
+		},
+		"ECS_ECC_DEV_properties_typeProperties_username": {
+			"value": "service1"
+		},
+		"ECS_ECC_DEV2_properties_typeProperties_url": {
+			"value": "http://sap-ecc-ehp8.ecoservity.com:8000/sap/opu/odata/ECOS/OBJ2CLOUD_V2_2_SRV/"
+		},
+		"ECS_ECC_DEV2_properties_typeProperties_username": {
+			"value": "service1"
+		},
+		"ECS_GCP_S3_properties_typeProperties_accessKeyId": {
+			"value": "GOOG1E4YFBZNH3I7OK5NQM6VHASINBEDQD2NYT3XVDB6XA6JFKA3AYOR2L5PA"
+		},
+		"RestService1_properties_typeProperties_url": {
+			"value": "https://sap-erp-data.s3.amazonaws.com"
+		},
+		"RestService2_properties_typeProperties_url": {
+			"value": "http://35.208.99.120:8000/sap/opu/odata/ECOS/OBJ2CLOUD_V2_SRV/ET_DatasetSet?$filter=ObjectName eq 'WS_MONITOR_OUTB_DEL_GDSI' and ObjectType eq 'R' and Delimiter eq '|' and ImportGeneric eq 'ALVV1' and DataDest eq '0:0' &$format=json"
+		},
+		"RestService2_properties_typeProperties_userName": {
+			"value": "service1"
+		},
+		"SAP_CDC_properties_typeProperties_clientId": {
+			"value": "800"
+		},
+		"SAP_CDC_properties_typeProperties_userName": {
+			"value": "service1"
+		},
+		"SAP_CDC_properties_typeProperties_server": {
+			"value": "sap-ecc-ehp8.ecoservity.com"
+		},
+		"SAP_CDC_properties_typeProperties_systemNumber": {
+			"value": "00"
+		},
+		"SAP_ECC_T001W_properties_typeProperties_clientId": {
+			"value": "800"
+		},
+		"SAP_ECC_T001W_properties_typeProperties_userName": {
+			"value": "service1"
+		},
+		"SAP_ECC_T001W_properties_typeProperties_server": {
+			"value": "35.208.99.120 "
+		},
+		"SAP_ECC_T001W_properties_typeProperties_systemNumber": {
+			"value": "00"
+		},
+		"SAP_ODP_ECC_properties_typeProperties_clientId": {
+			"value": "800"
+		},
+		"SAP_ODP_ECC_properties_typeProperties_userName": {
+			"value": "service1"
+		},
+		"SAP_ODP_ECC_properties_typeProperties_server": {
+			"value": "sap-ecc-ehp8.ecoservity.com"
+		},
+		"SAP_ODP_ECC_properties_typeProperties_systemNumber": {
+			"value": "00"
+		},
+		"SAP_S4_new_properties_typeProperties_clientId": {
+			"value": "100"
+		},
+		"SAP_S4_new_properties_typeProperties_userName": {
+			"value": "rem248"
+		},
+		"SAP_S4_new_properties_typeProperties_server": {
+			"value": "sap2.remoteides.com"
+		},
+		"SAP_S4_new_properties_typeProperties_systemNumber": {
+			"value": "24"
+		},
+		"SAP_USB4SAP_properties_typeProperties_url": {
+			"value": "http://sap-ecc-ehp8.ecoservity.com:8000/sap/opu/odata/ECOS/OBJ2CLOUD_V2_2_SRV/ET_DataSetSet"
+		},
+		"SAP_USB4SAP_properties_typeProperties_username": {
+			"value": "service1"
+		},
+		"SapEcc1_properties_typeProperties_url": {
+			"value": "sap2.remoteides.com"
+		},
+		"SapEcc1_properties_typeProperties_username": {
+			"value": "ecc0732"
+		},
+		"SapTable1_properties_typeProperties_clientId": {
+			"value": "800"
+		},
+		"SapTable1_properties_typeProperties_userName": {
+			"value": "service1"
+		},
+		"SapTable1_properties_typeProperties_server": {
+			"value": "sap-ecc-ehp8.ecoservity.com"
+		},
+		"SapTable1_properties_typeProperties_systemNumber": {
+			"value": "00"
+		},
+		"SapTable2_properties_typeProperties_clientId": {
+			"value": "800"
+		},
+		"SapTable2_properties_typeProperties_userName": {
+			"value": "ecc0732"
+		},
+		"SapTable2_properties_typeProperties_server": {
+			"value": "sap2.remoteides.com"
+		},
+		"SapTable2_properties_typeProperties_systemNumber": {
+			"value": "07"
+		},
+		"Sapecc_properties_typeProperties_url": {
+			"value": "http://sap-ecc-ehp8.ecoservity.com:8000/sap/opu/odata/ECOS/OBJ2CLOUD_V2_2_SRV/"
+		},
+		"Sapecc_properties_typeProperties_username": {
+			"value": "service1"
+		},
+		"USB4SAP_1_properties_typeProperties_url": {
+			"value": "http://sap-ecc-ehp8.ecoservity.com:8000/sap/opu/odata/ECOS/OBJ2CLOUD_V2_2_SRV/ET_DataSetSet?$filter=ObjectName eq 'RM07DOCS' and ObjectType eq 'R' and Delimiter eq '|' and ImportGeneric eq 'TYPE:ALV|VARIANT:USB4SAP1|FIELD_LABLE:B|' and DataDest eq '0|0||' &$format=xlsx"
+		},
+		"USB4SAP_1_properties_typeProperties_userName": {
+			"value": "service1"
+		},
+		"USB4SAP_HTTP_properties_typeProperties_url": {
+			"value": "http://sap-ecc-ehp8.ecoservity.com:8000"
+		},
+		"USB4SAP_HTTP_properties_typeProperties_userName": {
+			"value": "service1"
+		},
+		"USB4SAP_REST_properties_typeProperties_url": {
+			"value": "http://sap-ecc-ehp8.ecoservity.com:8000"
+		},
+		"USB4SAP_REST_properties_typeProperties_userName": {
+			"value": "service1"
+		},
+		"USB4SAP_SICF_properties_typeProperties_url": {
+			"value": "http://sap-ecc-ehp8.ecoservity.com:8000/sap/ecs_spu/rest/v1/USB4SAP?sap-client=800"
+		},
+		"USB4SAP_SICF_properties_typeProperties_userName": {
+			"value": "service1"
+		},
+		"ecc_ecs_ehp8_properties_typeProperties_url": {
+			"value": "http://sap-ecc-ehp8.ecoservity.com:8000/sap/opu/odata/ECOS/OBJ2CLOUD_V2_2_SRV/"
+		},
+		"ecc_ecs_ehp8_properties_typeProperties_username": {
+			"value": "service1"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
