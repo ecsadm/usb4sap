@@ -235,13 +235,13 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"url": {
-								"value": "@pipeline().Pipeline",
-								"type": "Expression"
-							},
 							"method": "POST",
 							"headers": {
 								"content-type": "application/json"
+							},
+							"url": {
+								"value": "@pipeline().Pipeline",
+								"type": "Expression"
 							},
 							"body": {
 								"prompt": "Provide information on SAP ECC"

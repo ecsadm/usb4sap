@@ -169,10 +169,10 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"url": "http://sap-ecc-ehp8.ecoservity.com:8000/sap/opu/odata/ECOS/OBJ2CLOUD_V2_2_SRV/ET_DataSetSet?$filter=ObjectName%20eq%20%27RM07DOCS%27%20and%20ObjectType%20eq%20%27R%27%20and%20Delimiter%20eq%20%27|%27%20and%20ImportGeneric%20eq%20%27TYPE:ALV|VARIANT:USB4SAP1||FIELD_LABLE:B%27%20and%20DataDest%20eq%20%270|0||27%20$format=json",
 							"method": "GET",
 							"headers": {},
 							"disableCertValidation": true,
+							"url": "http://sap-ecc-ehp8.ecoservity.com:8000/sap/opu/odata/ECOS/OBJ2CLOUD_V2_2_SRV/ET_DataSetSet?$filter=ObjectName%20eq%20%27RM07DOCS%27%20and%20ObjectType%20eq%20%27R%27%20and%20Delimiter%20eq%20%27|%27%20and%20ImportGeneric%20eq%20%27TYPE:ALV|VARIANT:USB4SAP1||FIELD_LABLE:B%27%20and%20DataDest%20eq%20%270|0||27%20$format=json",
 							"authentication": {
 								"type": "Basic",
 								"username": "service1",
@@ -238,12 +238,12 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
+							"method": "POST",
+							"headers": {},
 							"url": {
 								"value": "@pipeline().parameters.teamsWebhookUrl",
 								"type": "Expression"
 							},
-							"method": "POST",
-							"headers": {},
 							"body": {
 								"value": "@json(variables('messageCardString'))",
 								"type": "Expression"

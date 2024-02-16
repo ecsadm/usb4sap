@@ -438,13 +438,13 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
+							"method": "PUT",
+							"headers": {},
 							"url": "https://sap-erp-data.s3.amazonaws.com/vbak1.txt",
 							"connectVia": {
 								"referenceName": "integrationRuntime1",
 								"type": "IntegrationRuntimeReference"
 							},
-							"method": "PUT",
-							"headers": {},
 							"body": {
 								"value": "@activity('Execute Pipeline1').output",
 								"type": "Expression"
@@ -455,6 +455,9 @@
 						"name": "Execute Pipeline1",
 						"type": "ExecutePipeline",
 						"dependsOn": [],
+						"policy": {
+							"secureInput": false
+						},
 						"userProperties": [],
 						"typeProperties": {
 							"pipeline": {
@@ -11216,17 +11219,9 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"url": {
-								"value": "@pipeline().parameters.LogicAppURL",
-								"type": "Expression"
-							},
 							"method": "POST",
 							"headers": {
 								"Content-Type": "application/json"
-							},
-							"body": {
-								"value": "{\"copiedDate\":\"@{pipeline().TriggerTime}\"",
-								"type": "Expression"
 							},
 							"datasets": [
 								{
@@ -11234,7 +11229,15 @@
 									"type": "DatasetReference",
 									"parameters": {}
 								}
-							]
+							],
+							"url": {
+								"value": "@pipeline().parameters.LogicAppURL",
+								"type": "Expression"
+							},
+							"body": {
+								"value": "{\"copiedDate\":\"@{pipeline().TriggerTime}\"",
+								"type": "Expression"
+							}
 						}
 					}
 				],
@@ -11484,13 +11487,13 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"url": {
-								"value": "@pipeline().parameters.LogicAppURL",
-								"type": "Expression"
-							},
 							"method": "POST",
 							"headers": {
 								"Content-Type": "application/json"
+							},
+							"url": {
+								"value": "@pipeline().parameters.LogicAppURL",
+								"type": "Expression"
 							},
 							"body": {
 								"value": "{\"copiedDate\":\"@{pipeline().TriggerTime}\"",
@@ -11668,6 +11671,9 @@
 						"name": "Execute Pipeline1",
 						"type": "ExecutePipeline",
 						"dependsOn": [],
+						"policy": {
+							"secureInput": false
+						},
 						"userProperties": [],
 						"typeProperties": {
 							"pipeline": {
@@ -11787,10 +11793,10 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"url": "http://sap-ecc-ehp8.ecoservity.com:8000/sap/opu/odata/ECOS/OBJ2CLOUD_V2_2_SRV/ET_DataSetSet?$filter=ObjectName%20eq%20%27RM07DOCS%27%20and%20ObjectType%20eq%20%27R%27%20and%20Delimiter%20eq%20%27|%27%20and%20ImportGeneric%20eq%20%27TYPE:ALV|VARIANT:USB4SAP1||FIELD_LABLE:B%27%20and%20DataDest%20eq%20%270|0||27%20$format=json",
 							"method": "GET",
 							"headers": {},
 							"disableCertValidation": true,
+							"url": "http://sap-ecc-ehp8.ecoservity.com:8000/sap/opu/odata/ECOS/OBJ2CLOUD_V2_2_SRV/ET_DataSetSet?$filter=ObjectName%20eq%20%27RM07DOCS%27%20and%20ObjectType%20eq%20%27R%27%20and%20Delimiter%20eq%20%27|%27%20and%20ImportGeneric%20eq%20%27TYPE:ALV|VARIANT:USB4SAP1||FIELD_LABLE:B%27%20and%20DataDest%20eq%20%270|0||27%20$format=json",
 							"authentication": {
 								"type": "Basic",
 								"username": "service1",
@@ -11897,11 +11903,11 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"url": "https://login.microsoftonline.com/microsoft.onmicrosoft.com/oauth2/token",
 							"method": "POST",
 							"headers": {
 								"Content-Type": "application/x-www-form-urlencoded"
 							},
+							"url": "https://login.microsoftonline.com/microsoft.onmicrosoft.com/oauth2/token",
 							"body": "grant_type=client_credentials&client_id=<service principal ID>&resource=<your resource>&client_secret=<service principal key>"
 						}
 					}
@@ -12192,12 +12198,12 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
+							"method": "POST",
+							"headers": {},
 							"url": {
 								"value": "@pipeline().parameters.teamsWebhookUrl",
 								"type": "Expression"
 							},
-							"method": "POST",
-							"headers": {},
 							"body": {
 								"value": "@json(variables('messageCardString'))",
 								"type": "Expression"
@@ -12433,13 +12439,13 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"url": {
-								"value": "@pipeline().Pipeline",
-								"type": "Expression"
-							},
 							"method": "POST",
 							"headers": {
 								"content-type": "application/json"
+							},
+							"url": {
+								"value": "@pipeline().Pipeline",
+								"type": "Expression"
 							},
 							"body": {
 								"prompt": "Provide information on SAP ECC"
@@ -25640,6 +25646,72 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/RestService1')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLake_Gen2001')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SAP-Object--from-USB4SAP')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "SAP objects to ADLS",
+				"activities": [
+					{
+						"name": "USB4SAP-SICF",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "POST",
+								"requestBody": "{\n    \"DELIMITER\": \"|\",\n    \"OBJ_TYPE\": \"T\",\n    \"OBJ_ID\": \"T001W\",\n    \"DATADEST\": \"Z|ECS_REST_AZURE_BLOB_SAP_DATA|SAS|sv=2021-06-08&ss=bfqt&srt=sco&sp=rwdlacupyx&se=2025-01-04T15:32:02Z&st=2023-01-19T07:32:02Z&spr=https,http&sig=7i92wCtOU1ucjOw721PkmBkan5mmb0vhQC%2FblM6R1%2FM%3D\"\n}"
+							},
+							"sink": {
+								"type": "JsonSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "JsonWriteSettings",
+									"quoteAllText": true
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "RestResource1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "ADLS_Dataset",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": [],
+				"lastPublishTime": "2023-10-10T05:28:57Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/RestResource1')]",
+				"[concat(variables('factoryId'), '/datasets/ADLS_Dataset')]"
 			]
 		}
 	]
