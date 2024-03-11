@@ -1806,6 +1806,69 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/SAP-Object--from-USB4SAP')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "SAP objects to ADLS",
+				"activities": [
+					{
+						"name": "USB4SAP-SICF",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "POST",
+								"requestBody": "{\n    \"DELIMITER\": \"|\",\n    \"OBJ_TYPE\": \"R\",\n    \"OBJ_ID\": \"RM07DOCS\",\n    \"OUTPUT_STYLE\": \"ALV\",\n    \"REQUESTER\": \"USB4SAP\",\n    \"FIELD_LABLE\": \"B\",\n    \"VARIANT\":\"USB4SAP1\",\n    \"DATADEST\": \"Z|ECS_REST_AZURE_BLOB_SAP_DATA|SAS|sv=2021-06-08&ss=bfqt&srt=sco&sp=rwdlacupyx&se=2025-01-04T15:32:02Z&st=2023-01-19T07:32:02Z&spr=https,http&sig=7i92wCtOU1ucjOw721PkmBkan5mmb0vhQC%2FblM6R1%2FM%3D|sap-data-out/Extract_08_2021\"\n}"
+							},
+							"sink": {
+								"type": "JsonSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "JsonWriteSettings",
+									"quoteAllText": true
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "RestResource1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "ADLS_Dataset",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": [],
+				"lastPublishTime": "2023-10-10T05:28:57Z"
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SAP-REST2ADLS')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -1914,93 +1977,6 @@
 				},
 				"annotations": [],
 				"lastPublishTime": "2021-09-20T21:48:39Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SAP-RM07DOCS2ADLS')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Copy_RM07DOCS_2_ADLS",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [
-							{
-								"name": "Destination",
-								"value": "sap-data-out/Extract_08_2021/RM07DOCS-From-ADF"
-							}
-						],
-						"typeProperties": {
-							"source": {
-								"type": "ExcelSource",
-								"storeSettings": {
-									"type": "HttpReadSettings",
-									"requestMethod": "GET"
-								}
-							},
-							"sink": {
-								"type": "DelimitedTextSink",
-								"storeSettings": {
-									"type": "AzureBlobFSWriteSettings",
-									"copyBehavior": "FlattenHierarchy"
-								},
-								"formatSettings": {
-									"type": "DelimitedTextWriteSettings",
-									"quoteAllText": true,
-									"fileExtension": ".txt"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "SourceDataset_zix",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DestinationDataset_zix",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"parameters": {
-					"p_report": {
-						"type": "string",
-						"defaultValue": "RM07DOCS"
-					},
-					"p_variant": {
-						"type": "string",
-						"defaultValue": "USB4SAP1"
-					}
-				},
-				"annotations": [],
-				"lastPublishTime": "2023-09-28T05:25:46Z"
 			},
 			"dependsOn": []
 		}

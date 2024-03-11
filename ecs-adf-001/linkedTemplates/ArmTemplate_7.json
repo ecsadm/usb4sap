@@ -13,6 +13,24 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/SourceDataset_ohl')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SapTable2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SapTableResource",
+				"schema": [],
+				"typeProperties": {
+					"tableName": "VBAP"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SourceDataset_vp9')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -300,69 +318,6 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/SAP-Object--from-USB4SAP')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "SAP objects to ADLS",
-				"activities": [
-					{
-						"name": "USB4SAP-SICF",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "POST",
-								"requestBody": "{\n    \"DELIMITER\": \"|\",\n    \"OBJ_TYPE\": \"R\",\n    \"OBJ_ID\": \"RM07DOCS\",\n    \"OUTPUT_STYLE\": \"ALV\",\n    \"VARIANT\": \"USB4SAP4\",\n    \"REQUESTER\": \"\",\n    \"FIELD_LABLE\": \"B\",\n    \"VARIANT\":\"USB4SAP1\",\n    \"DATADEST\": \"Z|ECS_REST_AZURE_BLOB_SAP_DATA|SAS|sv=2021-06-08&ss=bfqt&srt=sco&sp=rwdlacupyx&se=2025-01-04T15:32:02Z&st=2023-01-19T07:32:02Z&spr=https,http&sig=7i92wCtOU1ucjOw721PkmBkan5mmb0vhQC%2FblM6R1%2FM%3D\"\n}"
-							},
-							"sink": {
-								"type": "JsonSink",
-								"storeSettings": {
-									"type": "AzureBlobFSWriteSettings"
-								},
-								"formatSettings": {
-									"type": "JsonWriteSettings",
-									"quoteAllText": true
-								}
-							},
-							"enableStaging": false
-						},
-						"inputs": [
-							{
-								"referenceName": "RestResource1",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "ADLS_Dataset",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"annotations": [],
-				"lastPublishTime": "2023-10-10T05:28:57Z"
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/CopyEKPOtoADLS')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -639,7 +594,9 @@
 				"annotations": [],
 				"lastPublishTime": "2020-03-21T02:56:44Z"
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/SourceDataset_ohl')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/CopyVBKDData')]",
