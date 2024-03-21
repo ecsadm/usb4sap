@@ -10,10 +10,11 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": "SAP_Data_RM07DOCS.parquet",
 				"folderPath": "Extract_08_2021/Parquet",
 				"fileSystem": "sap-data-out"
 			},
-			"compressionCodec": "none"
+			"compressionCodec": "snappy"
 		},
 		"schema": []
 	}
