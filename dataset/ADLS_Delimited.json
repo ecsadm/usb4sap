@@ -22,7 +22,571 @@
 		},
 		"schema": [
 			{
-				"name": "|Asset|Sub-number|Counter|Order|Opertn task list no.|Document Header Text|Document Date|Qty in OPUn|Order Price Unit|Order Unit|Qty in order unit|Posting Date|Posting Date|Company Code|Movement type|Valuation Type|Batch|Entry Date|Entry Date|Time of Entry|Time of Entry|Amt.in loc.cur.|Purchase order|Item|Unit of Entry|Qty in unit of entry|Ext. Amount in LC|Sales Value|Reason for Movement|Sales Order|Sales order schedule|Sales order item|Cost Center|Customer|Movement indicator|Consumption|Receipt Indicator|Storage Location|Vendor|Material|Sales order|Sales order item|Material Document|Base Unit of Measure|Quantity|Material Doc. Year|Network|WBS Element|Reservation|Item number of reservation|Debit/Credit ind|Special Stock|User Name|User Name|Trans./Event Type|Trans./Event Type|Sales Value inc. VAT|Currency|Plant|Goods Receipt/Issue Slip|Item automatically created|Reference|Reference|Material Doc.Item|Original Line Item|Multiple Acct Assignment|Material Description|Seq. No. of Account Assgt|Order Unit|Item category|Acct Assignment Cat.|Distribut. indicator|Partial invoice|GR non-valuated|Qty Share Acct Assgt|Pro. Qty in OUn|Pro. Qty in OPU|Pro. Amount in LC|Name 1|Movement Type Text|WBS element|Activity||Smart Number",
+				"name": "MANDT",
+				"type": "String"
+			},
+			{
+				"name": "TKNUM",
+				"type": "String"
+			},
+			{
+				"name": "VBTYP",
+				"type": "String"
+			},
+			{
+				"name": "SHTYP",
+				"type": "String"
+			},
+			{
+				"name": "TPLST",
+				"type": "String"
+			},
+			{
+				"name": "ERNAM",
+				"type": "String"
+			},
+			{
+				"name": "ERDAT6",
+				"type": "String"
+			},
+			{
+				"name": "ERZET7",
+				"type": "String"
+			},
+			{
+				"name": "AENAM",
+				"type": "String"
+			},
+			{
+				"name": "AEDAT",
+				"type": "String"
+			},
+			{
+				"name": "AEZET",
+				"type": "String"
+			},
+			{
+				"name": "STERM",
+				"type": "String"
+			},
+			{
+				"name": "ABFER",
+				"type": "String"
+			},
+			{
+				"name": "ABWST",
+				"type": "String"
+			},
+			{
+				"name": "BFART",
+				"type": "String"
+			},
+			{
+				"name": "VSART",
+				"type": "String"
+			},
+			{
+				"name": "VSAVL",
+				"type": "String"
+			},
+			{
+				"name": "VSANL",
+				"type": "String"
+			},
+			{
+				"name": "LAUFK",
+				"type": "String"
+			},
+			{
+				"name": "VSBED",
+				"type": "String"
+			},
+			{
+				"name": "ROUTE",
+				"type": "String"
+			},
+			{
+				"name": "SIGNI",
+				"type": "String"
+			},
+			{
+				"name": "EXTI1",
+				"type": "String"
+			},
+			{
+				"name": "EXTI2",
+				"type": "String"
+			},
+			{
+				"name": "TPBEZ",
+				"type": "String"
+			},
+			{
+				"name": "STDIS",
+				"type": "String"
+			},
+			{
+				"name": "DTDIS",
+				"type": "String"
+			},
+			{
+				"name": "UZDIS",
+				"type": "String"
+			},
+			{
+				"name": "STREG",
+				"type": "String"
+			},
+			{
+				"name": "DPREG",
+				"type": "String"
+			},
+			{
+				"name": "UPREG",
+				"type": "String"
+			},
+			{
+				"name": "DAREG",
+				"type": "String"
+			},
+			{
+				"name": "UAREG",
+				"type": "String"
+			},
+			{
+				"name": "STLBG",
+				"type": "String"
+			},
+			{
+				"name": "DPLBG",
+				"type": "String"
+			},
+			{
+				"name": "UPLBG",
+				"type": "String"
+			},
+			{
+				"name": "DALBG",
+				"type": "String"
+			},
+			{
+				"name": "UALBG",
+				"type": "String"
+			},
+			{
+				"name": "STLAD",
+				"type": "String"
+			},
+			{
+				"name": "DPLEN",
+				"type": "String"
+			},
+			{
+				"name": "UPLEN",
+				"type": "String"
+			},
+			{
+				"name": "DALEN",
+				"type": "String"
+			},
+			{
+				"name": "UALEN",
+				"type": "String"
+			},
+			{
+				"name": "STABF",
+				"type": "String"
+			},
+			{
+				"name": "DPABF",
+				"type": "String"
+			},
+			{
+				"name": "UPABF",
+				"type": "String"
+			},
+			{
+				"name": "DTABF",
+				"type": "String"
+			},
+			{
+				"name": "UZABF",
+				"type": "String"
+			},
+			{
+				"name": "STTBG",
+				"type": "String"
+			},
+			{
+				"name": "DPTBG",
+				"type": "String"
+			},
+			{
+				"name": "UPTBG",
+				"type": "String"
+			},
+			{
+				"name": "DATBG",
+				"type": "String"
+			},
+			{
+				"name": "UATBG",
+				"type": "String"
+			},
+			{
+				"name": "STTEN",
+				"type": "String"
+			},
+			{
+				"name": "DPTEN",
+				"type": "String"
+			},
+			{
+				"name": "UPTEN",
+				"type": "String"
+			},
+			{
+				"name": "DATEN",
+				"type": "String"
+			},
+			{
+				"name": "UATEN",
+				"type": "String"
+			},
+			{
+				"name": "STTRG",
+				"type": "String"
+			},
+			{
+				"name": "TDLNR",
+				"type": "String"
+			},
+			{
+				"name": "TERNR",
+				"type": "String"
+			},
+			{
+				"name": "PKSTK",
+				"type": "String"
+			},
+			{
+				"name": "DTMEG",
+				"type": "String"
+			},
+			{
+				"name": "DTMEV",
+				"type": "String"
+			},
+			{
+				"name": "DISTZ",
+				"type": "String"
+			},
+			{
+				"name": "MEDST",
+				"type": "String"
+			},
+			{
+				"name": "FAHZT",
+				"type": "String"
+			},
+			{
+				"name": "GESZT",
+				"type": "String"
+			},
+			{
+				"name": "MEIZT",
+				"type": "String"
+			},
+			{
+				"name": "STAFO",
+				"type": "String"
+			},
+			{
+				"name": "FBSTA",
+				"type": "String"
+			},
+			{
+				"name": "FBGST",
+				"type": "String"
+			},
+			{
+				"name": "ARSTA",
+				"type": "String"
+			},
+			{
+				"name": "ARGST",
+				"type": "String"
+			},
+			{
+				"name": "STERM_DONE",
+				"type": "String"
+			},
+			{
+				"name": "VSE_FRK",
+				"type": "String"
+			},
+			{
+				"name": "KKALSM",
+				"type": "String"
+			},
+			{
+				"name": "SDABW",
+				"type": "String"
+			},
+			{
+				"name": "FRKRL",
+				"type": "String"
+			},
+			{
+				"name": "GESZTD",
+				"type": "String"
+			},
+			{
+				"name": "FAHZTD",
+				"type": "String"
+			},
+			{
+				"name": "GESZTDA",
+				"type": "String"
+			},
+			{
+				"name": "FAHZTDA",
+				"type": "String"
+			},
+			{
+				"name": "ROCPY_DONE",
+				"type": "String"
+			},
+			{
+				"name": "HANDLE",
+				"type": "String"
+			},
+			{
+				"name": "TSEGFL",
+				"type": "String"
+			},
+			{
+				"name": "TSEGTP",
+				"type": "String"
+			},
+			{
+				"name": "ADD01",
+				"type": "String"
+			},
+			{
+				"name": "ADD02",
+				"type": "String"
+			},
+			{
+				"name": "ADD03",
+				"type": "String"
+			},
+			{
+				"name": "ADD04",
+				"type": "String"
+			},
+			{
+				"name": "TEXT1",
+				"type": "String"
+			},
+			{
+				"name": "TEXT2",
+				"type": "String"
+			},
+			{
+				"name": "TEXT3",
+				"type": "String"
+			},
+			{
+				"name": "TEXT4",
+				"type": "String"
+			},
+			{
+				"name": "PROLI",
+				"type": "String"
+			},
+			{
+				"name": "DGTLOCK",
+				"type": "String"
+			},
+			{
+				"name": "DGMDDAT",
+				"type": "String"
+			},
+			{
+				"name": "CONT_DG",
+				"type": "String"
+			},
+			{
+				"name": "WARZTD",
+				"type": "String"
+			},
+			{
+				"name": "WARZTDA",
+				"type": "String"
+			},
+			{
+				"name": "AULWE",
+				"type": "String"
+			},
+			{
+				"name": "TNDRST",
+				"type": "String"
+			},
+			{
+				"name": "TNDRRC",
+				"type": "String"
+			},
+			{
+				"name": "TNDR_TEXT",
+				"type": "String"
+			},
+			{
+				"name": "TNDRDAT",
+				"type": "String"
+			},
+			{
+				"name": "TNDRZET",
+				"type": "String"
+			},
+			{
+				"name": "TNDR_MAXP",
+				"type": "String"
+			},
+			{
+				"name": "TNDR_MAXC",
+				"type": "String"
+			},
+			{
+				"name": "TNDR_ACTP",
+				"type": "String"
+			},
+			{
+				"name": "TNDR_ACTC",
+				"type": "String"
+			},
+			{
+				"name": "TNDR_CARR",
+				"type": "String"
+			},
+			{
+				"name": "TNDR_CRNM",
+				"type": "String"
+			},
+			{
+				"name": "TNDR_TRKID",
+				"type": "String"
+			},
+			{
+				"name": "TNDR_EXPD",
+				"type": "String"
+			},
+			{
+				"name": "TNDR_EXPT",
+				"type": "String"
+			},
+			{
+				"name": "TNDR_ERPD",
+				"type": "String"
+			},
+			{
+				"name": "TNDR_ERPT",
+				"type": "String"
+			},
+			{
+				"name": "TNDR_LTPD",
+				"type": "String"
+			},
+			{
+				"name": "TNDR_LTPT",
+				"type": "String"
+			},
+			{
+				"name": "TNDR_ERDD",
+				"type": "String"
+			},
+			{
+				"name": "TNDR_ERDT",
+				"type": "String"
+			},
+			{
+				"name": "TNDR_LTDD",
+				"type": "String"
+			},
+			{
+				"name": "TNDR_LTDT",
+				"type": "String"
+			},
+			{
+				"name": "TNDR_LDLG",
+				"type": "String"
+			},
+			{
+				"name": "TNDR_LDLU",
+				"type": "String"
+			},
+			{
+				"name": "KZHULFR",
+				"type": "String"
+			},
+			{
+				"name": "ALLOWED_TWGT",
+				"type": "String"
+			},
+			{
+				"name": "VLSTK",
+				"type": "String"
+			},
+			{
+				"name": "VERURSYS",
+				"type": "String"
+			},
+			{
+				"name": "CM_IDENT",
+				"type": "String"
+			},
+			{
+				"name": "CM_SEQUENCE",
+				"type": "String"
+			},
+			{
+				"name": "EXT_FREIGHT_ORD",
+				"type": "String"
+			},
+			{
+				"name": "EXT_TM_SYS",
+				"type": "String"
+			},
+			{
+				"name": "/BEV1/RPFAR1",
+				"type": "String"
+			},
+			{
+				"name": "/BEV1/RPFAR2",
+				"type": "String"
+			},
+			{
+				"name": "/BEV1/RPMOWA",
+				"type": "String"
+			},
+			{
+				"name": "/BEV1/RPANHAE",
+				"type": "String"
+			},
+			{
+				"name": "/BEV1/RPFLGNR",
+				"type": "String"
+			},
+			{
+				"name": "/VSO/R_STATUS",
+				"type": "String"
+			},
+			{
+				"name": "ERDAT140",
+				"type": "String"
+			},
+			{
+				"name": "ERZET141",
 				"type": "String"
 			}
 		]
