@@ -10,7 +10,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "SAP_Data_RM07DOCS_20240306131631.csv",
 				"folderPath": "Extract_08_2021",
 				"fileSystem": "sap-data-out"
 			},
