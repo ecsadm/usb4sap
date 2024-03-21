@@ -23,7 +23,7 @@
 							"type": "AzureBlobFSReadSettings",
 							"recursive": false,
 							"wildcardFolderPath": "Extract_08_2021",
-							"wildcardFileName": "SAP_Data_RM07DOCS_*",
+							"wildcardFileName": "SAP_Data_RM07DOCS_20240306131631.csv",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
