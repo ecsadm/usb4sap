@@ -22,6 +22,14 @@
 		"USB4SAP_SICF_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "service1"
+		},
+		"ADLS_Gen2_sasUri": {
+			"type": "secureString",
+			"metadata": "Secure string for 'sasUri' of 'ADLS_Gen2'"
+		},
+		"ADLS_Parquet_sasUri": {
+			"type": "secureString",
+			"metadata": "Secure string for 'sasUri' of 'ADLS_Parquet'"
 		}
 	},
 	"variables": {
@@ -130,6 +138,32 @@
 			"properties": {
 				"type": "SelfHosted",
 				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ADLS_Gen2')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"sasUri": "[parameters('ADLS_Gen2_sasUri')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ADLS_Parquet')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"sasUri": "[parameters('ADLS_Parquet_sasUri')]"
+				}
 			},
 			"dependsOn": []
 		},
@@ -521,202 +555,6 @@
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "VBKD"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DestinationDataset_350')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureSynapseAnalytics1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlDWTable",
-				"schema": [
-					{
-						"name": "MANDT",
-						"type": "char",
-						"precision": 255,
-						"scale": 255
-					},
-					{
-						"name": "VBELN",
-						"type": "char",
-						"precision": 255,
-						"scale": 255
-					},
-					{
-						"name": "POSNR",
-						"type": "int",
-						"precision": 10,
-						"scale": 255
-					},
-					{
-						"name": "MATNR",
-						"type": "char",
-						"precision": 255,
-						"scale": 255
-					},
-					{
-						"name": "KDMAT",
-						"type": "char",
-						"precision": 255,
-						"scale": 255
-					},
-					{
-						"name": "WAERK",
-						"type": "char",
-						"precision": 255,
-						"scale": 255
-					},
-					{
-						"name": "VRKME",
-						"type": "char",
-						"precision": 255,
-						"scale": 255
-					},
-					{
-						"name": "MEINS",
-						"type": "char",
-						"precision": 255,
-						"scale": 255
-					},
-					{
-						"name": "NETWR",
-						"type": "char",
-						"precision": 255,
-						"scale": 255
-					},
-					{
-						"name": "KWMENG",
-						"type": "char",
-						"precision": 255,
-						"scale": 255
-					},
-					{
-						"name": "LSMENG",
-						"type": "char",
-						"precision": 255,
-						"scale": 255
-					},
-					{
-						"name": "KBMENG",
-						"type": "char",
-						"precision": 255,
-						"scale": 255
-					},
-					{
-						"name": "KLMENG",
-						"type": "char",
-						"precision": 255,
-						"scale": 255
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "VBAP"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DestinationDataset_4h9')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureSynapseAnalytics1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlDWTable",
-				"schema": [
-					{
-						"name": "MANDT",
-						"type": "char",
-						"precision": 255,
-						"scale": 255
-					},
-					{
-						"name": "VBELN",
-						"type": "char",
-						"precision": 255,
-						"scale": 255
-					},
-					{
-						"name": "POSNR",
-						"type": "int",
-						"precision": 10,
-						"scale": 255
-					},
-					{
-						"name": "MATNR",
-						"type": "char",
-						"precision": 255,
-						"scale": 255
-					},
-					{
-						"name": "KDMAT",
-						"type": "char",
-						"precision": 255,
-						"scale": 255
-					},
-					{
-						"name": "WAERK",
-						"type": "char",
-						"precision": 255,
-						"scale": 255
-					},
-					{
-						"name": "VRKME",
-						"type": "char",
-						"precision": 255,
-						"scale": 255
-					},
-					{
-						"name": "MEINS",
-						"type": "char",
-						"precision": 255,
-						"scale": 255
-					},
-					{
-						"name": "NETWR",
-						"type": "char",
-						"precision": 255,
-						"scale": 255
-					},
-					{
-						"name": "KWMENG",
-						"type": "char",
-						"precision": 255,
-						"scale": 255
-					},
-					{
-						"name": "LSMENG",
-						"type": "char",
-						"precision": 255,
-						"scale": 255
-					},
-					{
-						"name": "KBMENG",
-						"type": "char",
-						"precision": 255,
-						"scale": 255
-					},
-					{
-						"name": "KLMENG",
-						"type": "char",
-						"precision": 255,
-						"scale": 255
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "VBAP"
 				}
 			},
 			"dependsOn": []

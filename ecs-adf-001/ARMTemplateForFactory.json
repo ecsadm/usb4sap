@@ -406,6 +406,14 @@
 		"ecc_ecs_ehp8_properties_typeProperties_username": {
 			"type": "string",
 			"defaultValue": "service1"
+		},
+		"ADLS_Gen2_sasUri": {
+			"type": "secureString",
+			"metadata": "Secure string for 'sasUri' of 'ADLS_Gen2'"
+		},
+		"ADLS_Parquet_sasUri": {
+			"type": "secureString",
+			"metadata": "Secure string for 'sasUri' of 'ADLS_Parquet'"
 		}
 	},
 	"variables": {
@@ -25712,6 +25720,171 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/RestService1')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLake_Gen2001')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ADLS2Parquet')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Transform ADLS file into Parquet",
+				"activities": [
+					{
+						"name": "ADLS2Parquet",
+						"description": "ADLS file to Parquet",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": false,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "ParquetSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings",
+									"copyBehavior": "PreserveHierarchy"
+								},
+								"formatSettings": {
+									"type": "ParquetWriteSettings"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "ADLS_Delimited",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Parquet_SVC",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ADLS_Delimited')]",
+				"[concat(variables('factoryId'), '/datasets/Parquet_SVC')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ADLS_Gen2')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"sasUri": "[parameters('ADLS_Gen2_sasUri')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ADLS_Delimited')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLake_Gen2001",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "SAP_Data_RM07DOCS_20240306131631.csv",
+						"folderPath": "Extract_08_2021",
+						"fileSystem": "sap-data-out"
+					},
+					"columnDelimiter": "|",
+					"rowDelimiter": "\n",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "|Asset|Sub-number|Counter|Order|Opertn task list no.|Document Header Text|Document Date|Qty in OPUn|Order Price Unit|Order Unit|Qty in order unit|Posting Date|Posting Date|Company Code|Movement type|Valuation Type|Batch|Entry Date|Entry Date|Time of Entry|Time of Entry|Amt.in loc.cur.|Purchase order|Item|Unit of Entry|Qty in unit of entry|Ext. Amount in LC|Sales Value|Reason for Movement|Sales Order|Sales order schedule|Sales order item|Cost Center|Customer|Movement indicator|Consumption|Receipt Indicator|Storage Location|Vendor|Material|Sales order|Sales order item|Material Document|Base Unit of Measure|Quantity|Material Doc. Year|Network|WBS Element|Reservation|Item number of reservation|Debit/Credit ind|Special Stock|User Name|User Name|Trans./Event Type|Trans./Event Type|Sales Value inc. VAT|Currency|Plant|Goods Receipt/Issue Slip|Item automatically created|Reference|Reference|Material Doc.Item|Original Line Item|Multiple Acct Assignment|Material Description|Seq. No. of Account Assgt|Order Unit|Item category|Acct Assignment Cat.|Distribut. indicator|Partial invoice|GR non-valuated|Qty Share Acct Assgt|Pro. Qty in OUn|Pro. Qty in OPU|Pro. Amount in LC|Name 1|Movement Type Text|WBS element|Activity||Smart Number",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLake_Gen2001')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ADLS_Parquet')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"sasUri": "[parameters('ADLS_Parquet_sasUri')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Parquet_SVC')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ADLS_Parquet",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "SAP_Data_RM07DOCS_20240306131631.parquet",
+						"folderPath": "Extract_08_2021/Parquet",
+						"fileSystem": "sap-data-out"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ADLS_Parquet')]"
 			]
 		}
 	]

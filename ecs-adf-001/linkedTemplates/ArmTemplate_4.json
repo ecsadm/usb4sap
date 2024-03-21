@@ -39,14 +39,6 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'SAP_ODP_ECC'"
 		},
-		"SAP_S4_new_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'SAP_S4_new'"
-		},
-		"SAP_USB4SAP_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'SAP_USB4SAP'"
-		},
 		"AzureDataLakeAnalytics1_properties_typeProperties_accountName": {
 			"type": "string",
 			"defaultValue": "mydataanalytics01"
@@ -150,36 +142,912 @@
 		"SAP_ODP_ECC_properties_typeProperties_systemNumber": {
 			"type": "string",
 			"defaultValue": "00"
-		},
-		"SAP_S4_new_properties_typeProperties_clientId": {
-			"type": "string",
-			"defaultValue": "100"
-		},
-		"SAP_S4_new_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "rem248"
-		},
-		"SAP_S4_new_properties_typeProperties_server": {
-			"type": "string",
-			"defaultValue": "sap2.remoteides.com"
-		},
-		"SAP_S4_new_properties_typeProperties_systemNumber": {
-			"type": "string",
-			"defaultValue": "24"
-		},
-		"SAP_USB4SAP_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "http://sap-ecc-ehp8.ecoservity.com:8000/sap/opu/odata/ECOS/OBJ2CLOUD_V2_2_SRV/ET_DataSetSet"
-		},
-		"SAP_USB4SAP_properties_typeProperties_username": {
-			"type": "string",
-			"defaultValue": "service1"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/SourceDataset_5no')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStore2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureDataLakeStoreLocation",
+						"fileName": "VBKD_001.txt",
+						"folderPath": "sapbw_output"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "MANDT"
+					},
+					{
+						"name": "VBELN"
+					},
+					{
+						"name": "POSNR"
+					},
+					{
+						"name": "KONDA"
+					},
+					{
+						"name": "KDGRP"
+					},
+					{
+						"name": "BZIRK"
+					},
+					{
+						"name": "PLTYP"
+					},
+					{
+						"name": "INCO1"
+					},
+					{
+						"name": "INCO2"
+					},
+					{
+						"name": "KZAZU"
+					},
+					{
+						"name": "PERFK"
+					},
+					{
+						"name": "PERRL"
+					},
+					{
+						"name": "MRNKZ"
+					},
+					{
+						"name": "KURRF"
+					},
+					{
+						"name": "VALTG"
+					},
+					{
+						"name": "VALDT"
+					},
+					{
+						"name": "ZTERM"
+					},
+					{
+						"name": "ZLSCH"
+					},
+					{
+						"name": "KTGRD"
+					},
+					{
+						"name": "KURSK"
+					},
+					{
+						"name": "PRSDT"
+					},
+					{
+						"name": "FKDAT"
+					},
+					{
+						"name": "FBUDA"
+					},
+					{
+						"name": "GJAHR"
+					},
+					{
+						"name": "POPER"
+					},
+					{
+						"name": "STCUR"
+					},
+					{
+						"name": "MSCHL"
+					},
+					{
+						"name": "MANSP"
+					},
+					{
+						"name": "FPLNR"
+					},
+					{
+						"name": "WAKTION"
+					},
+					{
+						"name": "ABSSC"
+					},
+					{
+						"name": "LCNUM"
+					},
+					{
+						"name": "J_1AFITP"
+					},
+					{
+						"name": "J_1ARFZ"
+					},
+					{
+						"name": "J_1AREGIO"
+					},
+					{
+						"name": "J_1AGICD"
+					},
+					{
+						"name": "J_1ADTYP"
+					},
+					{
+						"name": "J_1ATXREL"
+					},
+					{
+						"name": "ABTNR"
+					},
+					{
+						"name": "EMPST"
+					},
+					{
+						"name": "BSTKD"
+					},
+					{
+						"name": "BSTDK"
+					},
+					{
+						"name": "BSARK"
+					},
+					{
+						"name": "IHREZ"
+					},
+					{
+						"name": "BSTKD_E"
+					},
+					{
+						"name": "BSTDK_E"
+					},
+					{
+						"name": "BSARK_E"
+					},
+					{
+						"name": "IHREZ_E"
+					},
+					{
+						"name": "POSEX_E"
+					},
+					{
+						"name": "KURSK_DAT"
+					},
+					{
+						"name": "KURRF_DAT"
+					},
+					{
+						"name": "KDKG1"
+					},
+					{
+						"name": "KDKG2"
+					},
+					{
+						"name": "KDKG3"
+					},
+					{
+						"name": "KDKG4"
+					},
+					{
+						"name": "KDKG5"
+					},
+					{
+						"name": "WKWAE"
+					},
+					{
+						"name": "WKKUR"
+					},
+					{
+						"name": "AKWAE"
+					},
+					{
+						"name": "AKKUR"
+					},
+					{
+						"name": "AKPRZ"
+					},
+					{
+						"name": "J_1AINDXP"
+					},
+					{
+						"name": "J_1AIDATEP"
+					},
+					{
+						"name": "BSTKD_M"
+					},
+					{
+						"name": "DELCO"
+					},
+					{
+						"name": "FFPRF"
+					},
+					{
+						"name": "BEMOT"
+					},
+					{
+						"name": "FAKTF"
+					},
+					{
+						"name": "RRREL"
+					},
+					{
+						"name": "ACDATV"
+					},
+					{
+						"name": "VSART"
+					},
+					{
+						"name": "TRATY"
+					},
+					{
+						"name": "TRMTYP"
+					},
+					{
+						"name": "SDABW"
+					},
+					{
+						"name": "WMINR"
+					},
+					{
+						"name": "FKBER"
+					},
+					{
+						"name": "PODKZ"
+					},
+					{
+						"name": "CAMPAIGN"
+					},
+					{
+						"name": "VKONT"
+					},
+					{
+						"name": "DPBP_REF_FPLNR"
+					},
+					{
+						"name": "DPBP_REF_FPLTR"
+					},
+					{
+						"name": "REVSP"
+					},
+					{
+						"name": "REVEVTYP"
+					},
+					{
+						"name": "VTREF"
+					},
+					{
+						"name": "BOOKING_FR"
+					},
+					{
+						"name": "BOOKING_TO"
+					},
+					{
+						"name": "SHIPPING_FR"
+					},
+					{
+						"name": "SHIPPING_TO"
+					},
+					{
+						"name": "BILLING_FR"
+					},
+					{
+						"name": "BILLING_TO"
+					},
+					{
+						"name": "EXERCISE_FR"
+					},
+					{
+						"name": "EXERCISE_TO"
+					},
+					{
+						"name": "DESIGN_REG_NO"
+					},
+					{
+						"name": "DROP_SHIP"
+					},
+					{
+						"name": "RFPLN"
+					},
+					{
+						"name": "SYNCH"
+					},
+					{
+						"name": "PACKNO"
+					},
+					{
+						"name": "PEROP_BEG"
+					},
+					{
+						"name": "PEROP_END"
+					},
+					{
+						"name": "STCODE"
+					},
+					{
+						"name": "FORMC1"
+					},
+					{
+						"name": "FORMC2"
+					},
+					{
+						"name": "STEUC"
+					},
+					{
+						"name": "COMPREAS"
+					},
+					{
+						"name": "MNDID"
+					},
+					{
+						"name": "PAY_TYPE"
+					},
+					{
+						"name": "SEPON"
+					},
+					{
+						"name": "MNDVG"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SourceDataset_882')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStore2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureDataLakeStoreLocation",
+						"fileName": "VBAK_001.txt",
+						"folderPath": "sapbw_output"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "MANDT"
+					},
+					{
+						"name": "VBELN"
+					},
+					{
+						"name": "ERDAT"
+					},
+					{
+						"name": "ERZET"
+					},
+					{
+						"name": "ERNAM"
+					},
+					{
+						"name": "ANGDT"
+					},
+					{
+						"name": "BNDDT"
+					},
+					{
+						"name": "AUDAT"
+					},
+					{
+						"name": "VBTYP"
+					},
+					{
+						"name": "TRVOG"
+					},
+					{
+						"name": "AUART"
+					},
+					{
+						"name": "AUGRU"
+					},
+					{
+						"name": "GWLDT"
+					},
+					{
+						"name": "SUBMI"
+					},
+					{
+						"name": "LIFSK"
+					},
+					{
+						"name": "FAKSK"
+					},
+					{
+						"name": "NETWR"
+					},
+					{
+						"name": "WAERK"
+					},
+					{
+						"name": "VKORG"
+					},
+					{
+						"name": "VTWEG"
+					},
+					{
+						"name": "SPART"
+					},
+					{
+						"name": "VKGRP"
+					},
+					{
+						"name": "VKBUR"
+					},
+					{
+						"name": "GSBER"
+					},
+					{
+						"name": "GSKST"
+					},
+					{
+						"name": "GUEBG"
+					},
+					{
+						"name": "GUEEN"
+					},
+					{
+						"name": "KNUMV"
+					},
+					{
+						"name": "VDATU"
+					},
+					{
+						"name": "VPRGR"
+					},
+					{
+						"name": "AUTLF"
+					},
+					{
+						"name": "VBKLA"
+					},
+					{
+						"name": "VBKLT"
+					},
+					{
+						"name": "KALSM"
+					},
+					{
+						"name": "VSBED"
+					},
+					{
+						"name": "FKARA"
+					},
+					{
+						"name": "AWAHR"
+					},
+					{
+						"name": "KTEXT"
+					},
+					{
+						"name": "BSTNK"
+					},
+					{
+						"name": "BSARK"
+					},
+					{
+						"name": "BSTDK"
+					},
+					{
+						"name": "BSTZD"
+					},
+					{
+						"name": "IHREZ"
+					},
+					{
+						"name": "BNAME"
+					},
+					{
+						"name": "TELF1"
+					},
+					{
+						"name": "MAHZA"
+					},
+					{
+						"name": "MAHDT"
+					},
+					{
+						"name": "KUNNR"
+					},
+					{
+						"name": "KOSTL"
+					},
+					{
+						"name": "STAFO"
+					},
+					{
+						"name": "STWAE"
+					},
+					{
+						"name": "AEDAT"
+					},
+					{
+						"name": "KVGR1"
+					},
+					{
+						"name": "KVGR2"
+					},
+					{
+						"name": "KVGR3"
+					},
+					{
+						"name": "KVGR4"
+					},
+					{
+						"name": "KVGR5"
+					},
+					{
+						"name": "KNUMA"
+					},
+					{
+						"name": "KOKRS"
+					},
+					{
+						"name": "PS_PSP_PNR"
+					},
+					{
+						"name": "KURST"
+					},
+					{
+						"name": "KKBER"
+					},
+					{
+						"name": "KNKLI"
+					},
+					{
+						"name": "GRUPP"
+					},
+					{
+						"name": "SBGRP"
+					},
+					{
+						"name": "CTLPC"
+					},
+					{
+						"name": "CMWAE"
+					},
+					{
+						"name": "CMFRE"
+					},
+					{
+						"name": "CMNUP"
+					},
+					{
+						"name": "CMNGV"
+					},
+					{
+						"name": "AMTBL"
+					},
+					{
+						"name": "HITYP_PR"
+					},
+					{
+						"name": "ABRVW"
+					},
+					{
+						"name": "ABDIS"
+					},
+					{
+						"name": "VGBEL"
+					},
+					{
+						"name": "OBJNR"
+					},
+					{
+						"name": "BUKRS_VF"
+					},
+					{
+						"name": "TAXK1"
+					},
+					{
+						"name": "TAXK2"
+					},
+					{
+						"name": "TAXK3"
+					},
+					{
+						"name": "TAXK4"
+					},
+					{
+						"name": "TAXK5"
+					},
+					{
+						"name": "TAXK6"
+					},
+					{
+						"name": "TAXK7"
+					},
+					{
+						"name": "TAXK8"
+					},
+					{
+						"name": "TAXK9"
+					},
+					{
+						"name": "XBLNR"
+					},
+					{
+						"name": "ZUONR"
+					},
+					{
+						"name": "VGTYP"
+					},
+					{
+						"name": "KALSM_CH"
+					},
+					{
+						"name": "AGRZR"
+					},
+					{
+						"name": "AUFNR"
+					},
+					{
+						"name": "QMNUM"
+					},
+					{
+						"name": "VBELN_GRP"
+					},
+					{
+						"name": "SCHEME_GRP"
+					},
+					{
+						"name": "ABRUF_PART"
+					},
+					{
+						"name": "ABHOD"
+					},
+					{
+						"name": "ABHOV"
+					},
+					{
+						"name": "ABHOB"
+					},
+					{
+						"name": "RPLNR"
+					},
+					{
+						"name": "VZEIT"
+					},
+					{
+						"name": "STCEG_L"
+					},
+					{
+						"name": "LANDTX"
+					},
+					{
+						"name": "XEGDR"
+					},
+					{
+						"name": "ENQUEUE_GRP"
+					},
+					{
+						"name": "DAT_FZAU"
+					},
+					{
+						"name": "FMBDAT"
+					},
+					{
+						"name": "VSNMR_V"
+					},
+					{
+						"name": "HANDLE"
+					},
+					{
+						"name": "PROLI"
+					},
+					{
+						"name": "CONT_DG"
+					},
+					{
+						"name": "CRM_GUID"
+					},
+					{
+						"name": "UPD_TMSTMP"
+					},
+					{
+						"name": "MSR_ID"
+					},
+					{
+						"name": "TM_CTRL_KEY"
+					},
+					{
+						"name": "HANDOVERLOC"
+					},
+					{
+						"name": "FPART"
+					},
+					{
+						"name": "VCLASSIFIC"
+					},
+					{
+						"name": "/XLSO/SO_VALD_FM"
+					},
+					{
+						"name": "/XLSO/SO_VALD_TO"
+					},
+					{
+						"name": "/XLSO/PAYMENT_OP"
+					},
+					{
+						"name": "/XLSO/TRANS_CTXT"
+					},
+					{
+						"name": "/XLSO/CATALOG_ID"
+					},
+					{
+						"name": "/XLSO/VARIANT_ID"
+					},
+					{
+						"name": "AD01FAREG"
+					},
+					{
+						"name": "AD01BASDOC"
+					},
+					{
+						"name": "LASTVCHR"
+					},
+					{
+						"name": "PLC"
+					},
+					{
+						"name": "SMB"
+					},
+					{
+						"name": "ECC"
+					},
+					{
+						"name": "IPP"
+					},
+					{
+						"name": "CUR"
+					},
+					{
+						"name": "ECO"
+					},
+					{
+						"name": "PCO"
+					},
+					{
+						"name": "DPT"
+					},
+					{
+						"name": "TOP"
+					},
+					{
+						"name": "SUS"
+					},
+					{
+						"name": "PCN"
+					},
+					{
+						"name": "TRU"
+					},
+					{
+						"name": "PCY"
+					},
+					{
+						"name": "PCD"
+					},
+					{
+						"name": "PBN"
+					},
+					{
+						"name": "AMN"
+					},
+					{
+						"name": "DNO"
+					},
+					{
+						"name": "PSM_BUDAT"
+					},
+					{
+						"name": "SWENR"
+					},
+					{
+						"name": "SMENR"
+					},
+					{
+						"name": "PHASE"
+					},
+					{
+						"name": "MTLAUR"
+					},
+					{
+						"name": "STAGE"
+					},
+					{
+						"name": "HB_CONT_REASON"
+					},
+					{
+						"name": "HB_EXPDATE"
+					},
+					{
+						"name": "HB_RESDATE"
+					},
+					{
+						"name": "J_3GKBAUL"
+					},
+					{
+						"name": "MILL_APPL_ID"
+					},
+					{
+						"name": "TAS"
+					},
+					{
+						"name": "BETC"
+					},
+					{
+						"name": "MOD_ALLOW"
+					},
+					{
+						"name": "CANCEL_ALLOW"
+					},
+					{
+						"name": "PAY_METHOD"
+					},
+					{
+						"name": "BPN"
+					},
+					{
+						"name": "REP_FREQ"
+					},
+					{
+						"name": "LOGSYSB"
+					},
+					{
+						"name": "KALCD"
+					},
+					{
+						"name": "MULTI"
+					},
+					{
+						"name": "SPPAYM"
+					},
+					{
+						"name": "WTYSC_CLM_HDR"
+					},
+					{
+						"name": "ZZADUANA"
+					},
+					{
+						"name": "ZZPATENTE"
+					},
+					{
+						"name": "ZZUSOCFDI"
+					},
+					{
+						"name": "ZZMETPAG"
+					},
+					{
+						"name": "ZZFORPAG"
+					},
+					{
+						"name": "ZZNOPEDIMENTO"
+					},
+					{
+						"name": "ZZPREDIAL"
+					}
+				]
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/SourceDataset_b37')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
@@ -1867,58 +2735,6 @@
 					},
 					"server": "[parameters('SAP_ODP_ECC_properties_typeProperties_server')]",
 					"systemNumber": "[parameters('SAP_ODP_ECC_properties_typeProperties_systemNumber')]"
-				},
-				"connectVia": {
-					"referenceName": "ir-az-vm002",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SAP_S4_new')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "S4 HANA system",
-				"annotations": [
-					"S4HANA"
-				],
-				"type": "SapTable",
-				"typeProperties": {
-					"clientId": "[parameters('SAP_S4_new_properties_typeProperties_clientId')]",
-					"language": "EN",
-					"sncMode": false,
-					"userName": "[parameters('SAP_S4_new_properties_typeProperties_userName')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('SAP_S4_new_password')]"
-					},
-					"server": "[parameters('SAP_S4_new_properties_typeProperties_server')]",
-					"systemNumber": "[parameters('SAP_S4_new_properties_typeProperties_systemNumber')]"
-				},
-				"connectVia": {
-					"referenceName": "ir-2",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SAP_USB4SAP')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "USB4SAP connection via ADF",
-				"annotations": [],
-				"type": "SapEcc",
-				"typeProperties": {
-					"url": "[parameters('SAP_USB4SAP_properties_typeProperties_url')]",
-					"username": "[parameters('SAP_USB4SAP_properties_typeProperties_username')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('SAP_USB4SAP_password')]"
-					}
 				},
 				"connectVia": {
 					"referenceName": "ir-az-vm002",

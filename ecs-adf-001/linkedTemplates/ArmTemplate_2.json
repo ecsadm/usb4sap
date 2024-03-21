@@ -13,6 +13,202 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/DestinationDataset_350')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSynapseAnalytics1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlDWTable",
+				"schema": [
+					{
+						"name": "MANDT",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "VBELN",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "POSNR",
+						"type": "int",
+						"precision": 10,
+						"scale": 255
+					},
+					{
+						"name": "MATNR",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "KDMAT",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "WAERK",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "VRKME",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "MEINS",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "NETWR",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "KWMENG",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "LSMENG",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "KBMENG",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "KLMENG",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "VBAP"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DestinationDataset_4h9')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSynapseAnalytics1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlDWTable",
+				"schema": [
+					{
+						"name": "MANDT",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "VBELN",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "POSNR",
+						"type": "int",
+						"precision": 10,
+						"scale": 255
+					},
+					{
+						"name": "MATNR",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "KDMAT",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "WAERK",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "VRKME",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "MEINS",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "NETWR",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "KWMENG",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "LSMENG",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "KBMENG",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					},
+					{
+						"name": "KLMENG",
+						"type": "char",
+						"precision": 255,
+						"scale": 255
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "VBAP"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/DestinationDataset_5no')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -645,1021 +841,6 @@
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
 					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Destination_File')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage2",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"folderPath": "Back_up-07-11-21",
-						"container": "sap-data-out"
-					},
-					"columnDelimiter": "|",
-					"escapeChar": "\\",
-					"firstRowAsHeader": false,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "Prop_0",
-						"type": "String"
-					},
-					{
-						"name": "Client",
-						"type": "String"
-					},
-					{
-						"name": "Currency type",
-						"type": "String"
-					},
-					{
-						"name": "Record Type",
-						"type": "String"
-					},
-					{
-						"name": "Version",
-						"type": "String"
-					},
-					{
-						"name": "Period/year",
-						"type": "String"
-					},
-					{
-						"name": "Profitab. Segmt No.",
-						"type": "String"
-					},
-					{
-						"name": "Subnumber",
-						"type": "String"
-					},
-					{
-						"name": "Document number",
-						"type": "String"
-					},
-					{
-						"name": "Item number",
-						"type": "String"
-					},
-					{
-						"name": "Created On",
-						"type": "String"
-					},
-					{
-						"name": "Created by",
-						"type": "String"
-					},
-					{
-						"name": "Fiscal Year",
-						"type": "String"
-					},
-					{
-						"name": "Period",
-						"type": "String"
-					},
-					{
-						"name": "Goods Issue Date",
-						"type": "String"
-					},
-					{
-						"name": "Invoice date",
-						"type": "String"
-					},
-					{
-						"name": "Posting date",
-						"type": "String"
-					},
-					{
-						"name": "Week/year",
-						"type": "String"
-					},
-					{
-						"name": "Partner prof.segment",
-						"type": "String"
-					},
-					{
-						"name": "Partner subnumber",
-						"type": "String"
-					},
-					{
-						"name": "Customer",
-						"type": "String"
-					},
-					{
-						"name": "Product",
-						"type": "String"
-					},
-					{
-						"name": "Billing Type",
-						"type": "String"
-					},
-					{
-						"name": "Currency key",
-						"type": "String"
-					},
-					{
-						"name": "Exchange rate",
-						"type": "String"
-					},
-					{
-						"name": "Co.code exch. rate",
-						"type": "String"
-					},
-					{
-						"name": "Group currency",
-						"type": "String"
-					},
-					{
-						"name": "Currency of record",
-						"type": "String"
-					},
-					{
-						"name": "Sales Order",
-						"type": "String"
-					},
-					{
-						"name": "Sales order item",
-						"type": "String"
-					},
-					{
-						"name": "Order",
-						"type": "String"
-					},
-					{
-						"name": "Sender cost center",
-						"type": "String"
-					},
-					{
-						"name": "Sender bus. process",
-						"type": "String"
-					},
-					{
-						"name": "Company Code",
-						"type": "String"
-					},
-					{
-						"name": "Controlling Area",
-						"type": "String"
-					},
-					{
-						"name": "Plant",
-						"type": "String"
-					},
-					{
-						"name": "Business Area",
-						"type": "String"
-					},
-					{
-						"name": "Sales Organization",
-						"type": "String"
-					},
-					{
-						"name": "Distribution Channel",
-						"type": "String"
-					},
-					{
-						"name": "Division",
-						"type": "String"
-					},
-					{
-						"name": "Origin",
-						"type": "String"
-					},
-					{
-						"name": "Plan/Act. Indicator",
-						"type": "String"
-					},
-					{
-						"name": "Cost Element",
-						"type": "String"
-					},
-					{
-						"name": "WBS Element",
-						"type": "String"
-					},
-					{
-						"name": "Cost Object",
-						"type": "String"
-					},
-					{
-						"name": "Reference document",
-						"type": "String"
-					},
-					{
-						"name": "Reference item no.",
-						"type": "String"
-					},
-					{
-						"name": "Canceled document",
-						"type": "String"
-					},
-					{
-						"name": "Canceled doc. item",
-						"type": "String"
-					},
-					{
-						"name": "Profit Center",
-						"type": "String"
-					},
-					{
-						"name": "Partner Profit Ctr",
-						"type": "String"
-					},
-					{
-						"name": "Update status",
-						"type": "String"
-					},
-					{
-						"name": "Time created",
-						"type": "String"
-					},
-					{
-						"name": "Reference procedure",
-						"type": "String"
-					},
-					{
-						"name": "Reference org. unit",
-						"type": "String"
-					},
-					{
-						"name": "Point of valuation",
-						"type": "String"
-					},
-					{
-						"name": "Log. system source",
-						"type": "String"
-					},
-					{
-						"name": "Prop_57",
-						"type": "String"
-					},
-					{
-						"name": "Prop_58",
-						"type": "String"
-					},
-					{
-						"name": "Prop_59",
-						"type": "String"
-					},
-					{
-						"name": "Prop_60",
-						"type": "String"
-					},
-					{
-						"name": "Prop_61",
-						"type": "String"
-					},
-					{
-						"name": "Unit of Measure",
-						"type": "String"
-					},
-					{
-						"name": "Account-based PA",
-						"type": "String"
-					},
-					{
-						"name": "Valuation",
-						"type": "String"
-					},
-					{
-						"name": "Activity Type",
-						"type": "String"
-					},
-					{
-						"name": "Crcy type/val.view",
-						"type": "String"
-					},
-					{
-						"name": "Material Group",
-						"type": "String"
-					},
-					{
-						"name": "Material group 1",
-						"type": "String"
-					},
-					{
-						"name": "Prod.hier.1 bef. 4.5",
-						"type": "String"
-					},
-					{
-						"name": "Prod.hier.2 bef. 4.5",
-						"type": "String"
-					},
-					{
-						"name": "Prod.hier.3 bef. 4.5",
-						"type": "String"
-					},
-					{
-						"name": "Product category",
-						"type": "String"
-					},
-					{
-						"name": "Prod.group for SOP",
-						"type": "String"
-					},
-					{
-						"name": "Strategic Bus.Unit",
-						"type": "String"
-					},
-					{
-						"name": "Customer group",
-						"type": "String"
-					},
-					{
-						"name": "Customer Classific.",
-						"type": "String"
-					},
-					{
-						"name": "Sales district",
-						"type": "String"
-					},
-					{
-						"name": "Industry",
-						"type": "String"
-					},
-					{
-						"name": "Region before 4.5",
-						"type": "String"
-					},
-					{
-						"name": "Country",
-						"type": "String"
-					},
-					{
-						"name": "Ship-To Party",
-						"type": "String"
-					},
-					{
-						"name": "Country Ship-to",
-						"type": "String"
-					},
-					{
-						"name": "Intern.Region Ship-t",
-						"type": "String"
-					},
-					{
-						"name": "CustomerHierarchy01",
-						"type": "String"
-					},
-					{
-						"name": "CustomerHierarchy02",
-						"type": "String"
-					},
-					{
-						"name": "CustomerHierarchy03",
-						"type": "String"
-					},
-					{
-						"name": "Sales employee",
-						"type": "String"
-					},
-					{
-						"name": "Sales Office",
-						"type": "String"
-					},
-					{
-						"name": "Sales Group",
-						"type": "String"
-					},
-					{
-						"name": "Intercompany ind.",
-						"type": "String"
-					},
-					{
-						"name": "Order reason",
-						"type": "String"
-					},
-					{
-						"name": "Promotion",
-						"type": "String"
-					},
-					{
-						"name": "Sales deal",
-						"type": "String"
-					},
-					{
-						"name": "Prod.hierarchy01-1",
-						"type": "String"
-					},
-					{
-						"name": "Prod.hierarchy01-2",
-						"type": "String"
-					},
-					{
-						"name": "Prod.hierarchy01-3",
-						"type": "String"
-					},
-					{
-						"name": "Country and region",
-						"type": "String"
-					},
-					{
-						"name": "Sales order history",
-						"type": "String"
-					},
-					{
-						"name": "Measurements",
-						"type": "String"
-					},
-					{
-						"name": "Quality",
-						"type": "String"
-					},
-					{
-						"name": "User interface",
-						"type": "String"
-					},
-					{
-						"name": "Region",
-						"type": "String"
-					},
-					{
-						"name": "CRM Marketing Element",
-						"type": "String"
-					},
-					{
-						"name": "CRM Cost Element",
-						"type": "String"
-					},
-					{
-						"name": "Route",
-						"type": "String"
-					},
-					{
-						"name": "Base Unit of Measure106",
-						"type": "String"
-					},
-					{
-						"name": "Base Unit of Measure107",
-						"type": "String"
-					},
-					{
-						"name": "Base Unit of Measure108",
-						"type": "String"
-					},
-					{
-						"name": "Base Unit of Measure109",
-						"type": "String"
-					},
-					{
-						"name": "Base Unit of Measure110",
-						"type": "String"
-					},
-					{
-						"name": "Base Unit of Measure111",
-						"type": "String"
-					},
-					{
-						"name": "Base Unit of Measure112",
-						"type": "String"
-					},
-					{
-						"name": "Base Unit of Measure113",
-						"type": "String"
-					},
-					{
-						"name": "Base Unit of Measure114",
-						"type": "String"
-					},
-					{
-						"name": "Base Unit of Measure115",
-						"type": "String"
-					},
-					{
-						"name": "Base Unit of Measure116",
-						"type": "String"
-					},
-					{
-						"name": "Base Unit of Measure117",
-						"type": "String"
-					},
-					{
-						"name": "Base Unit of Measure118",
-						"type": "String"
-					},
-					{
-						"name": "Base Unit of Measure119",
-						"type": "String"
-					},
-					{
-						"name": "Base Unit of Measure120",
-						"type": "String"
-					},
-					{
-						"name": "Base Unit of Measure121",
-						"type": "String"
-					},
-					{
-						"name": "Prop_122",
-						"type": "String"
-					},
-					{
-						"name": "Prop_123",
-						"type": "String"
-					},
-					{
-						"name": "Prop_124",
-						"type": "String"
-					},
-					{
-						"name": "Prop_125",
-						"type": "String"
-					},
-					{
-						"name": "Prop_126",
-						"type": "String"
-					},
-					{
-						"name": "Prop_127",
-						"type": "String"
-					},
-					{
-						"name": "Prop_128",
-						"type": "String"
-					},
-					{
-						"name": "Prop_129",
-						"type": "String"
-					},
-					{
-						"name": "Prop_130",
-						"type": "String"
-					},
-					{
-						"name": "Prop_131",
-						"type": "String"
-					},
-					{
-						"name": "Prop_132",
-						"type": "String"
-					},
-					{
-						"name": "Prop_133",
-						"type": "String"
-					},
-					{
-						"name": "Prop_134",
-						"type": "String"
-					},
-					{
-						"name": "Prop_135",
-						"type": "String"
-					},
-					{
-						"name": "Prop_136",
-						"type": "String"
-					},
-					{
-						"name": "Prop_137",
-						"type": "String"
-					},
-					{
-						"name": "Prop_138",
-						"type": "String"
-					},
-					{
-						"name": "Prop_139",
-						"type": "String"
-					},
-					{
-						"name": "Prop_140",
-						"type": "String"
-					},
-					{
-						"name": "Prop_141",
-						"type": "String"
-					},
-					{
-						"name": "Prop_142",
-						"type": "String"
-					},
-					{
-						"name": "Prop_143",
-						"type": "String"
-					},
-					{
-						"name": "Prop_144",
-						"type": "String"
-					},
-					{
-						"name": "Prop_145",
-						"type": "String"
-					},
-					{
-						"name": "Prop_146",
-						"type": "String"
-					},
-					{
-						"name": "Prop_147",
-						"type": "String"
-					},
-					{
-						"name": "Prop_148",
-						"type": "String"
-					},
-					{
-						"name": "Prop_149",
-						"type": "String"
-					},
-					{
-						"name": "Prop_150",
-						"type": "String"
-					},
-					{
-						"name": "Prop_151",
-						"type": "String"
-					},
-					{
-						"name": "Prop_152",
-						"type": "String"
-					},
-					{
-						"name": "Prop_153",
-						"type": "String"
-					},
-					{
-						"name": "Prop_154",
-						"type": "String"
-					},
-					{
-						"name": "Prop_155",
-						"type": "String"
-					},
-					{
-						"name": "Prop_156",
-						"type": "String"
-					},
-					{
-						"name": "Prop_157",
-						"type": "String"
-					},
-					{
-						"name": "Prop_158",
-						"type": "String"
-					},
-					{
-						"name": "Prop_159",
-						"type": "String"
-					},
-					{
-						"name": "Prop_160",
-						"type": "String"
-					},
-					{
-						"name": "Prop_161",
-						"type": "String"
-					},
-					{
-						"name": "Prop_162",
-						"type": "String"
-					},
-					{
-						"name": "Prop_163",
-						"type": "String"
-					},
-					{
-						"name": "Prop_164",
-						"type": "String"
-					},
-					{
-						"name": "Prop_165",
-						"type": "String"
-					},
-					{
-						"name": "Prop_166",
-						"type": "String"
-					},
-					{
-						"name": "Prop_167",
-						"type": "String"
-					},
-					{
-						"name": "Prop_168",
-						"type": "String"
-					},
-					{
-						"name": "Prop_169",
-						"type": "String"
-					},
-					{
-						"name": "Prop_170",
-						"type": "String"
-					},
-					{
-						"name": "Prop_171",
-						"type": "String"
-					},
-					{
-						"name": "Prop_172",
-						"type": "String"
-					},
-					{
-						"name": "Prop_173",
-						"type": "String"
-					},
-					{
-						"name": "Prop_174",
-						"type": "String"
-					},
-					{
-						"name": "Prop_175",
-						"type": "String"
-					},
-					{
-						"name": "Prop_176",
-						"type": "String"
-					},
-					{
-						"name": "Prop_177",
-						"type": "String"
-					},
-					{
-						"name": "Prop_178",
-						"type": "String"
-					},
-					{
-						"name": "Prop_179",
-						"type": "String"
-					},
-					{
-						"name": "Prop_180",
-						"type": "String"
-					},
-					{
-						"name": "Prop_181",
-						"type": "String"
-					},
-					{
-						"name": "Prop_182",
-						"type": "String"
-					},
-					{
-						"name": "Prop_183",
-						"type": "String"
-					},
-					{
-						"name": "Prop_184",
-						"type": "String"
-					},
-					{
-						"name": "Prop_185",
-						"type": "String"
-					},
-					{
-						"name": "Prop_186",
-						"type": "String"
-					},
-					{
-						"name": "Prop_187",
-						"type": "String"
-					},
-					{
-						"name": "Prop_188",
-						"type": "String"
-					},
-					{
-						"name": "Prop_189",
-						"type": "String"
-					},
-					{
-						"name": "Prop_190",
-						"type": "String"
-					},
-					{
-						"name": "Prop_191",
-						"type": "String"
-					},
-					{
-						"name": "Prop_192",
-						"type": "String"
-					},
-					{
-						"name": "Prop_193",
-						"type": "String"
-					},
-					{
-						"name": "Prop_194",
-						"type": "String"
-					},
-					{
-						"name": "Prop_195",
-						"type": "String"
-					},
-					{
-						"name": "Prop_196",
-						"type": "String"
-					},
-					{
-						"name": "Prop_197",
-						"type": "String"
-					},
-					{
-						"name": "Prop_198",
-						"type": "String"
-					},
-					{
-						"name": "Prop_199",
-						"type": "String"
-					},
-					{
-						"name": "Prop_200",
-						"type": "String"
-					},
-					{
-						"name": "Prop_201",
-						"type": "String"
-					},
-					{
-						"name": "Prop_202",
-						"type": "String"
-					},
-					{
-						"name": "Prop_203",
-						"type": "String"
-					},
-					{
-						"name": "Prop_204",
-						"type": "String"
-					},
-					{
-						"name": "Prop_205",
-						"type": "String"
-					},
-					{
-						"name": "Prop_206",
-						"type": "String"
-					},
-					{
-						"name": "Prop_207",
-						"type": "String"
-					},
-					{
-						"name": "Prop_208",
-						"type": "String"
-					},
-					{
-						"name": "Prop_209",
-						"type": "String"
-					},
-					{
-						"name": "Prop_210",
-						"type": "String"
-					},
-					{
-						"name": "Prop_211",
-						"type": "String"
-					},
-					{
-						"name": "Prop_212",
-						"type": "String"
-					},
-					{
-						"name": "Prop_213",
-						"type": "String"
-					},
-					{
-						"name": "Prop_214",
-						"type": "String"
-					},
-					{
-						"name": "Prop_215",
-						"type": "String"
-					},
-					{
-						"name": "Prop_216",
-						"type": "String"
-					},
-					{
-						"name": "Prop_217",
-						"type": "String"
-					},
-					{
-						"name": "Prop_218",
-						"type": "String"
-					},
-					{
-						"name": "Prop_219",
-						"type": "String"
-					},
-					{
-						"name": "Prop_220",
-						"type": "String"
-					},
-					{
-						"name": "Prop_221",
-						"type": "String"
-					},
-					{
-						"name": "Prop_222",
-						"type": "String"
-					},
-					{
-						"name": "Prop_223",
-						"type": "String"
-					},
-					{
-						"name": "Prop_224",
-						"type": "String"
-					},
-					{
-						"name": "Prop_225",
-						"type": "String"
-					},
-					{
-						"name": "Prop_226",
-						"type": "String"
-					},
-					{
-						"name": "Prop_227",
-						"type": "String"
-					},
-					{
-						"name": "Prop_228",
-						"type": "String"
-					},
-					{
-						"name": "Prop_229",
-						"type": "String"
-					},
-					{
-						"name": "Prop_230",
-						"type": "String"
-					},
-					{
-						"name": "Prop_231",
-						"type": "String"
-					},
-					{
-						"name": "Prop_232",
-						"type": "String"
-					},
-					{
-						"name": "Prop_233",
-						"type": "String"
-					},
-					{
-						"name": "Prop_234",
-						"type": "String"
-					},
-					{
-						"name": "Prop_235",
-						"type": "String"
-					},
-					{
-						"name": "Prop_236",
-						"type": "String"
-					},
-					{
-						"name": "Prop_237",
-						"type": "String"
-					},
-					{
-						"name": "Currency238",
-						"type": "String"
-					},
-					{
-						"name": "Currency239",
-						"type": "String"
-					},
-					{
-						"name": "Currency240",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Export_from_SAPS4')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureDataLake_Gen2001",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileSystem": "4synapse"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
 					"quoteChar": "\""
 				},
 				"schema": []
