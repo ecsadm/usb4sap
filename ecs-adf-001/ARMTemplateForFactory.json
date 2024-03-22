@@ -26484,6 +26484,7 @@
 							"sink": {
 								"type": "AzureTableSink",
 								"azureTableInsertType": "replace",
+								"azureTableDefaultPartitionKeyValue": "VTTK",
 								"writeBatchSize": 10000
 							},
 							"enableStaging": false,
@@ -26543,7 +26544,7 @@
 					"columnDelimiter": "|",
 					"rowDelimiter": "\n",
 					"escapeChar": "\\",
-					"firstRowAsHeader": false,
+					"firstRowAsHeader": true,
 					"quoteChar": "\""
 				},
 				"schema": []
@@ -26565,7 +26566,7 @@
 				"type": "AzureTable",
 				"schema": [],
 				"typeProperties": {
-					"tableName": "CGSEA"
+					"tableName": "sapdata"
 				}
 			},
 			"dependsOn": [
