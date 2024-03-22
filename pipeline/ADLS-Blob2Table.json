@@ -29,6 +29,7 @@
 					"sink": {
 						"type": "AzureTableSink",
 						"azureTableInsertType": "replace",
+						"azureTableDefaultPartitionKeyValue": "VTTK",
 						"writeBatchSize": 10000
 					},
 					"enableStaging": false,
