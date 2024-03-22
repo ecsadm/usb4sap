@@ -64,6 +64,11 @@
 				"type": "string"
 			}
 		},
+		"variables": {
+			"v_filename": {
+				"type": "String"
+			}
+		},
 		"annotations": []
 	}
 }
