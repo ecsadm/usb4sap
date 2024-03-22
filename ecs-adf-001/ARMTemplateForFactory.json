@@ -139,6 +139,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'linkedServicesql1'"
 		},
+		"ADLS_Gen2_sasUri": {
+			"type": "secureString",
+			"metadata": "Secure string for 'sasUri' of 'ADLS_Gen2'"
+		},
+		"ADLS_Parquet_sasUri": {
+			"type": "secureString",
+			"metadata": "Secure string for 'sasUri' of 'ADLS_Parquet'"
+		},
 		"AzureDataLakeAnalytics1_properties_typeProperties_accountName": {
 			"type": "string",
 			"defaultValue": "mydataanalytics01"
@@ -406,14 +414,6 @@
 		"ecc_ecs_ehp8_properties_typeProperties_username": {
 			"type": "string",
 			"defaultValue": "service1"
-		},
-		"ADLS_Gen2_sasUri": {
-			"type": "secureString",
-			"metadata": "Secure string for 'sasUri' of 'ADLS_Gen2'"
-		},
-		"ADLS_Parquet_sasUri": {
-			"type": "secureString",
-			"metadata": "Secure string for 'sasUri' of 'ADLS_Parquet'"
 		}
 	},
 	"variables": {
@@ -486,6 +486,169 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/integrationRuntimes/integrationRuntime1')]",
 				"[concat(variables('factoryId'), '/pipelines/DP_VBAK')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ADLS-Blob2Table')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "ADLS-Blob2Table",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": false,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "AzureTableSink",
+								"azureTableInsertType": "replace",
+								"azureTableDefaultPartitionKeyValue": "VTTK",
+								"writeBatchSize": 10000
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "ADLS_CSV",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "AzureTable1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"p_source": {
+						"type": "string"
+					},
+					"p_sink": {
+						"type": "string"
+					}
+				},
+				"variables": {
+					"v_filename": {
+						"type": "String"
+					}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ADLS_CSV')]",
+				"[concat(variables('factoryId'), '/datasets/AzureTable1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ADLS2Parquet')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Transform ADLS file into Parquet",
+				"activities": [
+					{
+						"name": "ADLS2Parquet",
+						"description": "ADLS file to Parquet",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": false,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "ParquetSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings",
+									"copyBehavior": "PreserveHierarchy"
+								},
+								"formatSettings": {
+									"type": "ParquetWriteSettings"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "ADLS_Delimited",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Parquet_SVC",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ADLS_Delimited')]",
+				"[concat(variables('factoryId'), '/datasets/Parquet_SVC')]"
 			]
 		},
 		{
@@ -11849,7 +12012,7 @@
 								"httpRequestTimeout": "00:01:40",
 								"requestInterval": "00.00:00:00.010",
 								"requestMethod": "POST",
-								"requestBody": "{\n    \"DELIMITER\": \"|\",\n    \"OBJ_TYPE\": \"T\",\n    \"OBJ_ID\": \"VTTK\",\n    \"OUTPUT_STYLE\": \"\",\n    \"REQUESTER\": \"USB4SAP\",\n    \"FIELD_LABLE\": \"T\",\n    \"VARIANT\":\"\",\n    \"DATADEST\": \"Z|ECS_REST_AZURE_BLOB_SAP_DATA|SAS|sv=2021-06-08&ss=bfqt&srt=sco&sp=rwdlacupyx&se=2025-01-04T15:32:02Z&st=2023-01-19T07:32:02Z&spr=https,http&sig=7i92wCtOU1ucjOw721PkmBkan5mmb0vhQC%2FblM6R1%2FM%3D|sap-data-out/Extract_08_2021/From-ADF\"\n}"
+								"requestBody": "{\n    \"DELIMITER\": \"|\",\n    \"OBJ_TYPE\": \"R\",\n    \"OBJ_ID\": \"RM07DOCS\",\n    \"OUTPUT_STYLE\": \"ALV\",\n    \"REQUESTER\": \"USB4SAP\",\n    \"FIELD_LABLE\": \"B\",\n    \"VARIANT\":\"USB4SAP1\",\n    \"DATADEST\": \"Z|ECS_REST_AZURE_BLOB_SAP_DATA|SAS|sv=2021-06-08&ss=bfqt&srt=sco&sp=rwdlacupyx&se=2025-01-04T15:32:02Z&st=2023-01-19T07:32:02Z&spr=https,http&sig=7i92wCtOU1ucjOw721PkmBkan5mmb0vhQC%2FblM6R1%2FM%3D|sap-data-out/Extract_08_2021/From-ADF\"\n}"
 							},
 							"sink": {
 								"type": "JsonSink",
@@ -15210,6 +15373,36 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/ADLS_CSV')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLake_Gen2001",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "SAP_Data_VTTK_20240306175538.csv",
+						"folderPath": "Extract_08_2021",
+						"fileSystem": "sap-data-out"
+					},
+					"columnDelimiter": "|",
+					"rowDelimiter": "\n",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLake_Gen2001')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/ADLS_Dataset')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -15233,6 +15426,605 @@
 					}
 				},
 				"schema": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLake_Gen2001')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ADLS_Delimited')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLake_Gen2001",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "SAP_Data_VTTK_20240306175538.csv",
+						"folderPath": "Extract_08_2021",
+						"fileSystem": "sap-data-out"
+					},
+					"columnDelimiter": "|",
+					"rowDelimiter": "\n",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "MANDT",
+						"type": "String"
+					},
+					{
+						"name": "TKNUM",
+						"type": "String"
+					},
+					{
+						"name": "VBTYP",
+						"type": "String"
+					},
+					{
+						"name": "SHTYP",
+						"type": "String"
+					},
+					{
+						"name": "TPLST",
+						"type": "String"
+					},
+					{
+						"name": "ERNAM",
+						"type": "String"
+					},
+					{
+						"name": "ERDAT6",
+						"type": "String"
+					},
+					{
+						"name": "ERZET7",
+						"type": "String"
+					},
+					{
+						"name": "AENAM",
+						"type": "String"
+					},
+					{
+						"name": "AEDAT",
+						"type": "String"
+					},
+					{
+						"name": "AEZET",
+						"type": "String"
+					},
+					{
+						"name": "STERM",
+						"type": "String"
+					},
+					{
+						"name": "ABFER",
+						"type": "String"
+					},
+					{
+						"name": "ABWST",
+						"type": "String"
+					},
+					{
+						"name": "BFART",
+						"type": "String"
+					},
+					{
+						"name": "VSART",
+						"type": "String"
+					},
+					{
+						"name": "VSAVL",
+						"type": "String"
+					},
+					{
+						"name": "VSANL",
+						"type": "String"
+					},
+					{
+						"name": "LAUFK",
+						"type": "String"
+					},
+					{
+						"name": "VSBED",
+						"type": "String"
+					},
+					{
+						"name": "ROUTE",
+						"type": "String"
+					},
+					{
+						"name": "SIGNI",
+						"type": "String"
+					},
+					{
+						"name": "EXTI1",
+						"type": "String"
+					},
+					{
+						"name": "EXTI2",
+						"type": "String"
+					},
+					{
+						"name": "TPBEZ",
+						"type": "String"
+					},
+					{
+						"name": "STDIS",
+						"type": "String"
+					},
+					{
+						"name": "DTDIS",
+						"type": "String"
+					},
+					{
+						"name": "UZDIS",
+						"type": "String"
+					},
+					{
+						"name": "STREG",
+						"type": "String"
+					},
+					{
+						"name": "DPREG",
+						"type": "String"
+					},
+					{
+						"name": "UPREG",
+						"type": "String"
+					},
+					{
+						"name": "DAREG",
+						"type": "String"
+					},
+					{
+						"name": "UAREG",
+						"type": "String"
+					},
+					{
+						"name": "STLBG",
+						"type": "String"
+					},
+					{
+						"name": "DPLBG",
+						"type": "String"
+					},
+					{
+						"name": "UPLBG",
+						"type": "String"
+					},
+					{
+						"name": "DALBG",
+						"type": "String"
+					},
+					{
+						"name": "UALBG",
+						"type": "String"
+					},
+					{
+						"name": "STLAD",
+						"type": "String"
+					},
+					{
+						"name": "DPLEN",
+						"type": "String"
+					},
+					{
+						"name": "UPLEN",
+						"type": "String"
+					},
+					{
+						"name": "DALEN",
+						"type": "String"
+					},
+					{
+						"name": "UALEN",
+						"type": "String"
+					},
+					{
+						"name": "STABF",
+						"type": "String"
+					},
+					{
+						"name": "DPABF",
+						"type": "String"
+					},
+					{
+						"name": "UPABF",
+						"type": "String"
+					},
+					{
+						"name": "DTABF",
+						"type": "String"
+					},
+					{
+						"name": "UZABF",
+						"type": "String"
+					},
+					{
+						"name": "STTBG",
+						"type": "String"
+					},
+					{
+						"name": "DPTBG",
+						"type": "String"
+					},
+					{
+						"name": "UPTBG",
+						"type": "String"
+					},
+					{
+						"name": "DATBG",
+						"type": "String"
+					},
+					{
+						"name": "UATBG",
+						"type": "String"
+					},
+					{
+						"name": "STTEN",
+						"type": "String"
+					},
+					{
+						"name": "DPTEN",
+						"type": "String"
+					},
+					{
+						"name": "UPTEN",
+						"type": "String"
+					},
+					{
+						"name": "DATEN",
+						"type": "String"
+					},
+					{
+						"name": "UATEN",
+						"type": "String"
+					},
+					{
+						"name": "STTRG",
+						"type": "String"
+					},
+					{
+						"name": "TDLNR",
+						"type": "String"
+					},
+					{
+						"name": "TERNR",
+						"type": "String"
+					},
+					{
+						"name": "PKSTK",
+						"type": "String"
+					},
+					{
+						"name": "DTMEG",
+						"type": "String"
+					},
+					{
+						"name": "DTMEV",
+						"type": "String"
+					},
+					{
+						"name": "DISTZ",
+						"type": "String"
+					},
+					{
+						"name": "MEDST",
+						"type": "String"
+					},
+					{
+						"name": "FAHZT",
+						"type": "String"
+					},
+					{
+						"name": "GESZT",
+						"type": "String"
+					},
+					{
+						"name": "MEIZT",
+						"type": "String"
+					},
+					{
+						"name": "STAFO",
+						"type": "String"
+					},
+					{
+						"name": "FBSTA",
+						"type": "String"
+					},
+					{
+						"name": "FBGST",
+						"type": "String"
+					},
+					{
+						"name": "ARSTA",
+						"type": "String"
+					},
+					{
+						"name": "ARGST",
+						"type": "String"
+					},
+					{
+						"name": "STERM_DONE",
+						"type": "String"
+					},
+					{
+						"name": "VSE_FRK",
+						"type": "String"
+					},
+					{
+						"name": "KKALSM",
+						"type": "String"
+					},
+					{
+						"name": "SDABW",
+						"type": "String"
+					},
+					{
+						"name": "FRKRL",
+						"type": "String"
+					},
+					{
+						"name": "GESZTD",
+						"type": "String"
+					},
+					{
+						"name": "FAHZTD",
+						"type": "String"
+					},
+					{
+						"name": "GESZTDA",
+						"type": "String"
+					},
+					{
+						"name": "FAHZTDA",
+						"type": "String"
+					},
+					{
+						"name": "ROCPY_DONE",
+						"type": "String"
+					},
+					{
+						"name": "HANDLE",
+						"type": "String"
+					},
+					{
+						"name": "TSEGFL",
+						"type": "String"
+					},
+					{
+						"name": "TSEGTP",
+						"type": "String"
+					},
+					{
+						"name": "ADD01",
+						"type": "String"
+					},
+					{
+						"name": "ADD02",
+						"type": "String"
+					},
+					{
+						"name": "ADD03",
+						"type": "String"
+					},
+					{
+						"name": "ADD04",
+						"type": "String"
+					},
+					{
+						"name": "TEXT1",
+						"type": "String"
+					},
+					{
+						"name": "TEXT2",
+						"type": "String"
+					},
+					{
+						"name": "TEXT3",
+						"type": "String"
+					},
+					{
+						"name": "TEXT4",
+						"type": "String"
+					},
+					{
+						"name": "PROLI",
+						"type": "String"
+					},
+					{
+						"name": "DGTLOCK",
+						"type": "String"
+					},
+					{
+						"name": "DGMDDAT",
+						"type": "String"
+					},
+					{
+						"name": "CONT_DG",
+						"type": "String"
+					},
+					{
+						"name": "WARZTD",
+						"type": "String"
+					},
+					{
+						"name": "WARZTDA",
+						"type": "String"
+					},
+					{
+						"name": "AULWE",
+						"type": "String"
+					},
+					{
+						"name": "TNDRST",
+						"type": "String"
+					},
+					{
+						"name": "TNDRRC",
+						"type": "String"
+					},
+					{
+						"name": "TNDR_TEXT",
+						"type": "String"
+					},
+					{
+						"name": "TNDRDAT",
+						"type": "String"
+					},
+					{
+						"name": "TNDRZET",
+						"type": "String"
+					},
+					{
+						"name": "TNDR_MAXP",
+						"type": "String"
+					},
+					{
+						"name": "TNDR_MAXC",
+						"type": "String"
+					},
+					{
+						"name": "TNDR_ACTP",
+						"type": "String"
+					},
+					{
+						"name": "TNDR_ACTC",
+						"type": "String"
+					},
+					{
+						"name": "TNDR_CARR",
+						"type": "String"
+					},
+					{
+						"name": "TNDR_CRNM",
+						"type": "String"
+					},
+					{
+						"name": "TNDR_TRKID",
+						"type": "String"
+					},
+					{
+						"name": "TNDR_EXPD",
+						"type": "String"
+					},
+					{
+						"name": "TNDR_EXPT",
+						"type": "String"
+					},
+					{
+						"name": "TNDR_ERPD",
+						"type": "String"
+					},
+					{
+						"name": "TNDR_ERPT",
+						"type": "String"
+					},
+					{
+						"name": "TNDR_LTPD",
+						"type": "String"
+					},
+					{
+						"name": "TNDR_LTPT",
+						"type": "String"
+					},
+					{
+						"name": "TNDR_ERDD",
+						"type": "String"
+					},
+					{
+						"name": "TNDR_ERDT",
+						"type": "String"
+					},
+					{
+						"name": "TNDR_LTDD",
+						"type": "String"
+					},
+					{
+						"name": "TNDR_LTDT",
+						"type": "String"
+					},
+					{
+						"name": "TNDR_LDLG",
+						"type": "String"
+					},
+					{
+						"name": "TNDR_LDLU",
+						"type": "String"
+					},
+					{
+						"name": "KZHULFR",
+						"type": "String"
+					},
+					{
+						"name": "ALLOWED_TWGT",
+						"type": "String"
+					},
+					{
+						"name": "VLSTK",
+						"type": "String"
+					},
+					{
+						"name": "VERURSYS",
+						"type": "String"
+					},
+					{
+						"name": "CM_IDENT",
+						"type": "String"
+					},
+					{
+						"name": "CM_SEQUENCE",
+						"type": "String"
+					},
+					{
+						"name": "EXT_FREIGHT_ORD",
+						"type": "String"
+					},
+					{
+						"name": "EXT_TM_SYS",
+						"type": "String"
+					},
+					{
+						"name": "/BEV1/RPFAR1",
+						"type": "String"
+					},
+					{
+						"name": "/BEV1/RPFAR2",
+						"type": "String"
+					},
+					{
+						"name": "/BEV1/RPMOWA",
+						"type": "String"
+					},
+					{
+						"name": "/BEV1/RPANHAE",
+						"type": "String"
+					},
+					{
+						"name": "/BEV1/RPFLGNR",
+						"type": "String"
+					},
+					{
+						"name": "/VSO/R_STATUS",
+						"type": "String"
+					},
+					{
+						"name": "ERDAT140",
+						"type": "String"
+					},
+					{
+						"name": "ERZET141",
+						"type": "String"
+					}
+				]
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLake_Gen2001')]"
@@ -15284,6 +16076,26 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureTable1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureTableStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureTable",
+				"schema": [],
+				"typeProperties": {
+					"tableName": "sapdata"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureTableStorage1')]"
 			]
 		},
 		{
@@ -17794,6 +18606,32 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage2')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Parquet_SVC')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ADLS_Parquet",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "SAP_Data_VTTK_20240306175538.parquet",
+						"folderPath": "Extract_08_2021/Parquet",
+						"fileSystem": "sap-data-out"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ADLS_Parquet')]"
 			]
 		},
 		{
@@ -24429,6 +25267,32 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/ADLS_Gen2')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"sasUri": "[parameters('ADLS_Gen2_sasUri')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ADLS_Parquet')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"sasUri": "[parameters('ADLS_Parquet_sasUri')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -25720,870 +26584,6 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/RestService1')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLake_Gen2001')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ADLS2Parquet')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Transform ADLS file into Parquet",
-				"activities": [
-					{
-						"name": "ADLS2Parquet",
-						"description": "ADLS file to Parquet",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "AzureBlobFSReadSettings",
-									"recursive": false,
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
-								}
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobFSWriteSettings",
-									"copyBehavior": "PreserveHierarchy"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "ADLS_Delimited",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "Parquet_SVC",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/ADLS_Delimited')]",
-				"[concat(variables('factoryId'), '/datasets/Parquet_SVC')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ADLS_Gen2')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"sasUri": "[parameters('ADLS_Gen2_sasUri')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ADLS_Delimited')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureDataLake_Gen2001",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "SAP_Data_VTTK_20240306175538.csv",
-						"folderPath": "Extract_08_2021",
-						"fileSystem": "sap-data-out"
-					},
-					"columnDelimiter": "|",
-					"rowDelimiter": "\n",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "MANDT",
-						"type": "String"
-					},
-					{
-						"name": "TKNUM",
-						"type": "String"
-					},
-					{
-						"name": "VBTYP",
-						"type": "String"
-					},
-					{
-						"name": "SHTYP",
-						"type": "String"
-					},
-					{
-						"name": "TPLST",
-						"type": "String"
-					},
-					{
-						"name": "ERNAM",
-						"type": "String"
-					},
-					{
-						"name": "ERDAT6",
-						"type": "String"
-					},
-					{
-						"name": "ERZET7",
-						"type": "String"
-					},
-					{
-						"name": "AENAM",
-						"type": "String"
-					},
-					{
-						"name": "AEDAT",
-						"type": "String"
-					},
-					{
-						"name": "AEZET",
-						"type": "String"
-					},
-					{
-						"name": "STERM",
-						"type": "String"
-					},
-					{
-						"name": "ABFER",
-						"type": "String"
-					},
-					{
-						"name": "ABWST",
-						"type": "String"
-					},
-					{
-						"name": "BFART",
-						"type": "String"
-					},
-					{
-						"name": "VSART",
-						"type": "String"
-					},
-					{
-						"name": "VSAVL",
-						"type": "String"
-					},
-					{
-						"name": "VSANL",
-						"type": "String"
-					},
-					{
-						"name": "LAUFK",
-						"type": "String"
-					},
-					{
-						"name": "VSBED",
-						"type": "String"
-					},
-					{
-						"name": "ROUTE",
-						"type": "String"
-					},
-					{
-						"name": "SIGNI",
-						"type": "String"
-					},
-					{
-						"name": "EXTI1",
-						"type": "String"
-					},
-					{
-						"name": "EXTI2",
-						"type": "String"
-					},
-					{
-						"name": "TPBEZ",
-						"type": "String"
-					},
-					{
-						"name": "STDIS",
-						"type": "String"
-					},
-					{
-						"name": "DTDIS",
-						"type": "String"
-					},
-					{
-						"name": "UZDIS",
-						"type": "String"
-					},
-					{
-						"name": "STREG",
-						"type": "String"
-					},
-					{
-						"name": "DPREG",
-						"type": "String"
-					},
-					{
-						"name": "UPREG",
-						"type": "String"
-					},
-					{
-						"name": "DAREG",
-						"type": "String"
-					},
-					{
-						"name": "UAREG",
-						"type": "String"
-					},
-					{
-						"name": "STLBG",
-						"type": "String"
-					},
-					{
-						"name": "DPLBG",
-						"type": "String"
-					},
-					{
-						"name": "UPLBG",
-						"type": "String"
-					},
-					{
-						"name": "DALBG",
-						"type": "String"
-					},
-					{
-						"name": "UALBG",
-						"type": "String"
-					},
-					{
-						"name": "STLAD",
-						"type": "String"
-					},
-					{
-						"name": "DPLEN",
-						"type": "String"
-					},
-					{
-						"name": "UPLEN",
-						"type": "String"
-					},
-					{
-						"name": "DALEN",
-						"type": "String"
-					},
-					{
-						"name": "UALEN",
-						"type": "String"
-					},
-					{
-						"name": "STABF",
-						"type": "String"
-					},
-					{
-						"name": "DPABF",
-						"type": "String"
-					},
-					{
-						"name": "UPABF",
-						"type": "String"
-					},
-					{
-						"name": "DTABF",
-						"type": "String"
-					},
-					{
-						"name": "UZABF",
-						"type": "String"
-					},
-					{
-						"name": "STTBG",
-						"type": "String"
-					},
-					{
-						"name": "DPTBG",
-						"type": "String"
-					},
-					{
-						"name": "UPTBG",
-						"type": "String"
-					},
-					{
-						"name": "DATBG",
-						"type": "String"
-					},
-					{
-						"name": "UATBG",
-						"type": "String"
-					},
-					{
-						"name": "STTEN",
-						"type": "String"
-					},
-					{
-						"name": "DPTEN",
-						"type": "String"
-					},
-					{
-						"name": "UPTEN",
-						"type": "String"
-					},
-					{
-						"name": "DATEN",
-						"type": "String"
-					},
-					{
-						"name": "UATEN",
-						"type": "String"
-					},
-					{
-						"name": "STTRG",
-						"type": "String"
-					},
-					{
-						"name": "TDLNR",
-						"type": "String"
-					},
-					{
-						"name": "TERNR",
-						"type": "String"
-					},
-					{
-						"name": "PKSTK",
-						"type": "String"
-					},
-					{
-						"name": "DTMEG",
-						"type": "String"
-					},
-					{
-						"name": "DTMEV",
-						"type": "String"
-					},
-					{
-						"name": "DISTZ",
-						"type": "String"
-					},
-					{
-						"name": "MEDST",
-						"type": "String"
-					},
-					{
-						"name": "FAHZT",
-						"type": "String"
-					},
-					{
-						"name": "GESZT",
-						"type": "String"
-					},
-					{
-						"name": "MEIZT",
-						"type": "String"
-					},
-					{
-						"name": "STAFO",
-						"type": "String"
-					},
-					{
-						"name": "FBSTA",
-						"type": "String"
-					},
-					{
-						"name": "FBGST",
-						"type": "String"
-					},
-					{
-						"name": "ARSTA",
-						"type": "String"
-					},
-					{
-						"name": "ARGST",
-						"type": "String"
-					},
-					{
-						"name": "STERM_DONE",
-						"type": "String"
-					},
-					{
-						"name": "VSE_FRK",
-						"type": "String"
-					},
-					{
-						"name": "KKALSM",
-						"type": "String"
-					},
-					{
-						"name": "SDABW",
-						"type": "String"
-					},
-					{
-						"name": "FRKRL",
-						"type": "String"
-					},
-					{
-						"name": "GESZTD",
-						"type": "String"
-					},
-					{
-						"name": "FAHZTD",
-						"type": "String"
-					},
-					{
-						"name": "GESZTDA",
-						"type": "String"
-					},
-					{
-						"name": "FAHZTDA",
-						"type": "String"
-					},
-					{
-						"name": "ROCPY_DONE",
-						"type": "String"
-					},
-					{
-						"name": "HANDLE",
-						"type": "String"
-					},
-					{
-						"name": "TSEGFL",
-						"type": "String"
-					},
-					{
-						"name": "TSEGTP",
-						"type": "String"
-					},
-					{
-						"name": "ADD01",
-						"type": "String"
-					},
-					{
-						"name": "ADD02",
-						"type": "String"
-					},
-					{
-						"name": "ADD03",
-						"type": "String"
-					},
-					{
-						"name": "ADD04",
-						"type": "String"
-					},
-					{
-						"name": "TEXT1",
-						"type": "String"
-					},
-					{
-						"name": "TEXT2",
-						"type": "String"
-					},
-					{
-						"name": "TEXT3",
-						"type": "String"
-					},
-					{
-						"name": "TEXT4",
-						"type": "String"
-					},
-					{
-						"name": "PROLI",
-						"type": "String"
-					},
-					{
-						"name": "DGTLOCK",
-						"type": "String"
-					},
-					{
-						"name": "DGMDDAT",
-						"type": "String"
-					},
-					{
-						"name": "CONT_DG",
-						"type": "String"
-					},
-					{
-						"name": "WARZTD",
-						"type": "String"
-					},
-					{
-						"name": "WARZTDA",
-						"type": "String"
-					},
-					{
-						"name": "AULWE",
-						"type": "String"
-					},
-					{
-						"name": "TNDRST",
-						"type": "String"
-					},
-					{
-						"name": "TNDRRC",
-						"type": "String"
-					},
-					{
-						"name": "TNDR_TEXT",
-						"type": "String"
-					},
-					{
-						"name": "TNDRDAT",
-						"type": "String"
-					},
-					{
-						"name": "TNDRZET",
-						"type": "String"
-					},
-					{
-						"name": "TNDR_MAXP",
-						"type": "String"
-					},
-					{
-						"name": "TNDR_MAXC",
-						"type": "String"
-					},
-					{
-						"name": "TNDR_ACTP",
-						"type": "String"
-					},
-					{
-						"name": "TNDR_ACTC",
-						"type": "String"
-					},
-					{
-						"name": "TNDR_CARR",
-						"type": "String"
-					},
-					{
-						"name": "TNDR_CRNM",
-						"type": "String"
-					},
-					{
-						"name": "TNDR_TRKID",
-						"type": "String"
-					},
-					{
-						"name": "TNDR_EXPD",
-						"type": "String"
-					},
-					{
-						"name": "TNDR_EXPT",
-						"type": "String"
-					},
-					{
-						"name": "TNDR_ERPD",
-						"type": "String"
-					},
-					{
-						"name": "TNDR_ERPT",
-						"type": "String"
-					},
-					{
-						"name": "TNDR_LTPD",
-						"type": "String"
-					},
-					{
-						"name": "TNDR_LTPT",
-						"type": "String"
-					},
-					{
-						"name": "TNDR_ERDD",
-						"type": "String"
-					},
-					{
-						"name": "TNDR_ERDT",
-						"type": "String"
-					},
-					{
-						"name": "TNDR_LTDD",
-						"type": "String"
-					},
-					{
-						"name": "TNDR_LTDT",
-						"type": "String"
-					},
-					{
-						"name": "TNDR_LDLG",
-						"type": "String"
-					},
-					{
-						"name": "TNDR_LDLU",
-						"type": "String"
-					},
-					{
-						"name": "KZHULFR",
-						"type": "String"
-					},
-					{
-						"name": "ALLOWED_TWGT",
-						"type": "String"
-					},
-					{
-						"name": "VLSTK",
-						"type": "String"
-					},
-					{
-						"name": "VERURSYS",
-						"type": "String"
-					},
-					{
-						"name": "CM_IDENT",
-						"type": "String"
-					},
-					{
-						"name": "CM_SEQUENCE",
-						"type": "String"
-					},
-					{
-						"name": "EXT_FREIGHT_ORD",
-						"type": "String"
-					},
-					{
-						"name": "EXT_TM_SYS",
-						"type": "String"
-					},
-					{
-						"name": "/BEV1/RPFAR1",
-						"type": "String"
-					},
-					{
-						"name": "/BEV1/RPFAR2",
-						"type": "String"
-					},
-					{
-						"name": "/BEV1/RPMOWA",
-						"type": "String"
-					},
-					{
-						"name": "/BEV1/RPANHAE",
-						"type": "String"
-					},
-					{
-						"name": "/BEV1/RPFLGNR",
-						"type": "String"
-					},
-					{
-						"name": "/VSO/R_STATUS",
-						"type": "String"
-					},
-					{
-						"name": "ERDAT140",
-						"type": "String"
-					},
-					{
-						"name": "ERZET141",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureDataLake_Gen2001')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ADLS_Parquet')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"sasUri": "[parameters('ADLS_Parquet_sasUri')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Parquet_SVC')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ADLS_Parquet",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Parquet",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "SAP_Data_VTTK_20240306175538.parquet",
-						"folderPath": "Extract_08_2021/Parquet",
-						"fileSystem": "sap-data-out"
-					},
-					"compressionCodec": "snappy"
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ADLS_Parquet')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ADLS-Blob2Table')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "ADLS-Blob2Table",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "AzureBlobFSReadSettings",
-									"recursive": false,
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
-								}
-							},
-							"sink": {
-								"type": "AzureTableSink",
-								"azureTableInsertType": "replace",
-								"azureTableDefaultPartitionKeyValue": "VTTK",
-								"writeBatchSize": 10000
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "ADLS_CSV",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "AzureTable1",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"parameters": {
-					"p_source": {
-						"type": "string"
-					},
-					"p_sink": {
-						"type": "string"
-					}
-				},
-				"variables": {
-					"v_filename": {
-						"type": "String"
-					}
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/ADLS_CSV')]",
-				"[concat(variables('factoryId'), '/datasets/AzureTable1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ADLS_CSV')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureDataLake_Gen2001",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "SAP_Data_VTTK_20240306175538.csv",
-						"folderPath": "Extract_08_2021",
-						"fileSystem": "sap-data-out"
-					},
-					"columnDelimiter": "|",
-					"rowDelimiter": "\n",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureDataLake_Gen2001')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureTable1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureTableStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureTable",
-				"schema": [],
-				"typeProperties": {
-					"tableName": "sapdata"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureTableStorage1')]"
 			]
 		}
 	]

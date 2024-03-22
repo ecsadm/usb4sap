@@ -104,6 +104,12 @@
 		"linkedServicesql1_connectionString": {
 			"value": ""
 		},
+		"ADLS_Gen2_sasUri": {
+			"value": ""
+		},
+		"ADLS_Parquet_sasUri": {
+			"value": ""
+		},
 		"AzureDataLakeAnalytics1_properties_typeProperties_accountName": {
 			"value": "mydataanalytics01"
 		},
@@ -304,12 +310,6 @@
 		},
 		"ecc_ecs_ehp8_properties_typeProperties_username": {
 			"value": "service1"
-		},
-		"ADLS_Gen2_sasUri": {
-			"value": ""
-		},
-		"ADLS_Parquet_sasUri": {
-			"value": ""
 		}
 	}
 }

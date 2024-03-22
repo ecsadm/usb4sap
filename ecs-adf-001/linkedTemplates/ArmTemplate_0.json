@@ -59,13 +59,13 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'USB4SAP_1'"
 		},
-		"USB4SAP_HTTP_password": {
+		"ADLS_Gen2_sasUri": {
 			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'USB4SAP_HTTP'"
+			"metadata": "Secure string for 'sasUri' of 'ADLS_Gen2'"
 		},
-		"USB4SAP_REST_password": {
+		"ADLS_Parquet_sasUri": {
 			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'USB4SAP_REST'"
+			"metadata": "Secure string for 'sasUri' of 'ADLS_Parquet'"
 		},
 		"AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri": {
 			"type": "string",
@@ -124,22 +124,6 @@
 			"defaultValue": "http://sap-ecc-ehp8.ecoservity.com:8000/sap/opu/odata/ECOS/OBJ2CLOUD_V2_2_SRV/ET_DataSetSet?$filter=ObjectName eq 'RM07DOCS' and ObjectType eq 'R' and Delimiter eq '|' and ImportGeneric eq 'TYPE:ALV|VARIANT:USB4SAP1|FIELD_LABLE:B|' and DataDest eq '0|0||' &$format=xlsx"
 		},
 		"USB4SAP_1_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "service1"
-		},
-		"USB4SAP_HTTP_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "http://sap-ecc-ehp8.ecoservity.com:8000"
-		},
-		"USB4SAP_HTTP_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "service1"
-		},
-		"USB4SAP_REST_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "http://sap-ecc-ehp8.ecoservity.com:8000"
-		},
-		"USB4SAP_REST_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "service1"
 		}
@@ -303,6 +287,32 @@
 				},
 				"annotations": [],
 				"lastPublishTime": "2023-06-21T05:15:22Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ADLS_Gen2')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"sasUri": "[parameters('ADLS_Gen2_sasUri')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ADLS_Parquet')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"sasUri": "[parameters('ADLS_Parquet_sasUri')]"
+				}
 			},
 			"dependsOn": []
 		},
@@ -541,46 +551,6 @@
 					"password": {
 						"type": "SecureString",
 						"value": "[parameters('USB4SAP_1_password')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/USB4SAP_HTTP')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "HttpServer",
-				"typeProperties": {
-					"url": "[parameters('USB4SAP_HTTP_properties_typeProperties_url')]",
-					"enableServerCertificateValidation": true,
-					"authenticationType": "Basic",
-					"userName": "[parameters('USB4SAP_HTTP_properties_typeProperties_userName')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('USB4SAP_HTTP_password')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/USB4SAP_REST')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "RestService",
-				"typeProperties": {
-					"url": "[parameters('USB4SAP_REST_properties_typeProperties_url')]",
-					"enableServerCertificateValidation": false,
-					"authenticationType": "Basic",
-					"userName": "[parameters('USB4SAP_REST_properties_typeProperties_userName')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('USB4SAP_REST_password')]"
 					}
 				}
 			},

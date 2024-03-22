@@ -139,6 +139,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'linkedServicesql1'"
 		},
+		"ADLS_Gen2_sasUri": {
+			"type": "secureString",
+			"metadata": "Secure string for 'sasUri' of 'ADLS_Gen2'"
+		},
+		"ADLS_Parquet_sasUri": {
+			"type": "secureString",
+			"metadata": "Secure string for 'sasUri' of 'ADLS_Parquet'"
+		},
 		"AzureDataLakeAnalytics1_properties_typeProperties_accountName": {
 			"type": "string",
 			"defaultValue": "mydataanalytics01"
@@ -407,14 +415,6 @@
 			"type": "string",
 			"defaultValue": "service1"
 		},
-		"ADLS_Gen2_sasUri": {
-			"type": "secureString",
-			"metadata": "Secure string for 'sasUri' of 'ADLS_Gen2'"
-		},
-		"ADLS_Parquet_sasUri": {
-			"type": "secureString",
-			"metadata": "Secure string for 'sasUri' of 'ADLS_Parquet'"
-		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -481,11 +481,11 @@
 					"USB4SAP_1_password": {
 						"value": "[parameters('USB4SAP_1_password')]"
 					},
-					"USB4SAP_HTTP_password": {
-						"value": "[parameters('USB4SAP_HTTP_password')]"
+					"ADLS_Gen2_sasUri": {
+						"value": "[parameters('ADLS_Gen2_sasUri')]"
 					},
-					"USB4SAP_REST_password": {
-						"value": "[parameters('USB4SAP_REST_password')]"
+					"ADLS_Parquet_sasUri": {
+						"value": "[parameters('ADLS_Parquet_sasUri')]"
 					},
 					"AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri": {
 						"value": "[parameters('AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri')]"
@@ -531,18 +531,6 @@
 					},
 					"USB4SAP_1_properties_typeProperties_userName": {
 						"value": "[parameters('USB4SAP_1_properties_typeProperties_userName')]"
-					},
-					"USB4SAP_HTTP_properties_typeProperties_url": {
-						"value": "[parameters('USB4SAP_HTTP_properties_typeProperties_url')]"
-					},
-					"USB4SAP_HTTP_properties_typeProperties_userName": {
-						"value": "[parameters('USB4SAP_HTTP_properties_typeProperties_userName')]"
-					},
-					"USB4SAP_REST_properties_typeProperties_url": {
-						"value": "[parameters('USB4SAP_REST_properties_typeProperties_url')]"
-					},
-					"USB4SAP_REST_properties_typeProperties_userName": {
-						"value": "[parameters('USB4SAP_REST_properties_typeProperties_userName')]"
 					}
 				}
 			},
@@ -562,23 +550,35 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"USB4SAP_HTTP_password": {
+						"value": "[parameters('USB4SAP_HTTP_password')]"
+					},
+					"USB4SAP_REST_password": {
+						"value": "[parameters('USB4SAP_REST_password')]"
+					},
 					"USB4SAP_SICF_password": {
 						"value": "[parameters('USB4SAP_SICF_password')]"
 					},
 					"linkedServicesql1_connectionString": {
 						"value": "[parameters('linkedServicesql1_connectionString')]"
 					},
+					"USB4SAP_HTTP_properties_typeProperties_url": {
+						"value": "[parameters('USB4SAP_HTTP_properties_typeProperties_url')]"
+					},
+					"USB4SAP_HTTP_properties_typeProperties_userName": {
+						"value": "[parameters('USB4SAP_HTTP_properties_typeProperties_userName')]"
+					},
+					"USB4SAP_REST_properties_typeProperties_url": {
+						"value": "[parameters('USB4SAP_REST_properties_typeProperties_url')]"
+					},
+					"USB4SAP_REST_properties_typeProperties_userName": {
+						"value": "[parameters('USB4SAP_REST_properties_typeProperties_userName')]"
+					},
 					"USB4SAP_SICF_properties_typeProperties_url": {
 						"value": "[parameters('USB4SAP_SICF_properties_typeProperties_url')]"
 					},
 					"USB4SAP_SICF_properties_typeProperties_userName": {
 						"value": "[parameters('USB4SAP_SICF_properties_typeProperties_userName')]"
-					},
-					"ADLS_Gen2_sasUri": {
-						"value": "[parameters('ADLS_Gen2_sasUri')]"
-					},
-					"ADLS_Parquet_sasUri": {
-						"value": "[parameters('ADLS_Parquet_sasUri')]"
 					}
 				}
 			},
@@ -652,18 +652,6 @@
 					"ECS_ECC_DEV_password": {
 						"value": "[parameters('ECS_ECC_DEV_password')]"
 					},
-					"ECS_ECC_DEV2_password": {
-						"value": "[parameters('ECS_ECC_DEV2_password')]"
-					},
-					"SAP_CDC_password": {
-						"value": "[parameters('SAP_CDC_password')]"
-					},
-					"SAP_ECC_T001W_password": {
-						"value": "[parameters('SAP_ECC_T001W_password')]"
-					},
-					"SAP_ODP_ECC_password": {
-						"value": "[parameters('SAP_ODP_ECC_password')]"
-					},
 					"AzureDataLakeAnalytics1_properties_typeProperties_accountName": {
 						"value": "[parameters('AzureDataLakeAnalytics1_properties_typeProperties_accountName')]"
 					},
@@ -699,6 +687,62 @@
 					},
 					"ECS_ECC_DEV_properties_typeProperties_username": {
 						"value": "[parameters('ECS_ECC_DEV_properties_typeProperties_username')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'ecs-adf-001_ArmTemplate_3')]"
+			]
+		},
+		{
+			"name": "ecs-adf-001_ArmTemplate_5",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_5.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"ECS_ECC_DEV2_password": {
+						"value": "[parameters('ECS_ECC_DEV2_password')]"
+					},
+					"SAP_CDC_password": {
+						"value": "[parameters('SAP_CDC_password')]"
+					},
+					"SAP_ECC_T001W_password": {
+						"value": "[parameters('SAP_ECC_T001W_password')]"
+					},
+					"SAP_ODP_ECC_password": {
+						"value": "[parameters('SAP_ODP_ECC_password')]"
+					},
+					"SAP_S4_new_password": {
+						"value": "[parameters('SAP_S4_new_password')]"
+					},
+					"SAP_USB4SAP_password": {
+						"value": "[parameters('SAP_USB4SAP_password')]"
+					},
+					"SapEcc1_password": {
+						"value": "[parameters('SapEcc1_password')]"
+					},
+					"SapTable1_password": {
+						"value": "[parameters('SapTable1_password')]"
+					},
+					"SapTable2_password": {
+						"value": "[parameters('SapTable2_password')]"
+					},
+					"Sapecc_password": {
+						"value": "[parameters('Sapecc_password')]"
+					},
+					"Snowflake1_connectionString": {
+						"value": "[parameters('Snowflake1_connectionString')]"
+					},
+					"ecc_ecs_ehp8_password": {
+						"value": "[parameters('ecc_ecs_ehp8_password')]"
 					},
 					"ECS_ECC_DEV2_properties_typeProperties_url": {
 						"value": "[parameters('ECS_ECC_DEV2_properties_typeProperties_url')]"
@@ -741,50 +785,6 @@
 					},
 					"SAP_ODP_ECC_properties_typeProperties_systemNumber": {
 						"value": "[parameters('SAP_ODP_ECC_properties_typeProperties_systemNumber')]"
-					}
-				}
-			},
-			"dependsOn": [
-				"[resourceId('Microsoft.Resources/deployments', 'ecs-adf-001_ArmTemplate_3')]"
-			]
-		},
-		{
-			"name": "ecs-adf-001_ArmTemplate_5",
-			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2018-02-01",
-			"properties": {
-				"mode": "incremental",
-				"templateLink": {
-					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_5.json', parameters('containerSasToken'))]",
-					"contentVersion": "1.0.0.0"
-				},
-				"parameters": {
-					"factoryName": {
-						"value": "[parameters('factoryName')]"
-					},
-					"SAP_S4_new_password": {
-						"value": "[parameters('SAP_S4_new_password')]"
-					},
-					"SAP_USB4SAP_password": {
-						"value": "[parameters('SAP_USB4SAP_password')]"
-					},
-					"SapEcc1_password": {
-						"value": "[parameters('SapEcc1_password')]"
-					},
-					"SapTable1_password": {
-						"value": "[parameters('SapTable1_password')]"
-					},
-					"SapTable2_password": {
-						"value": "[parameters('SapTable2_password')]"
-					},
-					"Sapecc_password": {
-						"value": "[parameters('Sapecc_password')]"
-					},
-					"Snowflake1_connectionString": {
-						"value": "[parameters('Snowflake1_connectionString')]"
-					},
-					"ecc_ecs_ehp8_password": {
-						"value": "[parameters('ecc_ecs_ehp8_password')]"
 					},
 					"SAP_S4_new_properties_typeProperties_clientId": {
 						"value": "[parameters('SAP_S4_new_properties_typeProperties_clientId')]"

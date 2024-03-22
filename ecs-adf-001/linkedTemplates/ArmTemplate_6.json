@@ -13,6 +13,408 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/CopyVBAKtoSQLDW')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy_phr",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [
+							{
+								"name": "Source",
+								"value": "sapbw_output/VBAK_001.txt"
+							},
+							{
+								"name": "Destination",
+								"value": "dbo.VBAK"
+							}
+						],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureDataLakeStoreReadSettings",
+									"recursive": true
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings",
+									"skipLineCount": 0
+								}
+							},
+							"sink": {
+								"type": "SqlDWSink",
+								"allowPolyBase": true,
+								"polyBaseSettings": {
+									"rejectValue": 0,
+									"rejectType": "value",
+									"useTypeDefault": true
+								}
+							},
+							"enableStaging": true,
+							"stagingSettings": {
+								"linkedServiceName": {
+									"referenceName": "AzureBlobStorage1",
+									"type": "LinkedServiceReference"
+								},
+								"path": "flatfile"
+							},
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "MANDT",
+											"type": "String"
+										},
+										"sink": {
+											"name": "MANDT",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "VBELN",
+											"type": "String"
+										},
+										"sink": {
+											"name": "VBELN",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "AUDAT",
+											"type": "String"
+										},
+										"sink": {
+											"name": "AUDAT",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "TRVOG",
+											"type": "String"
+										},
+										"sink": {
+											"name": "TRVOG",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "AUART",
+											"type": "String"
+										},
+										"sink": {
+											"name": "AUART",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "VKORG",
+											"type": "String"
+										},
+										"sink": {
+											"name": "VKORG",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "VTWEG",
+											"type": "String"
+										},
+										"sink": {
+											"name": "VTWEG",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "SPART",
+											"type": "String"
+										},
+										"sink": {
+											"name": "SPART",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "VDATU",
+											"type": "String"
+										},
+										"sink": {
+											"name": "VDATU",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "KUNNR",
+											"type": "String"
+										},
+										"sink": {
+											"name": "KUNNR",
+											"type": "String"
+										}
+									}
+								]
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "SourceDataset_phr",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DestinationDataset_phr",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": [],
+				"lastPublishTime": "2020-03-21T05:47:18Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CopyVBAPtoSQLDW')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy_4h9",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [
+							{
+								"name": "Source",
+								"value": "sapbw_output/VBAP_002.txt"
+							},
+							{
+								"name": "Destination",
+								"value": "dbo.VBAP"
+							}
+						],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureDataLakeStoreReadSettings",
+									"recursive": true
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings",
+									"skipLineCount": 0
+								}
+							},
+							"sink": {
+								"type": "SqlDWSink",
+								"allowPolyBase": true,
+								"polyBaseSettings": {
+									"rejectValue": 0,
+									"rejectType": "value",
+									"useTypeDefault": true
+								}
+							},
+							"enableStaging": true,
+							"stagingSettings": {
+								"linkedServiceName": {
+									"referenceName": "AzureBlobStorage1",
+									"type": "LinkedServiceReference"
+								},
+								"path": "flatfile"
+							},
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "MANDT",
+											"type": "String"
+										},
+										"sink": {
+											"name": "MANDT",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "VBELN",
+											"type": "String"
+										},
+										"sink": {
+											"name": "VBELN",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "POSNR",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "POSNR",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "MATNR",
+											"type": "String"
+										},
+										"sink": {
+											"name": "MATNR",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "KDMAT",
+											"type": "String"
+										},
+										"sink": {
+											"name": "KDMAT",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "WAERK",
+											"type": "String"
+										},
+										"sink": {
+											"name": "WAERK",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "VRKME",
+											"type": "String"
+										},
+										"sink": {
+											"name": "VRKME",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "MEINS",
+											"type": "String"
+										},
+										"sink": {
+											"name": "MEINS",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "NETWR",
+											"type": "String"
+										},
+										"sink": {
+											"name": "NETWR",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "KWMENG",
+											"type": "String"
+										},
+										"sink": {
+											"name": "KWMENG",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "LSMENG",
+											"type": "String"
+										},
+										"sink": {
+											"name": "LSMENG",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "KBMENG",
+											"type": "String"
+										},
+										"sink": {
+											"name": "KBMENG",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "KLMENG",
+											"type": "String"
+										},
+										"sink": {
+											"name": "KLMENG",
+											"type": "String"
+										}
+									}
+								]
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "SourceDataset_4h9",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DestinationDataset_4h9",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": [],
+				"lastPublishTime": "2020-03-21T10:17:27Z"
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/CopyVBKDDatatoSQLDW')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -637,7 +1039,7 @@
 								"httpRequestTimeout": "00:01:40",
 								"requestInterval": "00.00:00:00.010",
 								"requestMethod": "POST",
-								"requestBody": "{\n    \"DELIMITER\": \"|\",\n    \"OBJ_TYPE\": \"T\",\n    \"OBJ_ID\": \"VTTK\",\n    \"OUTPUT_STYLE\": \"\",\n    \"REQUESTER\": \"USB4SAP\",\n    \"FIELD_LABLE\": \"T\",\n    \"VARIANT\":\"\",\n    \"DATADEST\": \"Z|ECS_REST_AZURE_BLOB_SAP_DATA|SAS|sv=2021-06-08&ss=bfqt&srt=sco&sp=rwdlacupyx&se=2025-01-04T15:32:02Z&st=2023-01-19T07:32:02Z&spr=https,http&sig=7i92wCtOU1ucjOw721PkmBkan5mmb0vhQC%2FblM6R1%2FM%3D|sap-data-out/Extract_08_2021/From-ADF\"\n}"
+								"requestBody": "{\n    \"DELIMITER\": \"|\",\n    \"OBJ_TYPE\": \"R\",\n    \"OBJ_ID\": \"RM07DOCS\",\n    \"OUTPUT_STYLE\": \"ALV\",\n    \"REQUESTER\": \"USB4SAP\",\n    \"FIELD_LABLE\": \"B\",\n    \"VARIANT\":\"USB4SAP1\",\n    \"DATADEST\": \"Z|ECS_REST_AZURE_BLOB_SAP_DATA|SAS|sv=2021-06-08&ss=bfqt&srt=sco&sp=rwdlacupyx&se=2025-01-04T15:32:02Z&st=2023-01-19T07:32:02Z&spr=https,http&sig=7i92wCtOU1ucjOw721PkmBkan5mmb0vhQC%2FblM6R1%2FM%3D|sap-data-out/Extract_08_2021/From-ADF\"\n}"
 							},
 							"sink": {
 								"type": "JsonSink",
@@ -1350,43 +1752,6 @@
 				"schema": [],
 				"typeProperties": {
 					"tableName": "ZCR500_00"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SapOdpResource1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "SAP_ODP_ECC",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "SapOdpResource",
-				"schema": [],
-				"typeProperties": {
-					"context": "SAPI",
-					"objectName": "0AB_BILLDOC_ATTR"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SapTableResource1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "SAP_S4_new",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "SapTableResource",
-				"schema": [],
-				"typeProperties": {
-					"tableName": "VBAK"
 				}
 			},
 			"dependsOn": []
