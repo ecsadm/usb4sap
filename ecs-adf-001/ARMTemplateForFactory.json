@@ -26536,21 +26536,17 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"fileName": "SAP_Data_AFPO_20240307210030.csv",
+						"fileName": "SAP_Data_VTTK_20240306175538.csv",
 						"folderPath": "Extract_08_2021",
 						"fileSystem": "sap-data-out"
 					},
 					"columnDelimiter": "|",
+					"rowDelimiter": "\n",
 					"escapeChar": "\\",
-					"firstRowAsHeader": true,
+					"firstRowAsHeader": false,
 					"quoteChar": "\""
 				},
-				"schema": [
-					{
-						"name": "|Asset|Sub-number|Counter|Order|Opertn task list no.|Document Header Text|Document Date|Qty in OPUn|Order Price Unit|Order Unit|Qty in order unit|Posting Date|Posting Date|Company Code|Movement type|Valuation Type|Batch|Entry Date|Entry Date|Time of Entry|Time of Entry|Amt.in loc.cur.|Purchase order|Item|Unit of Entry|Qty in unit of entry|Ext. Amount in LC|Sales Value|Reason for Movement|Sales Order|Sales order schedule|Sales order item|Cost Center|Customer|Movement indicator|Consumption|Receipt Indicator|Storage Location|Vendor|Material|Sales order|Sales order item|Material Document|Base Unit of Measure|Quantity|Material Doc. Year|Network|WBS Element|Reservation|Item number of reservation|Debit/Credit ind|Special Stock|User Name|User Name|Trans./Event Type|Trans./Event Type|Sales Value inc. VAT|Currency|Plant|Goods Receipt/Issue Slip|Item automatically created|Reference|Reference|Material Doc.Item|Original Line Item|Multiple Acct Assignment|Material Description|Seq. No. of Account Assgt|Order Unit|Item category|Acct Assignment Cat.|Distribut. indicator|Partial invoice|GR non-valuated|Qty Share Acct Assgt|Pro. Qty in OUn|Pro. Qty in OPU|Pro. Amount in LC|Name 1|Movement Type Text|WBS element|Activity||Smart Number",
-						"type": "String"
-					}
-				]
+				"schema": []
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLake_Gen2001')]"
