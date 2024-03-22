@@ -1,5 +1,5 @@
 {
-	"name": "SAP-Object--from-USB4SAP",
+	"name": "SAP-Objects-using-ADF_USB4SAP",
 	"properties": {
 		"description": "SAP objects to ADLS",
 		"activities": [
