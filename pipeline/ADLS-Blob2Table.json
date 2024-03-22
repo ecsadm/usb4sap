@@ -56,6 +56,14 @@
 				]
 			}
 		],
+		"parameters": {
+			"p_source": {
+				"type": "string"
+			},
+			"p_sink": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
