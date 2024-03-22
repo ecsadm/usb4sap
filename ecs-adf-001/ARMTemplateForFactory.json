@@ -26536,7 +26536,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"fileName": "SAP_Data_VTTK_20240307132245.csv",
+						"fileName": "SAP_Data_AFPO_20240307210030.csv",
 						"folderPath": "Extract_08_2021",
 						"fileSystem": "sap-data-out"
 					},
