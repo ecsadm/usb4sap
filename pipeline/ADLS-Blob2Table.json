@@ -28,7 +28,7 @@
 					},
 					"sink": {
 						"type": "AzureTableSink",
-						"azureTableInsertType": "merge",
+						"azureTableInsertType": "replace",
 						"writeBatchSize": 10000
 					},
 					"enableStaging": false,
