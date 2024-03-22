@@ -566,6 +566,19 @@
 				"policy": {
 					"elapsedTimeMetric": {}
 				},
+				"parameters": {
+					"p_source": {
+						"type": "string"
+					},
+					"p_sink": {
+						"type": "string"
+					}
+				},
+				"variables": {
+					"v_filename": {
+						"type": "String"
+					}
+				},
 				"annotations": []
 			},
 			"dependsOn": []
