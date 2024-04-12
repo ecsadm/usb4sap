@@ -1039,7 +1039,7 @@
 								"httpRequestTimeout": "00:01:40",
 								"requestInterval": "00.00:00:00.010",
 								"requestMethod": "POST",
-								"requestBody": "{\n    \"DELIMITER\": \"|\",\n    \"OBJ_TYPE\": \"T\",\n    \"OBJ_ID\": \"VTTK\",\n    \"OUTPUT_STYLE\": \"\",\n    \"REQUESTER\": \"USB4SAP\",\n    \"FIELD_LABLE\": \"T\",\n    \"VARIANT\":\"\",\n    \"DATADEST\": \"Z|ECS_REST_AZURE_BLOB_SAP_DATA|SAS|sv=2021-06-08&ss=bfqt&srt=sco&sp=rwdlacupyx&se=2025-01-04T15:32:02Z&st=2023-01-19T07:32:02Z&spr=https,http&sig=7i92wCtOU1ucjOw721PkmBkan5mmb0vhQC%2FblM6R1%2FM%3D|sap-data-out/Extract_08_2021/From-ADF\"\n}"
+								"requestBody": "{\n    \"DELIMITER\": \"|\",\n    \"OBJ_TYPE\": \"T\",\n    \"OBJ_ID\": \"VTTK\",\n    \"DELTA_FILTER\": \"ERDAT:I:GE::|ERZET:I:GE::\",\n    \"REQUESTER\": \"USB4SAP\",\n    \"DATADEST\": \"Z|ECS_REST_AZURE_BLOB_SAP_DATA|SAS|sv=2021-06-08&ss=bfqt&srt=sco&sp=rwdlacupyx&se=2025-01-04T15:32:02Z&st=2023-01-19T07:32:02Z&spr=https,http&sig=7i92wCtOU1ucjOw721PkmBkan5mmb0vhQC%2FblM6R1%2FM%3D|sap-data-out/Extract_08_2021/From-ADF\"\n}\n\n"
 							},
 							"sink": {
 								"type": "JsonSink",
