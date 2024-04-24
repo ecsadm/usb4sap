@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "SAP_Data_VTTK_20240306175538.csv",
+				"fileName": "SAP_Data_LFA1_20240318174746.csv",
 				"folderPath": "Extract_08_2021",
 				"fileSystem": "sap-data-out"
 			},
