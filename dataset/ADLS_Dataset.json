@@ -15,7 +15,7 @@
 					"value": "@concat('VTTK_',utcnow(),'.txt')",
 					"type": "Expression"
 				},
-				"folderPath": "Extract_08_2021/From-ADF",
+				"folderPath": "Extract_08_2021",
 				"fileSystem": "sap-data-out"
 			}
 		},
