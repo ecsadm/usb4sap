@@ -21,7 +21,7 @@
 						"httpRequestTimeout": "00:01:40",
 						"requestInterval": "00.00:00:00.010",
 						"requestMethod": "POST",
-						"requestBody": "\t{\n\t    \"DELIMITER\": \"|\",\n\t    \"OBJ_TYPE\": \"R\",\n\t    \"OBJ_ID\": \"RM07DOCS\",\n            \"REQUESTER\": \"USB4SAP\",\n            \"FORMAT\": \"JSON\",\n            \"VARIANT\": \"USB4SAP1\",\n            \"FIELD_LABLE\": \"T\",\n            \"OUTPUT_STYLE\": \"ALV\",\n\t    \"DATADEST\": \"Z|ECS_REST_AZURE_BLOB_SAP_DATA|SAS|sp=racwdlmeop&st=2025-01-05T23:38:24Z&se=2027-01-05T07:38:24Z&sv=2022-11-02&sr=d&sig=ILXpA%2FXlicKmIHWICAN3ps0TX464jbKRu37lewbvjvY%3D&sdd=1|sap-data-out/Extract_08_2021/From-ADF\"\n\t}\n\n\n"
+						"requestBody": "\t{\n\t    \"DELIMITER\": \"|\",\n\t    \"OBJ_TYPE\": \"T\",\n\t    \"OBJ_ID\": \"MDG_BS_MAT_DV_MV\",\n            \"REQUESTER\": \"USB4SAP\",\n            \"FORMAT\": \"JSON\",\n            \"VARIANT\": \"USB4SAP1\",\n            \"FIELD_LABLE\": \"T\",\n            \"OUTPUT_STYLE\": \"ALV\",\n\t    \"DATADEST\": \"Z|ECS_REST_AZURE_BLOB_SAP_DATA|SAS|sp=racwdlmeop&st=2025-01-05T23:38:24Z&se=2027-01-05T07:38:24Z&sv=2022-11-02&sr=d&sig=ILXpA%2FXlicKmIHWICAN3ps0TX464jbKRu37lewbvjvY%3D&sdd=1|sap-data-out/Extract_08_2021/From-ADF\"\n\t}\n\n\n"
 					},
 					"sink": {
 						"type": "JsonSink",
